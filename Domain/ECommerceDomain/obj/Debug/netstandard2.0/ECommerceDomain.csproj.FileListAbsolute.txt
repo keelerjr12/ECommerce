@@ -1,8 +1,0 @@
-C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Domain\ECommerceDomain\bin\Debug\netstandard2.0\ECommerceDomain.deps.json
-C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Domain\ECommerceDomain\bin\Debug\netstandard2.0\ECommerceDomain.dll
-C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Domain\ECommerceDomain\bin\Debug\netstandard2.0\ECommerceDomain.pdb
-C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Domain\ECommerceDomain\obj\Debug\netstandard2.0\ECommerceDomain.csproj.CoreCompileInputs.cache
-C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Domain\ECommerceDomain\obj\Debug\netstandard2.0\ECommerceDomain.AssemblyInfoInputs.cache
-C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Domain\ECommerceDomain\obj\Debug\netstandard2.0\ECommerceDomain.AssemblyInfo.cs
-C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Domain\ECommerceDomain\obj\Debug\netstandard2.0\ECommerceDomain.dll
-C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Domain\ECommerceDomain\obj\Debug\netstandard2.0\ECommerceDomain.pdb
