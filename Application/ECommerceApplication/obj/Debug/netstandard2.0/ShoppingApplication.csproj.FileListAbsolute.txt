@@ -1,0 +1,12 @@
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\Shopping\ShoppingApplication\bin\Debug\netstandard2.0\ShoppingApplication.deps.json
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\Shopping\ShoppingApplication\bin\Debug\netstandard2.0\ShoppingApplication.dll
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\Shopping\ShoppingApplication\bin\Debug\netstandard2.0\ShoppingApplication.pdb
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\Shopping\ShoppingApplication\bin\Debug\netstandard2.0\ShoppingDomain.dll
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\Shopping\ShoppingApplication\bin\Debug\netstandard2.0\ShoppingDomain.pdb
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\Shopping\ShoppingApplication\obj\Debug\netstandard2.0\ShoppingApplication.csprojAssemblyReference.cache
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\Shopping\ShoppingApplication\obj\Debug\netstandard2.0\ShoppingApplication.csproj.CoreCompileInputs.cache
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\Shopping\ShoppingApplication\obj\Debug\netstandard2.0\ShoppingApplication.AssemblyInfoInputs.cache
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\Shopping\ShoppingApplication\obj\Debug\netstandard2.0\ShoppingApplication.AssemblyInfo.cs
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\Shopping\ShoppingApplication\obj\Debug\netstandard2.0\ShoppingApplication.csproj.CopyComplete
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\Shopping\ShoppingApplication\obj\Debug\netstandard2.0\ShoppingApplication.dll
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\Shopping\ShoppingApplication\obj\Debug\netstandard2.0\ShoppingApplication.pdb

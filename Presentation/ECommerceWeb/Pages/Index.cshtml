@@ -1,0 +1,16 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h2>Product Catalog</h2>
+
+@foreach (var product in Model.Products)
+{
+    <h4>@product.Description</h4> <h6>$@product.Price</h6>
+    <form asp-route="/Cart" method="post">
+        <input value="@product.SKU" name="sku" type="hidden"/>
+        <button type="submit">Add To Cart</button>
+    </form>
+}

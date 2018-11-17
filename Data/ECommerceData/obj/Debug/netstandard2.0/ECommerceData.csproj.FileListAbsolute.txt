@@ -1,0 +1,12 @@
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceData\bin\Debug\netstandard2.0\ECommerceData.deps.json
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceData\bin\Debug\netstandard2.0\ECommerceData.dll
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceData\bin\Debug\netstandard2.0\ECommerceData.pdb
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceData\bin\Debug\netstandard2.0\ECommerceDomain.dll
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceData\bin\Debug\netstandard2.0\ECommerceDomain.pdb
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceData\obj\Debug\netstandard2.0\ECommerceData.csprojAssemblyReference.cache
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceData\obj\Debug\netstandard2.0\ECommerceData.csproj.CoreCompileInputs.cache
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceData\obj\Debug\netstandard2.0\ECommerceData.AssemblyInfoInputs.cache
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceData\obj\Debug\netstandard2.0\ECommerceData.AssemblyInfo.cs
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceData\obj\Debug\netstandard2.0\ECommerceData.csproj.CopyComplete
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceData\obj\Debug\netstandard2.0\ECommerceData.dll
+C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceData\obj\Debug\netstandard2.0\ECommerceData.pdb
