@@ -4,8 +4,8 @@ namespace ECommerceApplication.CartService
 {
     public interface ICartService
     {
-        void AddProductToCart(string cartId, string sku, int quantity);
-        void RemoveProductFromCart(string cartId, string sku, int quantity);
+        void AddProductToCart(int cartId, string sku, int quantity);
+        void RemoveProductFromCart(int cartId, string sku, int quantity);
 
         Cart GetCart();
     }

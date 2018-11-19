@@ -36,7 +36,7 @@ namespace ECommerceWeb.Pages
 
         public IActionResult OnPost(string sku)
         {
-            _cartService.AddProductToCart("1", sku, 1);
+            _cartService.AddProductToCart(1, sku, 1);
 
             return Redirect("Cart");
         }

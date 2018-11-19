@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ECommerceApplication.CartService;
-using ECommerceDomain.Sales.Cart;
 
 namespace ECommerceWeb.Pages
 {
@@ -37,11 +36,11 @@ namespace ECommerceWeb.Pages
 
         public IActionResult OnPost(string sku)
         {
-            _cartService.RemoveProductFromCart("1", sku, 1);
+            _cartService.RemoveProductFromCart(1, sku, 1);
 
             return Redirect("Cart");
         }
 
-        private ICartService _cartService;
+        private readonly ICartService _cartService;
     }
 }

@@ -11,6 +11,11 @@ namespace ECommerceDomain.Sales.Cart
 
         public IReadOnlyList<Item> Items => _items.ToList();
 
+        public Cart(int id)
+        {
+            _id = id;
+        }
+
         public void Add(Product.Product product, Quantity quantity)
         {
             var item = _items.Find(itemToSearch => itemToSearch.SKU == product.SKU);
@@ -41,16 +46,7 @@ namespace ECommerceDomain.Sales.Cart
             }
         }
 
-        public void Delete(Product.Product product)
-        {
-            var item = _items.Find(itemToSearch => itemToSearch.SKU == product.SKU);
-
-            if (item == null)
-                throw new ItemNotFoundException(product);
-
-            _items.Remove(item);
-;        }
-
         private readonly List<Item> _items = new List<Item>();
+        private int _id;
     }
 }

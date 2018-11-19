@@ -2,6 +2,8 @@
 {
     public interface ICartRepository
     {
-        Cart FindById(string id);
+        Cart FindById(int id);
+
+        void Update(Cart cart);
     }
 }

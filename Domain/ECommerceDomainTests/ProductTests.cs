@@ -1,7 +1,6 @@
-﻿using ECommerceDomain.Sales.Cart;
-using Xunit;
+﻿using Xunit;
 
-namespace ShoppingDomainTests
+namespace ECommerceDomainTests
 {
     public class ProductTests
     {

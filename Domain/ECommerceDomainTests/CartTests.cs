@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ECommerceDomain.Sales.Cart;
+using ECommerceDomain.Sales.Common;
+using ECommerceDomain.Sales.Product;
 using Xunit;
 
-namespace ShoppingDomainTests
+namespace ECommerceDomainTests
 {
     public class CartTests
     {

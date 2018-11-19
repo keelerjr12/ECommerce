@@ -6,8 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ECommerceApplication.CartService;
 using ECommerceData;
+using ECommerceData.Cart;
+using ECommerceData.Product;
 using ECommerceDomain.Sales.Cart;
 using ECommerceDomain.Sales.Product;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceWeb
 {
@@ -33,9 +36,14 @@ namespace ECommerceWeb
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddTransient<ICartService, CartService>();
-            services.AddSingleton<ICartRepository, CartRepository>();
-            services.AddSingleton<IProductRepository, ProductRepository>();
+            services.AddDbContext<ECommerceContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("ECommerceContext")));
+
+            services.AddScoped<ECommerceContext>();
+            services.AddScoped<UnitOfWork>();
+            services.AddScoped<ICartService, CartService>();
+            services.AddScoped<ICartRepository, CartRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
