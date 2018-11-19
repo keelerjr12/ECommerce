@@ -28,6 +28,80 @@ body {
     margin: 15px;
 }
 
+.header-bar {
+    background-color: #080808;
+    min-height: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.my-container {
+    width: 1170px;
+    display: inline-block;
+}
+
+.home {
+    float: left;
+    width: 140px;
+    margin: 0;
+    padding: 0;
+}
+
+.home a {
+    padding: 14px;
+    color: white;
+    display: block;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.nav-bar {
+    display: flex;
+}
+
+#left-subnav-bar {
+    margin: 0;
+    padding: 0;
+}
+
+#left-subnav-bar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#left-subnav-bar li {
+    float: left;
+    display: block;
+    padding: 14px;
+}
+
+#left-subnav-bar li a {
+    color: white;
+    font-size: 18px;
+}
+
+#right-subnav-bar {
+    margin: 0;
+    padding: 0;
+    margin-left: auto;
+}
+
+#right-subnav-bar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#right-subnav-bar li {
+    float: left;
+    display: block;
+    padding: 14px;
+}
+
+#right-subnav-bar li a {
+    color: white;
+    font-size: 18px;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

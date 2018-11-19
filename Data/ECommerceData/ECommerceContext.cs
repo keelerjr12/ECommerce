@@ -14,6 +14,7 @@ namespace ECommerceData
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CartDTO>().HasMany(c => c.CartItems).WithOne(c => c.Cart).HasForeignKey(c => c.CartId);
+            modelBuilder.Entity<CartItemDTO>().HasKey(c => new {c.CartId, c.ProductSKU});
         }
 
         internal DbSet<CartDTO> Cart { get; set; }

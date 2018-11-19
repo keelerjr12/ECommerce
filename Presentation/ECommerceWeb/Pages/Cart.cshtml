@@ -9,7 +9,10 @@
 @foreach (var item in Model.Items)
 {
     <h2>@item.Description</h2>
-    <p>@item.SKU</p>
+    <p>
+        <label>SKU: </label>
+        @item.SKU
+    </p>
     <p>@string.Format("{0} units @ ${1}", item.Quantity, item.Price)</p>
     <form asp-route="/Cart" method="post">
         <input value="@item.SKU" name="sku" type="hidden"/>

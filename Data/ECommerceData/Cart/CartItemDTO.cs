@@ -1,4 +1,5 @@
-﻿using ECommerceData.Product;
+﻿using System.ComponentModel.DataAnnotations;
+using ECommerceData.Product;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerceData.Cart
@@ -6,10 +7,6 @@ namespace ECommerceData.Cart
     [Table("CartItems")]
     internal class CartItemDTO
     {
-        //[Key]
-        [Column("Id")]
-        public int Id { get; set; }
-
         [Column("CartID")]
         public int CartId { get; set; }
 
