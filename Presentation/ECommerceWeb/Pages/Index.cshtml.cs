@@ -11,7 +11,7 @@ namespace ECommerceWeb.Pages
     {
         public List<ProductViewModel> Products { get; } = new List<ProductViewModel>();
 
-        public IndexModel(IProductRepository productRepo, ICartService cartService)
+        public IndexModel(IProductRepository productRepo, CartService cartService)
         {
             _productRepo = productRepo;
             _cartService = cartService;
@@ -42,6 +42,6 @@ namespace ECommerceWeb.Pages
         }
 
         private IProductRepository _productRepo;
-        private ICartService _cartService;
+        private CartService _cartService;
     }
 }

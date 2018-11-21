@@ -20,7 +20,7 @@ namespace ECommerceDomainTests
 
         public CartTests()
         {
-            _cart = new Cart();
+            _cart = new Cart(0);
         }
 
         [Theory]

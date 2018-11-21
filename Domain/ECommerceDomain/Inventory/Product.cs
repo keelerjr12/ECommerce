@@ -2,22 +2,20 @@
 {
     public class Product
     {
-        private string _sku;
-        public int StockCount { get; private set; } = 0;
+        public string SKU { get; }
 
-        public Product(string SKU)
-        {
-            _sku = SKU;
-        }
+        public string Description { get; set; }
 
-        public void IncreaseStock(int quantity)
-        {
-            StockCount += quantity;
-        }
+        public string Category { get; set; }
 
-        public void DecreaseStock(int quantity)
+        public decimal UnitCost { get; set; }
+
+        public Product(string sku, string description, string category, decimal unitCost)
         {
-            StockCount -= quantity;
+            SKU = sku;
+            Description = description;
+            Category = category;
+            UnitCost = unitCost;
         }
     }
 }

@@ -5,7 +5,7 @@ using ECommerceDomain.Sales.Product;
 
 namespace ECommerceApplication.CartService
 {
-    public class CartService : ICartService
+    public class CartService
     {
         public CartService(UnitOfWork uow, ICartRepository cartRepo, IProductRepository productRepo)
         {

@@ -15,20 +15,17 @@ namespace ECommerceWeb.Pages
 
         public IActionResult OnPost(string username, string password)
         {
-            if (username == "demo" && password == "demo")
-            {
-                var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
+            if (username != "demo" || password != "demo") return RedirectToPage();
 
-                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, username));
-                identity.AddClaim(new Claim(ClaimTypes.Name, username));
-                var principal = new ClaimsPrincipal(identity);
-                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
-                    new AuthenticationProperties { IsPersistent = true });
+            var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
 
-                return RedirectToPage("/Account");
-            }
+            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, username));
+            identity.AddClaim(new Claim(ClaimTypes.Name, username));
+            var principal = new ClaimsPrincipal(identity);
+            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
+                new AuthenticationProperties { IsPersistent = true });
 
-            return RedirectToPage();
+            return RedirectToPage("/Account");
         }
     }
 }

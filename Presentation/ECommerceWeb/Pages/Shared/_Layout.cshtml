@@ -20,12 +20,13 @@
     <nav class="header-bar">
         <div class="my-container">
             <div class="home">
-                <a asp-page="/Index">Jewelry Biz</a>
+                <a asp-page="/Index" asp-area="">Jewelry Biz</a>
             </div>
             <div class="nav-bar">
                 <div id="left-subnav-bar">
                     <ul>
-                        <li><a asp-page="/Index">Catalog</a></li>
+                        <li><a asp-page="/Index" asp-area="">Catalog</a></li>
+                        <li><a asp-page="/Index" asp-area="Inventory">Inventory</a></li>
                         <li><a asp-page="/Contact">Contact</a></li>
                     </ul>
                 </div>

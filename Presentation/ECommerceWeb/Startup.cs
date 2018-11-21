@@ -5,9 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ECommerceApplication.CartService;
+using ECommerceApplication.InventoryService;
 using ECommerceData;
 using ECommerceData.Cart;
+using ECommerceData.Inventory;
 using ECommerceData.Product;
+using ECommerceDomain.Inventory;
 using ECommerceDomain.Sales.Cart;
 using ECommerceDomain.Sales.Product;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -56,9 +59,16 @@ namespace ECommerceWeb
 
             services.AddScoped<ECommerceContext>();
             services.AddScoped<UnitOfWork>();
-            services.AddScoped<ICartService, CartService>();
+            services.AddScoped<CartService>();
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<InventoryService>();
+            services.AddScoped<IInventoryRepository, InventoryRepository>();
+
+            services.AddMvc().AddRazorPagesOptions(options =>
+            {
+                options.AllowAreas = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -16,7 +16,7 @@ namespace ECommerceConsole
                 new Product("jkh23jkasd", "Sony", "Sony 65\" TV", 915.99m),
                 new Product("klaj32ioua", "Panasonic", "Panasonic 42\" HDTV", 415.99m),
             };
-            var cart = new Cart();
+            var cart = new Cart(0);
             bool running = true;
 
             do

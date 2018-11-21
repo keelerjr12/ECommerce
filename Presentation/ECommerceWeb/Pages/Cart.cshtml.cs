@@ -14,7 +14,7 @@ namespace ECommerceWeb.Pages
 
         public List<CartItemModel> Items { get; } = new List<CartItemModel>();
 
-        public CartModel(ICartService cartService)
+        public CartModel(CartService cartService)
         {
             _cartService = cartService;
         }
@@ -41,6 +41,6 @@ namespace ECommerceWeb.Pages
             return RedirectToPage("Cart");
         }
 
-        private readonly ICartService _cartService;
+        private readonly CartService _cartService;
     }
 }

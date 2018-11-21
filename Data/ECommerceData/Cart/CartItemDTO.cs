@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using ECommerceData.Product;
+﻿using ECommerceData.Product;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerceData.Cart

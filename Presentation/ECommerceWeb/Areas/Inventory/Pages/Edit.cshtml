@@ -1,0 +1,23 @@
+﻿@page "{id}"
+@model ECommerceWeb.Areas.Inventory.Pages.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form method="post">
+    <label>SKU: </label>
+    <label>@Model.SKU</label>
+    <input hidden name="SKU" value="@Model.SKU"/>
+
+    <label>Description: </label>
+    <input type="text" name="Description" value="@Model.Description" />
+    <label>Category: </label>
+    <input type="text" name="Category" value="@Model.Category" />
+    <label>Unit Cost: </label>
+    <input type="text" name="UnitCost" value="@Model.UnitCost" />
+
+    <button type="submit">Save</button>
+    <a asp-page="/Index">Cancel</a>
+</form>

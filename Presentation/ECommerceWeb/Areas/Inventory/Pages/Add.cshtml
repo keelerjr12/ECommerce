@@ -1,0 +1,33 @@
+﻿@page
+@model AddModel
+@{
+    ViewData["Title"] = "AddInventory";
+}
+
+<h2>Add Inventory</h2>
+
+<form method="post">
+    <div>
+        <label>SKU: </label>
+        <input type="text" name="sku"/>
+    </div>
+    <div>
+        <label>Description: </label>
+        <input type="text" name="description" />
+    </div>
+    <div>
+        <label>Category: </label>
+        <input type="text" name="category" />
+    </div>
+    <div>
+        <label>Quantity: </label>
+        <input type="text" name="quantity" />
+    </div>
+    <div>
+        <label>Retail Price: </label>
+        <input type="text" name="retailPrice" />
+    </div>
+    <div>
+        <button type="submit">Add</button>
+    </div>
+</form>
