@@ -25,5 +25,6 @@ namespace ECommerceData
         internal DbSet<Product.ProductDTO> Products { get; set; }
 
         internal DbSet<InventoryDTO> Inventory { get; set; }
+        internal DbSet<InventoryProductDTO> InventoryProducts { get; set; }
     }
 }

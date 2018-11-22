@@ -1,3 +1,4 @@
+using ECommerceApplication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -64,6 +65,9 @@ namespace ECommerceWeb
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<InventoryService>();
             services.AddScoped<IInventoryRepository, InventoryRepository>();
+            services.AddScoped<IInventoryProductRepository, InventoryProductRepository>();
+            services.AddScoped<ProductService>();
+            ;
 
             services.AddMvc().AddRazorPagesOptions(options =>
             {

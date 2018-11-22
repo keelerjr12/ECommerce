@@ -5,7 +5,10 @@ namespace ECommerceData.Inventory
     [Table("InventoryItem")]
     internal class InventoryItemDTO
     {
-        [Column("InventoryID")]
+        [Column("Id")]
+        public int Id { get; set; }
+
+        [Column("InventoryId")]
         public int InventoryId { get; set; }
 
         [Column("ProductSKU")]

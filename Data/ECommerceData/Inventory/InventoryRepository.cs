@@ -16,15 +16,15 @@ namespace ECommerceData.Inventory
         {
             var inventoryDTO = _eCommerceContext.Inventory.Where(i => i.Id == id).Include(i => i.InventoryItems).FirstOrDefault();
 
-            var inventory = new ECommerceDomain.Inventory.Inventory();
+            var inventoryItems = new List<InventoryItem>();
 
             foreach (var item in inventoryDTO.InventoryItems)
             {
-                var product = new ECommerceDomain.Inventory.Product(item.ProductSKU, item.Description, item.Category, item.UnitCost);
-
-                inventory.TrackProduct(product);
-                inventory.Purchase(product, item.Stock);
+                var product = new ECommerceDomain.Inventory.InventoryProduct(item.ProductSKU, item.Description, item.Category);
+                inventoryItems.Add(new InventoryItem(item.Id, product, item.Stock, 10m));
             }
+
+            var inventory = new ECommerceDomain.Inventory.Inventory(inventoryDTO.Id, inventoryItems);
 
             return inventory;
         }
@@ -53,6 +53,7 @@ namespace ECommerceData.Inventory
                     storedInventoryDTO.InventoryItems.Add(storedDTO);
                 }
 
+                storedDTO.Id = inventoryItem.Id;
                 storedDTO.ProductSKU = inventoryItem.ProductSKU;
                 storedDTO.Description = inventoryItem.Description;
                 storedDTO.Category = inventoryItem.Category;
@@ -65,16 +66,17 @@ namespace ECommerceData.Inventory
         {
             return items.Select(item => new InventoryItemDTO
                 {
-                    ProductSKU = item.SKU,
-                    Description = item.Description,
-                    Category = item.Category,
+                    Id = item.Id,
+                    ProductSKU = item.Product.SKU,
+                    Description = item.Product.Description,
+                    Category = item.Product.Category,
                     Stock = item.Stock,
                     UnitCost = item.UnitCost
                 })
                 .ToList();
         }
 
-        private ECommerceContext _eCommerceContext;
+        private readonly ECommerceContext _eCommerceContext;
     }
 
     internal class InventoryItemDTOComparer : IEqualityComparer<InventoryItemDTO>
@@ -84,7 +86,7 @@ namespace ECommerceData.Inventory
             if (ReferenceEquals(x, y))
                 return true;
 
-            return x != null && y != null && x.ProductSKU == y.ProductSKU;
+            return x != null && y != null && x.Id == y.Id && x.InventoryId == y.InventoryId;
         }
 
         public int GetHashCode(InventoryItemDTO obj)

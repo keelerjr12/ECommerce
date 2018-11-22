@@ -1,0 +1,19 @@
+﻿@page
+@model ECommerceWeb.Areas.Product.Pages.ProductModel
+@{
+    ViewData["Title"] = "Product Catalog";
+}
+
+<h2>Catalog</h2>
+
+<div>
+    <ul>
+        @foreach (var product in Model.Products)
+        {
+            <li>@product.SKU -- @product.Description -- @product.Price</li>
+        }
+     </ul>
+</div>
+<div>
+    <a asp-page="/AddProduct">Add Product</a>
+</div>

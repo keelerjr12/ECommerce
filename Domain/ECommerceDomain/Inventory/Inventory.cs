@@ -6,6 +6,8 @@ namespace ECommerceDomain.Inventory
 {
     public class Inventory
     {
+        public int Id { get; }
+
         public IReadOnlyList<InventoryItem> Items => _items.ToList();
 
         public int ItemCount
@@ -18,29 +20,21 @@ namespace ECommerceDomain.Inventory
             get { return _items.Sum(i => i.Stock * i.UnitCost); }
         }
 
-        public void TrackProduct(Product product)
+        public Inventory(int id, List<InventoryItem> items)
         {
-            var item = new InventoryItem(product);
+            Id = id;
+            _items = items.ToList();
+        }
+
+        public void Purchase(InventoryProduct product, int quantity)
+        {
+            var itemId = GenerateId();
+            var item = new InventoryItem(itemId, product, quantity, 10m);
 
             _items.Add(item);
         }
 
-        public void UntrackProduct(Product product)
-        {
-            CheckProductExists(product);
-
-            _items.RemoveAll(item => item.SKU == product.SKU);
-        }
-
-        public void Purchase(Product product, int quantity)
-        {
-            CheckProductExists(product);
-
-            var item = FindItemByProduct(product);
-            item.IncreaseStock(quantity);
-        }
-
-        public void Sell(Product product, int quantity)
+        public void Sell(InventoryProduct product, int quantity)
         {
             CheckProductExists(product);
 
@@ -48,7 +42,7 @@ namespace ECommerceDomain.Inventory
             item.DecreaseStock(quantity);
         }
 
-        public void UpdateProduct(Product product)
+        public void UpdateProduct(InventoryProduct product)
         {
             CheckProductExists(product);
 
@@ -56,17 +50,25 @@ namespace ECommerceDomain.Inventory
             item.UpdateDetails(product);
         }
 
-        private void CheckProductExists(Product product)
+        private void CheckProductExists(InventoryProduct product)
         {
-            if (!_items.Exists(item => item.SKU == product.SKU))
+            if (!_items.Exists(item => item.Product.SKU == product.SKU))
             {
                 throw new Exception("Product does not exist");
             }
         }
 
-        private InventoryItem FindItemByProduct(Product product)
+        private InventoryItem FindItemByProduct(InventoryProduct product)
         {
-            return _items.First(i => i.SKU == product.SKU);
+            return _items.First(i => i.Product.SKU == product.SKU);
+        }
+
+        private int GenerateId()
+        {
+            if (Items.Count == 0)
+                return 0;
+
+            return _items.Max(i => i.Id) + 1;
         }
 
         private readonly List<InventoryItem> _items = new List<InventoryItem>();

@@ -4,11 +4,11 @@
     {
         public string SKU { get; }
 
-        public string Description { get; set; }
+        public string Description { get; }
 
-        public string Category { get; set; }
+        public string Category { get; }
 
-        public decimal UnitCost { get; set; }
+        public decimal UnitCost { get; }
 
         public Product(string sku, string description, string category, decimal unitCost)
         {
