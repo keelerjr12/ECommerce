@@ -5,7 +5,7 @@ using Xunit;
 namespace ECommerceDomainTests
 {
     public class InventoryTests
-    {/*
+    {
         public InventoryTests()
         {
             _inventory = new Inventory(1, null);
@@ -17,11 +17,11 @@ namespace ECommerceDomainTests
         [InlineData(2)]
         public void PurchaseSingleProductWithVariableQuantity_ItemCount_EqualsQuantity(int quantity)
         {
-            _inventory.Purchase(_product, quantity);
+           // _inventory.Purchase(_product, quantity);
 
-            Assert.Equal(quantity, _inventory.ItemCount);
+           // Assert.Equal(quantity, _inventory.ItemCount);
         }
-
+        /*
         [Theory]
         [InlineData(1, 2)]
         public void PurchaseSingleProductMultipleTimesWithVariableQuantity_ItemCount_EqualsQuantity(int quantity1, int quantity2)
@@ -81,9 +81,8 @@ namespace ECommerceDomainTests
 
             //Assert.Throws<Exception>(action);
         }
-
+                */
         private readonly Inventory _inventory;
         private readonly Product _product = new Product("0", "", "", 199m);
-        */
     }
 }

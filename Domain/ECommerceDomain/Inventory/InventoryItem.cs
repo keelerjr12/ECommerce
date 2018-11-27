@@ -2,30 +2,53 @@
 {
     public class InventoryItem
     {
-        public int Id { get; }
+        public string SKU { get; }
 
-        public InventoryProduct Product { get; private set; }
+        public string Description { get; private set; }
+
+        public string Category { get; private set; }
 
         public int Stock { get; private set; }
 
         public decimal UnitCost { get; }
 
-        public InventoryItem(int id, InventoryProduct product, int stock, decimal unitCost)
+        public InventoryItem(string sku, string description, string category,int stock, decimal unitCost)
         {
-            Id = id;
-            Product = product;
+            SKU = sku;
+            Description = description;
+            Category = category;
             Stock = stock;
             UnitCost = unitCost;
         }
 
-        internal void UpdateDetails(InventoryProduct product)
+        internal void UpdateDescription(string description)
         {
-            Product = product;
+            Description = description;
         }
 
-        internal void DecreaseStock(int quantity)
+        internal void Purchase(int quantity)
+        {
+            Stock += quantity;
+        }
+
+        internal void Sell(int quantity)
         {
             Stock -= quantity;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !ReferenceEquals(this, obj))
+            {
+                return false;
+            }
+
+            return obj is InventoryItem i && ((SKU == i.SKU) && (SKU == i.SKU));
+        }
+
+        public override int GetHashCode()
+        {
+            return SKU.GetHashCode();
         }
     }
 }

@@ -23,12 +23,12 @@ namespace ECommerceWeb.Areas.Inventory.Pages
             _inventoryService = inventoryService;
         }
 
-        public void OnGet(int id)
+        public void OnGet(string sku)
         {
-            var inventoryItem = _inventoryService.GetInventoryItem(id);
-            SKU = inventoryItem.Product.SKU;
-            Description = inventoryItem.Product.Description;
-            Category = inventoryItem.Product.Category;
+            var inventoryItem = _inventoryService.GetInventoryItem(sku);
+            SKU = inventoryItem.SKU;
+            Description = inventoryItem.Description;
+            Category = inventoryItem.Category;
             UnitCost = inventoryItem.UnitCost;
         }
 

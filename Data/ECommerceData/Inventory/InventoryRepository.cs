@@ -20,8 +20,7 @@ namespace ECommerceData.Inventory
 
             foreach (var item in inventoryDTO.InventoryItems)
             {
-                var product = new ECommerceDomain.Inventory.InventoryProduct(item.ProductSKU, item.Description, item.Category);
-                inventoryItems.Add(new InventoryItem(item.Id, product, item.Stock, 10m));
+                inventoryItems.Add(new InventoryItem(item.SKU, item.Description, item.Category, item.Stock, item.UnitCost));
             }
 
             var inventory = new ECommerceDomain.Inventory.Inventory(inventoryDTO.Id, inventoryItems);
@@ -39,12 +38,12 @@ namespace ECommerceData.Inventory
 
             foreach (var itemToDelete in inventoryItemsToDelete)
             {
-                storedInventoryDTO.InventoryItems.RemoveAll(item => item.ProductSKU == itemToDelete.ProductSKU);
+                storedInventoryDTO.InventoryItems.RemoveAll(item => item.SKU == itemToDelete.SKU);
             }
 
             foreach (var inventoryItem in inventoryItemsToAdd)
             {
-                var storedDTO = storedInventoryDTO.InventoryItems.Find(d => d.ProductSKU == inventoryItem.ProductSKU);
+                var storedDTO = storedInventoryDTO.InventoryItems.Find(d => d.SKU == inventoryItem.SKU);
 
                 if (storedDTO == null)
                 {
@@ -53,8 +52,7 @@ namespace ECommerceData.Inventory
                     storedInventoryDTO.InventoryItems.Add(storedDTO);
                 }
 
-                storedDTO.Id = inventoryItem.Id;
-                storedDTO.ProductSKU = inventoryItem.ProductSKU;
+                storedDTO.SKU = inventoryItem.SKU;
                 storedDTO.Description = inventoryItem.Description;
                 storedDTO.Category = inventoryItem.Category;
                 storedDTO.Stock = inventoryItem.Stock;
@@ -66,10 +64,9 @@ namespace ECommerceData.Inventory
         {
             return items.Select(item => new InventoryItemDTO
                 {
-                    Id = item.Id,
-                    ProductSKU = item.Product.SKU,
-                    Description = item.Product.Description,
-                    Category = item.Product.Category,
+                    SKU = item.SKU,
+                    Description = item.Description,
+                    Category = item.Category,
                     Stock = item.Stock,
                     UnitCost = item.UnitCost
                 })
@@ -86,7 +83,7 @@ namespace ECommerceData.Inventory
             if (ReferenceEquals(x, y))
                 return true;
 
-            return x != null && y != null && x.Id == y.Id && x.InventoryId == y.InventoryId;
+            return x != null && y != null && x.SKU == y.SKU && x.InventoryId == y.InventoryId;
         }
 
         public int GetHashCode(InventoryItemDTO obj)

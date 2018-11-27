@@ -12,9 +12,9 @@ namespace ECommerceWeb.Areas.Inventory
 
         public InventoryItemViewModel(InventoryItem item)
         {
-            SKU = item.Product.SKU;
-            Description = item.Product.Description;
-            Category = item.Product.Category;
+            SKU = item.SKU;
+            Description = item.Description;
+            Category = item.Category;
             Stock = item.Stock;
             UnitCost = item.UnitCost;
         }

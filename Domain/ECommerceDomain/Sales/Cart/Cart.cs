@@ -46,6 +46,15 @@ namespace ECommerceDomain.Sales.Cart
             }
         }
 
+        public IReadOnlyList<Item> Checkout()
+        {
+            var checkoutList = _items.ToList();
+
+            _items.Clear();
+
+            return checkoutList;
+        }
+
         private readonly List<Item> _items = new List<Item>();
         private int _id;
     }

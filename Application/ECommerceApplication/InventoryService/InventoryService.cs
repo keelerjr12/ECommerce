@@ -6,29 +6,27 @@ namespace ECommerceApplication.InventoryService
 {
     public class InventoryService
     {
-        public InventoryService(UnitOfWork uow, IInventoryRepository inventoryRepo, IInventoryProductRepository inventoryProductRepo)
+        public InventoryService(UnitOfWork uow, IInventoryRepository inventoryRepo)
         {
             _uow = uow;
             _inventoryRepo = inventoryRepo;
-            _inventoryProductRepo = inventoryProductRepo;
         }
 
         public Inventory GetInventory()
         {
             return _inventoryRepo.FindById(1);
         }
-
-        public InventoryItem GetInventoryItem(int id)
+    
+        public InventoryItem GetInventoryItem(string sku)
         {
-            return GetInventory().Items.First(item => item.Id == id);
+            return GetInventory().Items.First(item => item.SKU == sku);
         }
 
         public void PurchaseStock(string sku, int quantity)
         {
             var inventory = _inventoryRepo.FindById(1);
-            var product = _inventoryProductRepo.GetBySKU(sku);
 
-            inventory.Purchase(product, quantity);
+            inventory.Purchase(sku, quantity);
 
             _inventoryRepo.Update(inventory);
 
@@ -38,9 +36,8 @@ namespace ECommerceApplication.InventoryService
         public void SellStock(string sku, int quantity)
         {
             var inventory = _inventoryRepo.FindById(1);
-            var product = _inventoryProductRepo.GetBySKU(sku);
 
-            inventory.Sell(product, quantity);
+            inventory.Sell(sku, quantity);
 
             _inventoryRepo.Update(inventory);
 
@@ -52,10 +49,6 @@ namespace ECommerceApplication.InventoryService
             var inventory = _inventoryRepo.FindById(1);
             //var inventoryItem = GetInventoryItem(sku);
 
-            var product = new InventoryProduct(sku, description, category);
-
-            inventory.UpdateProduct(product);
-
             _inventoryRepo.Update(inventory);
 
             _uow.Save();
@@ -63,6 +56,5 @@ namespace ECommerceApplication.InventoryService
 
         private readonly UnitOfWork _uow;
         private readonly IInventoryRepository _inventoryRepo;
-        private IInventoryProductRepository _inventoryProductRepo;
     }
 }

@@ -1,5 +1,7 @@
 ﻿using ECommerceData.Cart;
+using ECommerceData.Customer;
 using ECommerceData.Inventory;
+using ECommerceData.Order;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceData
@@ -18,13 +20,17 @@ namespace ECommerceData
 
             modelBuilder.Entity<InventoryDTO>().HasMany(i => i.InventoryItems).WithOne(i => i.Inventory)
                 .HasForeignKey(i => i.InventoryId);
-            modelBuilder.Entity<InventoryItemDTO>().HasKey(i => new {i.InventoryId, i.ProductSKU});
+            modelBuilder.Entity<InventoryItemDTO>().HasKey(i => new {i.InventoryId, i.SKU});
         }
 
+        internal DbSet<CustomerDTO> Customers { get; set; }
+
         internal DbSet<CartDTO> Cart { get; set; }
+
         internal DbSet<Product.ProductDTO> Products { get; set; }
 
+        internal DbSet<OrderDTO> Orders { get; set; }
+
         internal DbSet<InventoryDTO> Inventory { get; set; }
-        internal DbSet<InventoryProductDTO> InventoryProducts { get; set; }
     }
 }

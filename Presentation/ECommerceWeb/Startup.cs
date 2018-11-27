@@ -9,10 +9,13 @@ using ECommerceApplication.CartService;
 using ECommerceApplication.InventoryService;
 using ECommerceData;
 using ECommerceData.Cart;
+using ECommerceData.Customer;
 using ECommerceData.Inventory;
 using ECommerceData.Product;
 using ECommerceDomain.Inventory;
 using ECommerceDomain.Sales.Cart;
+using ECommerceDomain.Sales.Customer;
+using ECommerceDomain.Sales.Order;
 using ECommerceDomain.Sales.Product;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
@@ -60,13 +63,20 @@ namespace ECommerceWeb
 
             services.AddScoped<ECommerceContext>();
             services.AddScoped<UnitOfWork>();
+
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+
             services.AddScoped<CartService>();
             services.AddScoped<ICartRepository, CartRepository>();
+
+            services.AddScoped<ProductService>();
             services.AddScoped<IProductRepository, ProductRepository>();
+
+            services.AddScoped<OrderService>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+
             services.AddScoped<InventoryService>();
             services.AddScoped<IInventoryRepository, InventoryRepository>();
-            services.AddScoped<IInventoryProductRepository, InventoryProductRepository>();
-            services.AddScoped<ProductService>();
             ;
 
             services.AddMvc().AddRazorPagesOptions(options =>

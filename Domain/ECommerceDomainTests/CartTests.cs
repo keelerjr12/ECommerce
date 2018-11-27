@@ -151,7 +151,7 @@ namespace ECommerceDomainTests
         [InlineData(15, 0)]
         public void RemovingExistingItemFromCart_SubTotal_EqualsZero(decimal itemPrice, decimal expected)
         {
-            var item = new Item(itemPrice);
+            var item = new Item(_productmtemPrice);
 
             cart.AddItem(item);
             cart.RemoveItem(item);

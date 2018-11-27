@@ -26,51 +26,57 @@ namespace ECommerceDomain.Inventory
             _items = items.ToList();
         }
 
-        public void Purchase(InventoryProduct product, int quantity)
+        public void TrackProduct(string sku, string description, string category, decimal unitCost)
         {
-            var itemId = GenerateId();
-            var item = new InventoryItem(itemId, product, quantity, 10m);
+            var item = new InventoryItem(sku, description, category, 0, unitCost);
 
             _items.Add(item);
         }
 
-        public void Sell(InventoryProduct product, int quantity)
+        public void UntrackProduct(string sku)
         {
-            CheckProductExists(product);
+            CheckProductExists(sku);
 
-            var item = FindItemByProduct(product);
-            item.DecreaseStock(quantity);
+            _items.RemoveAll(i => i.SKU == sku);
         }
 
-        public void UpdateProduct(InventoryProduct product)
+        public void Purchase(string sku, int quantity)
         {
-            CheckProductExists(product);
+            CheckProductExists(sku);
 
-            var item = FindItemByProduct(product);
-            item.UpdateDetails(product);
+            var item = FindItemByProduct(sku);
+            item.Purchase(quantity);
         }
 
-        private void CheckProductExists(InventoryProduct product)
+        public void Sell(string sku, int quantity)
         {
-            if (!_items.Exists(item => item.Product.SKU == product.SKU))
+            CheckProductExists(sku);
+
+            var item = FindItemByProduct(sku);
+            item.Sell(quantity);
+        }
+
+        public void UpdateDescription(string sku, string description)
+        {
+            CheckProductExists(sku);
+
+            var item = FindItemByProduct(sku);
+            item.UpdateDescription(description);
+        }
+
+        private void CheckProductExists(string sku)
+        {
+            if (!_items.Exists(item => item.SKU == sku))
             {
                 throw new Exception("Product does not exist");
             }
         }
 
-        private InventoryItem FindItemByProduct(InventoryProduct product)
+        private InventoryItem FindItemByProduct(string sku)
         {
-            return _items.First(i => i.Product.SKU == product.SKU);
+            return _items.First(i => i.SKU == sku);
         }
 
-        private int GenerateId()
-        {
-            if (Items.Count == 0)
-                return 0;
-
-            return _items.Max(i => i.Id) + 1;
-        }
-
-        private readonly List<InventoryItem> _items = new List<InventoryItem>();
+        private readonly List<InventoryItem> _items;
     }
 }
