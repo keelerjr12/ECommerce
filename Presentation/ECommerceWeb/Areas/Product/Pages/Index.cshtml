@@ -6,10 +6,10 @@
 
 <h1>Product Catalog</h1>
 
-<h2>bracelet</h2>
+<h2>Mother's bracelets</h2>
 @foreach (var product in Model.Products)
 {
-    if (product.Category == "bracelet")
+    if (product.Category == "Mother's bracelets")
     {
         <h4>@product.Description</h4>
         <h6>$@product.Price</h6>
@@ -23,10 +23,10 @@
     }
 }
 
-<h2>rings</h2>
+<h2>Baby/Christening bracelets</h2>
 @foreach (var product in Model.Products)
 {
-    if (product.Category == "ring")
+    if (product.Category == "Baby/Christening bracelets")
     {
         <h4>@product.Description</h4>
         <h6>$@product.Price</h6>
@@ -40,10 +40,10 @@
     }
 }
 
-<h2>earing</h2>
+<h2>Grandmother's bracelets</h2>
 @foreach (var product in Model.Products)
 {
-    if (product.Category == "earing")
+    if (product.Category == "Grandmother's bracelets")
     {
         <h4>@product.Description</h4>
         <h6>$@product.Price</h6>
@@ -57,3 +57,87 @@
     }
 }
 
+<h2>Wedding bracelets</h2>
+@foreach (var product in Model.Products)
+{
+    if (product.Category == "Wedding bracelets")
+    {
+        <h4>@product.Description</h4>
+        <h6>$@product.Price</h6>
+        if (User.Identity.IsAuthenticated)
+        {
+            <form asp-route="/Cart" method="post">
+                <input value="@product.SKU" name="sku" type="hidden" />
+                <button type="submit">Add To Cart</button>
+            </form>
+        }
+    }
+}
+
+<h2>Earrings</h2>
+@foreach (var product in Model.Products)
+{
+    if (product.Category == "Earrings")
+    {
+        <h4>@product.Description</h4>
+        <h6>$@product.Price</h6>
+        if (User.Identity.IsAuthenticated)
+        {
+            <form asp-route="/Cart" method="post">
+                <input value="@product.SKU" name="sku" type="hidden" />
+                <button type="submit">Add To Cart</button>
+            </form>
+        }
+    }
+}
+
+<h2>Necklaces</h2>
+@foreach (var product in Model.Products)
+{
+    if (product.Category == "Necklaces")
+    {
+        <h4>@product.Description</h4>
+        <h6>$@product.Price</h6>
+        if (User.Identity.IsAuthenticated)
+        {
+            <form asp-route="/Cart" method="post">
+                <input value="@product.SKU" name="sku" type="hidden" />
+                <button type="submit">Add To Cart</button>
+            </form>
+        }
+    }
+}
+
+<h2>Sets</h2>
+@foreach (var product in Model.Products)
+{
+    if (product.Category == "Sets")
+    {
+        <h4>@product.Description</h4>
+        <h6>$@product.Price</h6>
+        if (User.Identity.IsAuthenticated)
+        {
+            <form asp-route="/Cart" method="post">
+                <input value="@product.SKU" name="sku" type="hidden" />
+                <button type="submit">Add To Cart</button>
+            </form>
+        }
+    }
+}
+
+<h2>Everyday Jewelry</h2>
+@foreach (var product in Model.Products)
+{
+    if (product.Category == "Everyday Jewelry")
+    {
+        <h4>@product.Description</h4>
+        <h6>$@product.Price</h6>
+        if (User.Identity.IsAuthenticated)
+        {
+            <form asp-route="/Cart" method="post">
+                <input value="@product.SKU" name="sku" type="hidden" />
+                <button type="submit">Add To Cart</button>
+            </form>
+        }
+    }
+}
