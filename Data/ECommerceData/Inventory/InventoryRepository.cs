@@ -67,6 +67,7 @@ namespace ECommerceData.Inventory
 
             foreach (var item in inventory.Items)
             {
+<<<<<<< HEAD
 
                 var itemEntryDTO = ToInventoryItemEntryDTOList(item.Entries);
                 var storedInventoryEntries = storedInventoryDTO.InventoryItems
@@ -78,6 +79,9 @@ namespace ECommerceData.Inventory
                 {
                     storedInventoryEntries.Add(itemEntryToAdd);
                 }
+=======
+                //var entriesToAdd = item.Entries.Except();
+>>>>>>> 0e3860be43f462770bafb6fd7449bf4f7e95b4d9
             }
         }
 
