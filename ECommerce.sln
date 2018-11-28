@@ -10,9 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C6C7F04A-1144-4CB0-8D0F-D10E5A0EE780}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{0A9852A7-955D-4600-BDDC-714E89BCC924}"
-	ProjectSection(SolutionItems) = preProject
-		Application\ECommerceApplication\ProductService.cs = Application\ECommerceApplication\ProductService.cs
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceApplication", "Application\ECommerceApplication\ECommerceApplication.csproj", "{7DCD25C8-102E-44C1-A1AD-A2CB880D35DB}"
 EndProject
@@ -26,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceConsole", "Present
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceWeb", "Presentation\ECommerceWeb\ECommerceWeb.csproj", "{C67BF430-6C08-42C1-B37B-554476524B85}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ECommerceDatabase", "ECommerceDatabase\ECommerceDatabase.sqlproj", "{F068BD03-8B3D-4C65-BF70-487EA1D1D633}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ECommerceDatabase", "Data\ECommerceDatabase\ECommerceDatabase.sqlproj", "{F068BD03-8B3D-4C65-BF70-487EA1D1D633}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

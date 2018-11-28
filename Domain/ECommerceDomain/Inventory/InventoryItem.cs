@@ -69,6 +69,6 @@ namespace ECommerceDomain.Inventory
             return SKU.GetHashCode();
         }
 
-        private readonly List<InventoryItemEntry> _entries = new List<InventoryItemEntry>();
+        private readonly List<InventoryItemEntry> _entries;
     }
 }

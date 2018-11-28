@@ -14,8 +14,9 @@ namespace ECommerceDomain.Inventory
 
         public int Quantity { get; }
 
-        public InventoryItemEntry(Guid Id, string sku, DateTime dateOccurred, string type, int quantity)
+        public InventoryItemEntry(Guid id, string sku, DateTime dateOccurred, string type, int quantity)
         {
+            Id = id;
             SKU = sku;
             DateOccured = dateOccurred;
             Type = type;

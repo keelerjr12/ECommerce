@@ -65,10 +65,19 @@ namespace ECommerceData.Inventory
                 storedDTO.UnitCost = inventoryItem.UnitCost;
             }
 
-            // TODO: FIX UPDATE ENTRY ITEMS!
             foreach (var item in inventory.Items)
             {
-                var entriesToAdd = item.Entries.Except()
+
+                var itemEntryDTO = ToInventoryItemEntryDTOList(item.Entries);
+                var storedInventoryEntries = storedInventoryDTO.InventoryItems
+                    .First(i => i.InventoryId == item.InventoryId && i.SKU == item.SKU).Entries;
+
+                var itemEntriesToAdd = itemEntryDTO.Except(storedInventoryEntries, new InventoryItemEntryDTOComparer()).ToList();
+
+                foreach (var itemEntryToAdd in itemEntriesToAdd)
+                {
+                    storedInventoryEntries.Add(itemEntryToAdd);
+                }
             }
         }
 
@@ -83,12 +92,26 @@ namespace ECommerceData.Inventory
                     Entries = item.Entries.Select(
                         entry => new InventoryItemEntryDTO()
                         {
+                        Id = entry.Id,
                         SKU = entry.SKU,
                         DateOccurred =  entry.DateOccured,
                         Type = entry.Type,
                         Quantity = entry.Quantity
                         }).ToList(),
                     UnitCost = item.UnitCost
+                })
+                .ToList();
+        }
+
+        private IList<InventoryItemEntryDTO> ToInventoryItemEntryDTOList(IReadOnlyList<InventoryItemEntry> entries)
+        {
+            return entries.Select(item => new InventoryItemEntryDTO
+                {
+                    Id = item.Id,
+                    SKU = item.SKU,
+                    DateOccurred = item.DateOccured,
+                    Type = item.Type,
+                    Quantity = item.Quantity
                 })
                 .ToList();
         }
@@ -109,6 +132,22 @@ namespace ECommerceData.Inventory
         public int GetHashCode(InventoryItemDTO obj)
         {
             return obj.InventoryId.GetHashCode() ^ obj.SKU.GetHashCode();
+        }
+    }
+
+    internal class InventoryItemEntryDTOComparer : IEqualityComparer<InventoryItemEntryDTO>
+    {
+        public bool Equals(InventoryItemEntryDTO x, InventoryItemEntryDTO y)
+        {
+            if (ReferenceEquals(x, y))
+                return true;
+
+            return x != null && y != null &&  x.Id == y.Id;
+        }
+
+        public int GetHashCode(InventoryItemEntryDTO obj)
+        {
+            return obj.Id.GetHashCode();
         }
     }
 }
