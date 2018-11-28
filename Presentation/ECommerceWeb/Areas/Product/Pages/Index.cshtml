@@ -1,19 +1,59 @@
 ﻿@page
-@model ECommerceWeb.Areas.Product.Pages.ProductModel
+@model ECommerceWeb.Areas.Product.Pages.IndexModel
 @{
     ViewData["Title"] = "Product Catalog";
 }
 
-<h2>Catalog</h2>
+<h1>Product Catalog</h1>
 
-<div>
-    <ul>
-        @foreach (var product in Model.Products)
+<h2>bracelet</h2>
+@foreach (var product in Model.Products)
+{
+    if (product.Category == "bracelet")
+    {
+        <h4>@product.Description</h4>
+        <h6>$@product.Price</h6>
+        if (User.Identity.IsAuthenticated)
         {
-        <li>@product.SKU -- @product.Description -- @product.Price-- @product.Category</li>
+            <form asp-route="/Cart" method="post">
+                <input value="@product.SKU" name="sku" type="hidden" />
+                <button type="submit">Add To Cart</button>
+            </form>
         }
-     </ul>
-</div>
-<div>
-    <a asp-page="/AddProduct">Add Product</a>
-</div>
+    }
+}
+
+<h2>rings</h2>
+@foreach (var product in Model.Products)
+{
+    if (product.Category == "ring")
+    {
+        <h4>@product.Description</h4>
+        <h6>$@product.Price</h6>
+        if (User.Identity.IsAuthenticated)
+        {
+            <form asp-route="/Cart" method="post">
+                <input value="@product.SKU" name="sku" type="hidden" />
+                <button type="submit">Add To Cart</button>
+            </form>
+        }
+    }
+}
+
+<h2>earing</h2>
+@foreach (var product in Model.Products)
+{
+    if (product.Category == "earing")
+    {
+        <h4>@product.Description</h4>
+        <h6>$@product.Price</h6>
+        if (User.Identity.IsAuthenticated)
+        {
+            <form asp-route="/Cart" method="post">
+                <input value="@product.SKU" name="sku" type="hidden" />
+                <button type="submit">Add To Cart</button>
+            </form>
+        }
+    }
+}
+
