@@ -19,7 +19,7 @@ namespace ECommerceWeb.Pages
             if (username != "demo" || password != "demo") return RedirectToPage();
 
             //if it exsists in database, then create a user model
-
+            var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
             identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, "1"));
             identity.AddClaim(new Claim(ClaimTypes.Name, "1"));
             var principal = new ClaimsPrincipal(identity);

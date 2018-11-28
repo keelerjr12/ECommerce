@@ -68,7 +68,7 @@ namespace ECommerceData.Inventory
             // TODO: FIX UPDATE ENTRY ITEMS!
             foreach (var item in inventory.Items)
             {
-                var entriesToAdd = item.Entries.Except()
+                //var entriesToAdd = item.Entries.Except();
             }
         }
 
