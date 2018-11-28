@@ -38,7 +38,7 @@ namespace ECommerceWeb.Pages
         {
             _cartService.AddProductToCart(1, sku, 1);
 
-            return Redirect("Cart");
+            return RedirectToPage("Cart", new { area = "Sales" });
         }
 
         private IProductRepository _productRepo;

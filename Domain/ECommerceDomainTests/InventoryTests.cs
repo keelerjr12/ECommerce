@@ -81,7 +81,16 @@ namespace ECommerceDomainTests
 
             //Assert.Throws<Exception>(action);
         }
-                */
+                
+        [Fact]
+        public void GetInventoryStockOfSpecificSKUOnPurchaseDate_Stock_ReturnsQuantity()
+        {
+            var date = new DateTime(2018, 1, 1);
+            _inventory.Purchase("1", 1, date);
+
+            var stock = _inventory.StockByDate("1", date);
+        }
+        */
         private readonly Inventory _inventory;
         private readonly Product _product = new Product("0", "", "", 199m);
     }

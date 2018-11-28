@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ECommerceData;
 using ECommerceDomain.Inventory;
 
@@ -26,7 +27,7 @@ namespace ECommerceApplication.InventoryService
         {
             var inventory = _inventoryRepo.FindById(1);
 
-            inventory.Purchase(sku, quantity);
+            inventory.Purchase(sku, quantity, DateTime.Now);
 
             _inventoryRepo.Update(inventory);
 
@@ -37,8 +38,8 @@ namespace ECommerceApplication.InventoryService
         {
             var inventory = _inventoryRepo.FindById(1);
 
-            inventory.Sell(sku, quantity);
-
+            inventory.Sell(sku, quantity, DateTime.Now);
+            
             _inventoryRepo.Update(inventory);
 
             _uow.Save();
@@ -47,7 +48,7 @@ namespace ECommerceApplication.InventoryService
         public void ChangeInventoryItemDetails(string sku, string description, string category, decimal unitCost)
         {
             var inventory = _inventoryRepo.FindById(1);
-            //var inventoryItem = GetInventoryItem(sku);
+            var inventoryItem = GetInventoryItem(sku);
 
             _inventoryRepo.Update(inventory);
 

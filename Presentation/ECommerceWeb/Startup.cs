@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ECommerceApplication.CartService;
 using ECommerceApplication.InventoryService;
+using ECommerceApplication.Reporting;
 using ECommerceData;
 using ECommerceData.Cart;
 using ECommerceData.Customer;
@@ -77,7 +78,9 @@ namespace ECommerceWeb
 
             services.AddScoped<InventoryService>();
             services.AddScoped<IInventoryRepository, InventoryRepository>();
-            ;
+            services.AddScoped<InventoryLevelReport>();
+
+            services.AddScoped<CustomerService>();
 
             services.AddMvc().AddRazorPagesOptions(options =>
             {

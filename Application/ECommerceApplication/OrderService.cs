@@ -24,6 +24,7 @@ namespace ECommerceApplication
             var order = new Order(customer, items);
 
             _orderRepo.Create(order);
+            _cartRepo.Update(cart);
 
             _uow.Save();
         }

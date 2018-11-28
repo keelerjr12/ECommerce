@@ -1,10 +1,23 @@
 ﻿@page
 @model Sales.Pages.CheckoutModel
 <h2>Checkout</h2>
-<label>Shipping address</label>
-<label>Payment method</label>
-
-<label>Products</label>
-<form action="" method="post">
-    <button type="Submit">Place order</button>
-</form>
+<div>
+    <label>Shipping address</label>
+    <div>
+        <label>@Model.Customer.Name</label>
+        <label>@Model.Customer.Address</label>
+        <label>@Model.Customer.CityAndState</label>
+        <label>@Model.Customer.ZipCode</label>
+    </div>
+</div>
+<div>
+    <label>Payment method</label>
+</div>
+<div>
+    <label>Products</label>
+</div>
+<div>
+    <form action="" method="post">
+        <button type="Submit">Place order</button>
+    </form>
+</div>

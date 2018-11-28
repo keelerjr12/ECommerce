@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using ECommerceData.Product;
 
 namespace ECommerceData.Inventory
@@ -18,8 +19,7 @@ namespace ECommerceData.Inventory
         [Column("Category")]
         public string Category { get; set; }
 
-        [Column("Stock")]
-        public int Stock { get; set; }
+        public List<InventoryItemEntryDTO> Entries { get; set; }
 
         [Column("UnitCost")]
         public decimal UnitCost { get; set; }

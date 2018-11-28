@@ -10,6 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C6C7F04A-1144-4CB0-8D0F-D10E5A0EE780}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{0A9852A7-955D-4600-BDDC-714E89BCC924}"
+	ProjectSection(SolutionItems) = preProject
+		Application\ECommerceApplication\ProductService.cs = Application\ECommerceApplication\ProductService.cs
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceApplication", "Application\ECommerceApplication\ECommerceApplication.csproj", "{7DCD25C8-102E-44C1-A1AD-A2CB880D35DB}"
 EndProject

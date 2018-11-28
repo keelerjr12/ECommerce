@@ -20,14 +20,11 @@ namespace ECommerceWeb.Pages
 
             //if it exsists in database, then create a user model
 
-
-            //var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
-
-            //identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, username));
-            //identity.AddClaim(new Claim(ClaimTypes.Name, username));
-            //var principal = new ClaimsPrincipal(identity);
-            //HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
-            //    new AuthenticationProperties { IsPersistent = true });
+            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, "1"));
+            identity.AddClaim(new Claim(ClaimTypes.Name, "1"));
+            var principal = new ClaimsPrincipal(identity);
+            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
+                new AuthenticationProperties { IsPersistent = true });
 
             return RedirectToPage("/Account");
         }
