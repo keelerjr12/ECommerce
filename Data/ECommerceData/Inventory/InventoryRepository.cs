@@ -14,13 +14,19 @@ namespace ECommerceData.Inventory
 
         public ECommerceDomain.Inventory.Inventory FindById(int id)
         {
-            var inventoryDTO = _eCommerceContext.Inventory.Where(i => i.Id == id).Include(i => i.InventoryItems).FirstOrDefault();
+            var inventoryDTO = _eCommerceContext.Inventory.Where(i => i.Id == id).Include(i => i.InventoryItems).ThenInclude(i => i.Entries).FirstOrDefault();
 
             var inventoryItems = new List<InventoryItem>();
 
             foreach (var item in inventoryDTO.InventoryItems)
             {
-                inventoryItems.Add(new InventoryItem(item.SKU, item.Description, item.Category, item.Stock, item.UnitCost));
+                var itemEntries = new List<InventoryItemEntry>();
+
+                foreach (var itemEntry in item.Entries)
+                {
+                    itemEntries.Add(new InventoryItemEntry(itemEntry.Id, itemEntry.SKU, itemEntry.DateOccurred, itemEntry.Type, itemEntry.Quantity));    
+                }
+                inventoryItems.Add(new InventoryItem(inventoryDTO.Id, item.SKU, item.Description, item.Category, item.UnitCost, itemEntries));
             }
 
             var inventory = new ECommerceDomain.Inventory.Inventory(inventoryDTO.Id, inventoryItems);
@@ -33,7 +39,7 @@ namespace ECommerceData.Inventory
             var inventoryItemDTOs = ToInventoryItemDTOList(inventory.Items);
             var storedInventoryDTO = _eCommerceContext.Inventory.First(i => i.Id == 1);
 
-            var inventoryItemsToAdd = inventoryItemDTOs.Except(storedInventoryDTO.InventoryItems, new InventoryItemDTOComparer());
+            var inventoryItemsToAdd = inventoryItemDTOs.Except(storedInventoryDTO.InventoryItems, new InventoryItemDTOComparer()).ToList();
             var inventoryItemsToDelete = storedInventoryDTO.InventoryItems.Except(inventoryItemDTOs, new InventoryItemDTOComparer()).ToList();
 
             foreach (var itemToDelete in inventoryItemsToDelete)
@@ -55,8 +61,14 @@ namespace ECommerceData.Inventory
                 storedDTO.SKU = inventoryItem.SKU;
                 storedDTO.Description = inventoryItem.Description;
                 storedDTO.Category = inventoryItem.Category;
-                storedDTO.Stock = inventoryItem.Stock;
+                storedDTO.Entries = inventoryItem.Entries;
                 storedDTO.UnitCost = inventoryItem.UnitCost;
+            }
+
+            // TODO: FIX UPDATE ENTRY ITEMS!
+            foreach (var item in inventory.Items)
+            {
+                var entriesToAdd = item.Entries.Except()
             }
         }
 
@@ -64,10 +76,18 @@ namespace ECommerceData.Inventory
         {
             return items.Select(item => new InventoryItemDTO
                 {
+                    InventoryId = item.InventoryId,
                     SKU = item.SKU,
                     Description = item.Description,
                     Category = item.Category,
-                    Stock = item.Stock,
+                    Entries = item.Entries.Select(
+                        entry => new InventoryItemEntryDTO()
+                        {
+                        SKU = entry.SKU,
+                        DateOccurred =  entry.DateOccured,
+                        Type = entry.Type,
+                        Quantity = entry.Quantity
+                        }).ToList(),
                     UnitCost = item.UnitCost
                 })
                 .ToList();
@@ -88,7 +108,7 @@ namespace ECommerceData.Inventory
 
         public int GetHashCode(InventoryItemDTO obj)
         {
-            return obj.GetHashCode();
+            return obj.InventoryId.GetHashCode() ^ obj.SKU.GetHashCode();
         }
     }
 }

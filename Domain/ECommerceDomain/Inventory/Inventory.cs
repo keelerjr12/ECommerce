@@ -28,7 +28,7 @@ namespace ECommerceDomain.Inventory
 
         public void TrackProduct(string sku, string description, string category, decimal unitCost)
         {
-            var item = new InventoryItem(sku, description, category, 0, unitCost);
+            var item = new InventoryItem(Id, sku, description, category, unitCost, new List<InventoryItemEntry>());
 
             _items.Add(item);
         }
@@ -40,20 +40,20 @@ namespace ECommerceDomain.Inventory
             _items.RemoveAll(i => i.SKU == sku);
         }
 
-        public void Purchase(string sku, int quantity)
+        public void Purchase(string sku, int quantity, DateTime dateOccurred)
         {
             CheckProductExists(sku);
 
             var item = FindItemByProduct(sku);
-            item.Purchase(quantity);
+            item.Purchase(quantity, dateOccurred);
         }
 
-        public void Sell(string sku, int quantity)
+        public void Sell(string sku, int quantity, DateTime dateOccurred)
         {
             CheckProductExists(sku);
 
             var item = FindItemByProduct(sku);
-            item.Sell(quantity);
+            item.Sell(quantity, dateOccurred);
         }
 
         public void UpdateDescription(string sku, string description)

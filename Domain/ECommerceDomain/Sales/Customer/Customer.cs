@@ -3,19 +3,24 @@
     public class Customer
     {
         public int Id { get; }
-        public string FirstName;
-        public string MiddleName;
-        public string LastName;
-        public string StreetAddress;
-        public int ZipCode;
 
-        public Customer(int id, string firstName, string middleName, string lastName, string streetAddress, int zipCode)
+        public string FirstName { get; }
+        public string MiddleName { get; }
+        public string LastName { get; }
+        public string StreetAddress { get; }
+        public string City { get; }
+        public string State { get; }
+        public int ZipCode { get;  }
+
+        public Customer(int id, string firstName, string middleName, string lastName, string streetAddress, string city, string state, int zipCode)
         {
             Id = id;
             FirstName = firstName;
             MiddleName = middleName;
             LastName = lastName;
             StreetAddress = streetAddress;
+            City = city;
+            State = state;
             ZipCode = zipCode;
         }
     }
