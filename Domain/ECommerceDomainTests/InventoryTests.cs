@@ -1,5 +1,5 @@
-﻿using System;
-using ECommerceDomain.Inventory;
+﻿using ECommerceDomain.InventoryManagement.Inventory;
+using ECommerceDomain.InventoryManagement.Product;
 using Xunit;
 
 namespace ECommerceDomainTests
@@ -8,7 +8,7 @@ namespace ECommerceDomainTests
     {
         public InventoryTests()
         {
-            _inventory = new Inventory(1, null);
+            //_inventory = new Inventory(1, null);
             //_inventory.TrackProduct(_product);
         }
 
@@ -81,8 +81,17 @@ namespace ECommerceDomainTests
 
             //Assert.Throws<Exception>(action);
         }
-                */
+                
+        [Fact]
+        public void GetInventoryStockOfSpecificSKUOnPurchaseDate_Stock_ReturnsQuantity()
+        {
+            var date = new DateTime(2018, 1, 1);
+            _inventory.Purchase("1", 1, date);
+
+            var stock = _inventory.StockByDate("1", date);
+        }
+        
         private readonly Inventory _inventory;
-        private readonly Product _product = new Product("0", "", "", 199m);
+        private readonly Product _product = new Product("0", "", "", 199m);*/
     }
 }

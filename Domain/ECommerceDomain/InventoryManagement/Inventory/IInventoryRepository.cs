@@ -1,4 +1,4 @@
-﻿namespace ECommerceDomain.Inventory
+﻿namespace ECommerceDomain.InventoryManagement.Inventory
 {
     public interface IInventoryRepository
     {

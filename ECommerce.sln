@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceConsole", "Present
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceWeb", "Presentation\ECommerceWeb\ECommerceWeb.csproj", "{C67BF430-6C08-42C1-B37B-554476524B85}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ECommerceDatabase", "ECommerceDatabase\ECommerceDatabase.sqlproj", "{F068BD03-8B3D-4C65-BF70-487EA1D1D633}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ECommerceDatabase", "Data\ECommerceDatabase\ECommerceDatabase.sqlproj", "{F068BD03-8B3D-4C65-BF70-487EA1D1D633}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

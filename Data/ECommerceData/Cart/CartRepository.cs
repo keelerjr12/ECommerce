@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ECommerceDomain.Sales.Cart;
 using ECommerceDomain.Sales.Common;
-using ECommerceDomain.Sales.Product;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceData.Cart

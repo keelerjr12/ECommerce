@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ECommerceData.Product
 {
     [Table("Product")]
-    internal class ProductDTO
+    public class ProductDTO
     {
         [Key]
         [Column("SKU")]
