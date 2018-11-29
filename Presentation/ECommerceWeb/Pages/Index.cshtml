@@ -4,11 +4,8 @@
     ViewData["Title"] = "Home page";
 }
 
-<h2>Product Catalog</h2>
+<h1>Welcome to Five Jewelry</h1>
 
-@foreach (var product in Model.Products)
-{
-    <h4>@product.Description</h4> <h6>$@product.Price</h6>
 
     if (User.Identity.IsAuthenticated)
     {

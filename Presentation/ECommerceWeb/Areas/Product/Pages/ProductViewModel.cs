@@ -1,4 +1,4 @@
-﻿namespace ECommerceWeb.Pages
+﻿namespace ECommerceWeb.Areas.Product.Pages
 {
     public class ProductViewModel
     {

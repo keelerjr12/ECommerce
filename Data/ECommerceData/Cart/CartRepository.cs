@@ -22,7 +22,7 @@ namespace ECommerceData.Cart
             foreach (var item in cartDTO.CartItems)
             {
                 var product = item.Product;
-                cart.Add(new ECommerceDomain.Sales.Product.Product(product.SKU, product.Manufacturer, product.Description, product.Price),
+                cart.Add(new ECommerceDomain.Sales.Product.Product(product.SKU, product.Manufacturer, product.Description, product.Price, product.Category),
                     Quantity.Is(item.Quantity));
             }
 

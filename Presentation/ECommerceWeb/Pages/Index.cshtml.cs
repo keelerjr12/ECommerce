@@ -27,7 +27,9 @@ namespace ECommerceWeb.Pages
                 {
                     SKU = prod.SKU,
                     Description = prod.Description,
-                    Price = prod.Price
+                    Price = prod.Price,
+                    Category=prod.Category
+
                 };
 
                 Products.Add(productVM);

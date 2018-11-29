@@ -8,12 +8,15 @@
 
         public decimal Price { get; }
 
-        public Product(string sku, string manufacturer, string description, decimal price)
+        public string Category { get; }
+
+        public Product(string sku, string manufacturer, string description, decimal price, string category )
         {
             SKU = sku;
             _manufacturer = manufacturer;
             Description = description;
             Price = price;
+            Category = category;
         }
 
         private readonly string _manufacturer;
