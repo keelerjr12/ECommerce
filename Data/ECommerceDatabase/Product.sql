@@ -1,10 +1,10 @@
 ﻿CREATE TABLE [dbo].[Product]
 (
-    [Id] UNIQUEIDENTIFIER NOT NULL DEFAULT NewId(),
-    [InventoryId] INT NOT NULL, 
+    [Id] INT NOT NULL IDENTITY,
     [SKU] VARCHAR(50) NOT NULL , 
     [Manufacturer] VARCHAR(MAX) NULL, 
     [Description] VARCHAR(MAX) NULL, 
     [Price] MONEY NULL, 
+    [Category] VARCHAR(50) NULL, 
     PRIMARY KEY ([Id]) 
 )

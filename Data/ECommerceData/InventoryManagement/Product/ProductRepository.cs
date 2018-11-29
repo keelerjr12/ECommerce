@@ -12,10 +12,10 @@ namespace ECommerceData.InventoryManagement.Product
 
         public ECommerceDomain.InventoryManagement.Product.Product GetBySKU(int inventoryId, string sku)
         {
-            var productDTO = _eCommerceContext.InventoryProducts.First(p => p.InventoryId == inventoryId &&  p.SKU == sku);
+            var productDTO = _eCommerceContext.InventoryProducts.First(p => p.InventoryId == inventoryId &&  p.Product.SKU == sku);
 
             var product =
-                new ECommerceDomain.InventoryManagement.Product.Product(productDTO.SKU, productDTO.Description,
+                new ECommerceDomain.InventoryManagement.Product.Product(productDTO.Product.SKU, productDTO.Description,
                     productDTO.Category);
 
             return product;

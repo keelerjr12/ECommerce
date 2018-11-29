@@ -40,18 +40,18 @@ namespace ECommerceData.Cart
 
             foreach (var itemToDelete in cartItemsToDelete)
             {
-                cartDTO.CartItems.RemoveAll(item => item.ProductSKU == itemToDelete.ProductSKU);
+                cartDTO.CartItems.RemoveAll(item => item.CartId == itemToDelete.CartId && item.ProductId == itemToDelete.ProductId);
             }
 
             
             foreach (var cartItem in cartItemsToAdd)
             {
-                var foundDTO = cartDTO.CartItems.Find(d => d.ProductSKU == cartItem.ProductSKU);
+                var foundDTO = cartDTO.CartItems.Find(item => item.CartId == cartItem.CartId && item.ProductId == cartItem.ProductId);
 
                 if (foundDTO == null)
                 {
                     var cartItemDTO = new CartItemDTO();
-                    cartItemDTO.ProductSKU = cartItem.ProductSKU;
+                    cartItemDTO.Product.SKU = cartItem.Product.SKU;
                     cartItemDTO.Quantity = cartItem.Quantity;
                     cartDTO.CartItems.Add(cartItemDTO);
                 }
@@ -70,7 +70,6 @@ namespace ECommerceData.Cart
             {
                 var itemDTO = new CartItemDTO
                 {
-                    ProductSKU = item.SKU,
                     Quantity = item.Quantity.Value
                 };
 
@@ -90,7 +89,7 @@ namespace ECommerceData.Cart
             if (ReferenceEquals(x, y))
                 return true;
 
-            return x != null && y != null && x.ProductSKU == y.ProductSKU;
+            return x != null && y != null && x.CartId == y.CartId && x.ProductId == y.ProductId;
         }
 
         public int GetHashCode(CartItemDTO obj)

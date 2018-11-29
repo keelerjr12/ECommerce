@@ -25,6 +25,11 @@ namespace ECommerceApplication.InventoryService
             return GetInventory().Items.First(item => item.SKU == sku);
         }
 
+        public Product GetProductBySKU(string sku)
+        {
+            return _productRepo.GetBySKU(GetInventory().Id, sku);
+        }
+    
         public void PurchaseStock(string sku, int quantity)
         {
             var inventoryId = 1;

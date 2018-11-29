@@ -9,8 +9,8 @@ namespace ECommerceData.Cart
         [Column("CartID")]
         public int CartId { get; set; }
 
-        [Column("ProductSKU")]
-        public string ProductSKU { get; set; }
+        [Column("ProductId")]
+        public int ProductId { get; set; }
 
         [Column("Quantity")]
         public int Quantity { get; set; }
@@ -18,7 +18,7 @@ namespace ECommerceData.Cart
         [ForeignKey("CartId")]
         public CartDTO Cart { get; set; }
         
-        [ForeignKey("ProductSKU")]
+        [ForeignKey("ProductId")]
         public virtual ProductDTO Product { get; set; }
     }
 }

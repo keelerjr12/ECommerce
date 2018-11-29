@@ -12,7 +12,7 @@ namespace ECommerceDomain.InventoryManagement.Inventory
 
         public int Stock => StockByDate(DateTime.Today);
 
-        public IReadOnlyList<InventoryItemEntry> Entries => _entries.ToList();
+       public IReadOnlyList<InventoryItemEntry> Entries => _entries.ToList();
 
         public decimal UnitCost { get; }
 
@@ -21,26 +21,26 @@ namespace ECommerceDomain.InventoryManagement.Inventory
             InventoryId = inventoryId;
             SKU = product.SKU;
             UnitCost = unitCost;
-            _entries = entries;
+           _entries = entries;
         }
 
         public int StockByDate(DateTime date)
         {
             var purchases = _entries.Where(entry => entry.DateOccured <= date && entry.Type == "PURCHASE").Sum(entry => entry.Quantity);
             var sales = _entries.Where(entry => entry.DateOccured <= date && entry.Type == "SALE")
-                .Sum(entry => entry.Quantity);
+               .Sum(entry => entry.Quantity);
 
             return purchases - sales;
         }
 
         internal void Purchase(int quantity, DateTime dateOccurred)
         {
-            _entries.Add(new InventoryItemEntry(Guid.NewGuid(), SKU, dateOccurred.Date, "PURCHASE", quantity));
+            _entries.Add(new InventoryItemEntry(SKU, dateOccurred.Date, "PURCHASE", quantity));
         }
 
         internal void Sell(int quantity, DateTime dateOccurred)
         {
-            _entries.Add(new InventoryItemEntry(Guid.NewGuid(), SKU, dateOccurred.Date, "SALE", quantity));
+            _entries.Add(new InventoryItemEntry(SKU, dateOccurred.Date, "SALE", quantity));
         }
 
         public override bool Equals(object obj)

@@ -8,7 +8,9 @@ namespace ECommerceData.InventoryManagement.Product
     public class ProductDTO
     {
         [Column("Id")]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
+
+        public int InventoryId { get; set; }
 
         public string Description { get; set; }
 
@@ -16,5 +18,8 @@ namespace ECommerceData.InventoryManagement.Product
 
         [ForeignKey("Id")]
         public ECommerceData.Product.ProductDTO Product { get; set; }
+
+        [ForeignKey("InventoryId")]
+        public InventoryDTO Inventory { get; set; }
     }
 }

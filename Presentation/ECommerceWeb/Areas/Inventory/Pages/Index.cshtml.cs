@@ -23,12 +23,13 @@ namespace ECommerceWeb.Areas.Inventory.Pages
             var inventory = _inventoryService.GetInventory();
 
             Stock = inventory.ItemCount;
-
             InventoryValue = inventory.Value;
 
             foreach (var item in inventory.Items)
             {
-                ItemViewModels.Add(new InventoryItemViewModel(item));
+                var product = _inventoryService.GetProductBySKU(item.SKU);
+
+                ItemViewModels.Add(new InventoryItemViewModel(product, item));
             }
         }
 

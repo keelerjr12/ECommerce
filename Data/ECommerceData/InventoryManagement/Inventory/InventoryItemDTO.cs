@@ -1,6 +1,4 @@
 ﻿using ECommerceData.InventoryManagement.Product;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerceData.InventoryManagement.Inventory
@@ -9,12 +7,18 @@ namespace ECommerceData.InventoryManagement.Inventory
     public class InventoryItemDTO
     {
         [Column("Id")]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
+
+        [Column("Id")]
+        public int InventoryId { get; set; }
 
         [Column("UnitCost")]
         public decimal UnitCost { get; set; }
 
-        public List<InventoryItemEntryDTO> Entries { get; set; }
+        //public List<InventoryItemEntryDTO> Entries { get; set; }
+
+        [ForeignKey("InventoryId")]
+        public InventoryDTO Inventory { get; set; }
 
         [ForeignKey("Id")]
         public ProductDTO Product { get; set; }

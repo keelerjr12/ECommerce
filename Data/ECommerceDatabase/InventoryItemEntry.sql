@@ -1,11 +1,11 @@
 ﻿CREATE TABLE [dbo].[InventoryItemEntry]
 (
-    [Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY NONCLUSTERED DEFAULT NEWID(),
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY,
     [InventoryId] INT NOT NULL,
-    [SKU] VARCHAR(50) NOT NULL,
+    [ProductId] INT NOT NULL,
     [DateOccurred] DATE NOT NULL, 
     [Type] VARCHAR(50) NOT NULL, 
     [Quantity] INT NOT NULL, 
     CONSTRAINT [FK_InventoryItemEntry_ToInventory] FOREIGN KEY ([InventoryId]) REFERENCES [Inventory]([Id]),
-    CONSTRAINT [FK_InventoryItemEntry_ToProduct] FOREIGN KEY ([SKU]) REFERENCES [Product]([SKU])
+    CONSTRAINT [FK_InventoryItemEntry_ToInventoryProduct] FOREIGN KEY ([ProductId]) REFERENCES [InventoryProduct]([Id])
 )

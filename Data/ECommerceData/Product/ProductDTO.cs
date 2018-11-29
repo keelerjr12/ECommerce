@@ -6,8 +6,8 @@ namespace ECommerceData.Product
     [Table("Product")]
     public class ProductDTO
     {
-        [Key]
-        [Column("SKU")]
+        public int Id { get; set; }
+
         public string SKU { get; set; }
 
         public string Manufacturer { get; set; }

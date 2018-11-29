@@ -14,11 +14,11 @@
 <table>
     <thead>
     <tr>
+        <th>Edit</th>
         <th>SKU</th>
         <th>Description</th>
         <th>Category</th>
         <th>Unit Cost</th>
-        <th>Edit</th>
         <th>Stock Available</th>
     </tr>
     </thead>
@@ -26,9 +26,11 @@
     @foreach (var item in Model.ItemViewModels)
     {
         <tr>
-            <td>@item.SKU </td>
-            <td>@item.UnitCost</td>
             <td><a asp-page="Edit" asp-route-id="@item.SKU">Edit</a></td>
+            <td>@item.SKU </td>
+            <td>@item.Description</td>
+            <td>@item.Category</td>
+            <td>@item.UnitCost</td>
             <td>@item.Stock</td>
             <td>
                 <form method="post">

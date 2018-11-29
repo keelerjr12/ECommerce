@@ -6,11 +6,13 @@ namespace ECommerceData.InventoryManagement.Inventory
     [Table("InventoryItemEntry")]
     public class InventoryItemEntryDTO
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
+        [Column("InventoryId")]
         public int InventoryId { get; set; }
 
-        public string SKU { get; set; }
+        [Column("ProductId")]
+        public int ProductId { get; set; }
 
         public DateTime DateOccurred { get; set; }
 
@@ -18,10 +20,10 @@ namespace ECommerceData.InventoryManagement.Inventory
 
         public int Quantity { get; set; }
 
-        //[ForeignKey("InventoryId")]
-       //public ECommerceDomain.Inventory.Inventory Inventory { get; set; }
+        [ForeignKey("InventoryId")]
+        public ECommerceDomain.InventoryManagement.Inventory.Inventory Inventory { get; set; }
 
-       // [ForeignKey("SKU")]
-      //  public ECommerceDomain.Product.Product Product { get; set; }
+        [ForeignKey("ProductId")]
+       public  ECommerceDomain.InventoryManagement.Product.Product Product { get; set; }
     }
 }
