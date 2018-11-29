@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace ECommerceData.Inventory
+namespace ECommerceData.InventoryManagement.Inventory
 {
-    internal class InventoryDTO
+    public class InventoryDTO
     {
         public int Id { get; set; }
 

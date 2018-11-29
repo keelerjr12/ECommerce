@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ECommerceDomain.Inventory;
+using ECommerceDomain.InventoryManagement.Inventory;
 using Microsoft.EntityFrameworkCore;
 
-namespace ECommerceData.Inventory
+namespace ECommerceData.InventoryManagement.Inventory
 {
     public class InventoryRepository : IInventoryRepository
     {
@@ -12,7 +12,7 @@ namespace ECommerceData.Inventory
             _eCommerceContext = eCommerceContext;
         }
 
-        public ECommerceDomain.Inventory.Inventory FindById(int id)
+        public ECommerceDomain.InventoryManagement.Inventory.Inventory FindById(int id)
         {
             var inventoryDTO = _eCommerceContext.Inventory.Where(i => i.Id == id).Include(i => i.InventoryItems).ThenInclude(i => i.Entries).FirstOrDefault();
 
@@ -26,15 +26,15 @@ namespace ECommerceData.Inventory
                 {
                     itemEntries.Add(new InventoryItemEntry(itemEntry.Id, itemEntry.SKU, itemEntry.DateOccurred, itemEntry.Type, itemEntry.Quantity));    
                 }
-                inventoryItems.Add(new InventoryItem(inventoryDTO.Id, item.SKU, item.Description, item.Category, item.UnitCost, itemEntries));
+                inventoryItems.Add(new InventoryItem(inventoryDTO.Id, new ECommerceDomain.InventoryManagement.Product.Product(item.SKU, item.Product.Description, item.Product.Category), item.UnitCost, itemEntries));
             }
 
-            var inventory = new ECommerceDomain.Inventory.Inventory(inventoryDTO.Id, inventoryItems);
+            var inventory = new ECommerceDomain.InventoryManagement.Inventory.Inventory(inventoryDTO.Id, inventoryItems);
 
             return inventory;
         }
 
-        public void Update(ECommerceDomain.Inventory.Inventory inventory)
+        public void Update(ECommerceDomain.InventoryManagement.Inventory.Inventory inventory)
         {
             var inventoryItemDTOs = ToInventoryItemDTOList(inventory.Items);
             var storedInventoryDTO = _eCommerceContext.Inventory.First(i => i.Id == 1);
@@ -59,8 +59,6 @@ namespace ECommerceData.Inventory
                 }
 
                 storedDTO.SKU = inventoryItem.SKU;
-                storedDTO.Description = inventoryItem.Description;
-                storedDTO.Category = inventoryItem.Category;
                 storedDTO.Entries = inventoryItem.Entries;
                 storedDTO.UnitCost = inventoryItem.UnitCost;
             }
@@ -86,8 +84,6 @@ namespace ECommerceData.Inventory
                 {
                     InventoryId = item.InventoryId,
                     SKU = item.SKU,
-                    Description = item.Description,
-                    Category = item.Category,
                     Entries = item.Entries.Select(
                         entry => new InventoryItemEntryDTO()
                         {

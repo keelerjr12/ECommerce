@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ECommerceDomain.Inventory
+namespace ECommerceDomain.InventoryManagement.Inventory
 {
     public class InventoryItem
     {
@@ -10,22 +10,16 @@ namespace ECommerceDomain.Inventory
 
         public string SKU { get; }
 
-        public string Description { get; private set; }
-
-        public string Category { get; private set; }
-
         public int Stock => StockByDate(DateTime.Today);
 
         public IReadOnlyList<InventoryItemEntry> Entries => _entries.ToList();
 
         public decimal UnitCost { get; }
 
-        public InventoryItem(int inventoryId, string sku, string description, string category, decimal unitCost, List<InventoryItemEntry> entries)
+        public InventoryItem(int inventoryId, Product.Product product, decimal unitCost, List<InventoryItemEntry> entries)
         {
             InventoryId = inventoryId;
-            SKU = sku;
-            Description = description;
-            Category = category;
+            SKU = product.SKU;
             UnitCost = unitCost;
             _entries = entries;
         }
@@ -37,11 +31,6 @@ namespace ECommerceDomain.Inventory
                 .Sum(entry => entry.Quantity);
 
             return purchases - sales;
-        }
-
-        internal void UpdateDescription(string description)
-        {
-            Description = description;
         }
 
         internal void Purchase(int quantity, DateTime dateOccurred)

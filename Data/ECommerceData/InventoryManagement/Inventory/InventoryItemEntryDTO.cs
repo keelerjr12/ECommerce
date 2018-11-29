@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ECommerceData.Inventory
+namespace ECommerceData.InventoryManagement.Inventory
 {
     [Table("InventoryItemEntry")]
     public class InventoryItemEntryDTO

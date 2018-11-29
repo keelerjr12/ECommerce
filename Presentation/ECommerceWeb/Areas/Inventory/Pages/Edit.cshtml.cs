@@ -27,8 +27,6 @@ namespace ECommerceWeb.Areas.Inventory.Pages
         {
             var inventoryItem = _inventoryService.GetInventoryItem(id);
             SKU = inventoryItem.SKU;
-            Description = inventoryItem.Description;
-            Category = inventoryItem.Category;
             UnitCost = inventoryItem.UnitCost;
         }
 

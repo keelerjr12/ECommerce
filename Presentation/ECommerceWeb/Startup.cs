@@ -11,9 +11,9 @@ using ECommerceApplication.Reporting;
 using ECommerceData;
 using ECommerceData.Cart;
 using ECommerceData.Customer;
-using ECommerceData.Inventory;
+using ECommerceData.InventoryManagement.Inventory;
 using ECommerceData.Product;
-using ECommerceDomain.Inventory;
+using ECommerceDomain.InventoryManagement.Inventory;
 using ECommerceDomain.Sales.Cart;
 using ECommerceDomain.Sales.Customer;
 using ECommerceDomain.Sales.Order;
@@ -78,6 +78,8 @@ namespace ECommerceWeb
 
             services.AddScoped<InventoryService>();
             services.AddScoped<IInventoryRepository, InventoryRepository>();
+            services.AddScoped<ECommerceDomain.InventoryManagement.Product.IProductRepository,
+                ECommerceData.InventoryManagement.Product.ProductRepository > ();
             services.AddScoped<InventoryLevelReport>();
 
             services.AddScoped<CustomerService>();

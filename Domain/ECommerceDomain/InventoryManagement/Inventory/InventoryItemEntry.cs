@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ECommerceDomain.Inventory
+namespace ECommerceDomain.InventoryManagement.Inventory
 {
     public class InventoryItemEntry
     {
