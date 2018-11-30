@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using ECommerceApplication.AuthService;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,11 @@ namespace ECommerceWeb.Pages
 {
     public class LoginModel : PageModel
     {
+        public LoginModel(AuthService authService)
+        {
+            _authService = authService;
+        }
+
         public void OnGet()
         {
 
@@ -16,7 +22,7 @@ namespace ECommerceWeb.Pages
         public IActionResult OnPost(string username, string password)
         {
             //check the user name and password in database
-            if (username != "demo" || password != "demo") return RedirectToPage();
+            if (!_authService.CanLogin(username, password)) return RedirectToPage();
 
             //if it exsists in database, then create a user model
             var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
@@ -29,5 +35,7 @@ namespace ECommerceWeb.Pages
 
             return RedirectToPage("/Account");
         }
+
+        private readonly AuthService _authService;
     }
 }
