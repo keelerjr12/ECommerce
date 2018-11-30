@@ -2,14 +2,17 @@
 {
     public class Product
     {
+        public int InventoryId { get; }
+
         public string SKU { get; }
 
         public string Description { get; private set; }
 
         public string Category { get; private set; }
 
-        public Product(string sku, string description, string category)
+        public Product(int inventoryId, string sku, string description, string category)
         {
+            InventoryId = inventoryId;
             SKU = sku;
             Description = description;
             Category = category;

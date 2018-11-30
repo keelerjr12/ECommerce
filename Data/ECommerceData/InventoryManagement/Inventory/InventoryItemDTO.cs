@@ -10,7 +10,7 @@ namespace ECommerceData.InventoryManagement.Inventory
         [Column("Id")]
         public int Id { get; set; }
 
-        [Column("Id")]
+        [Column("InventoryId")]
         public int InventoryId { get; set; }
 
         [Column("UnitCost")]

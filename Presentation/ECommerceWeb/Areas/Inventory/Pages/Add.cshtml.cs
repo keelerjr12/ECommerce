@@ -16,7 +16,8 @@ namespace ECommerceWeb.Areas.Inventory.Pages
 
         public void OnPost(string sku, string description, string category, int quantity, decimal unitCost)
         {
-            _inventoryService.PurchaseStock(sku, quantity);
+            var inventoryId = 1;
+            _inventoryService.TrackProduct(inventoryId, sku, description, category, unitCost);
         }
 
         private readonly InventoryService _inventoryService;

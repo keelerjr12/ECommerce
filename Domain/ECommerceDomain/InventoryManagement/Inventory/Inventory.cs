@@ -30,11 +30,15 @@ namespace ECommerceDomain.InventoryManagement.Inventory
             }
         }
 
-        public void TrackProduct(Product.Product product, decimal unitCost)
+        public Product.Product TrackProduct(string sku, string description, string category, decimal unitCost)
         {
+            var product = new Product.Product(Id, sku, description, category);
+
             var item = new InventoryItem(Id, product, unitCost, new List<InventoryItemEntry>());
 
             _items.Add(product.SKU, item);
+
+            return product;
         }
 
         public void UntrackProduct(Product.Product product)

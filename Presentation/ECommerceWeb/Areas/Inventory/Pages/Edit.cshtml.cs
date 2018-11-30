@@ -25,18 +25,23 @@ namespace ECommerceWeb.Areas.Inventory.Pages
 
         public void OnGet(string id)
         {
-            var inventoryItem = _inventoryService.GetInventoryItem(id);
-            var product = _inventoryService.GetProductBySKU(inventoryItem.SKU);
+            var sku = id;
+            var inventoryId = 1;
 
+            var product = _inventoryService.GetProductBySKU(inventoryId, sku);
+            var inventoryItem = _inventoryService.GetInventoryItem(id);
+
+            SKU = product.SKU;
             Description = product.Description;
             Category = product.Category;
-            SKU = inventoryItem.SKU;
             UnitCost = inventoryItem.UnitCost;
         }
 
         public void OnPost()
         {
-            _inventoryService.ChangeInventoryItemDetails(SKU, Description, Category, UnitCost);
+            const int inventoryId = 1;
+
+            _inventoryService.ChangeProductDetails(inventoryId, SKU, Description, Category);
         }
 
         private readonly InventoryService _inventoryService;

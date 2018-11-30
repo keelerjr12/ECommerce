@@ -27,7 +27,7 @@ namespace ECommerceWeb.Areas.Inventory.Pages
 
             foreach (var item in inventory.Items)
             {
-                var product = _inventoryService.GetProductBySKU(item.SKU);
+                var product = _inventoryService.GetProductBySKU(inventory.Id, item.SKU);
 
                 ItemViewModels.Add(new InventoryItemViewModel(product, item));
             }

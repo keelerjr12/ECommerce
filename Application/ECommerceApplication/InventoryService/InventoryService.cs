@@ -25,9 +25,21 @@ namespace ECommerceApplication.InventoryService
             return GetInventory().Items.First(item => item.SKU == sku);
         }
 
-        public Product GetProductBySKU(string sku)
+        public Product GetProductBySKU(int inventoryId, string sku)
         {
-            return _productRepo.GetBySKU(GetInventory().Id, sku);
+            return _productRepo.GetBySKU(inventoryId, sku);
+        }
+
+        public void TrackProduct(int inventoryId, string sku, string description, string category, decimal unitCost)
+        {
+            var inventory = _inventoryRepo.FindById(inventoryId);
+
+            var product = inventory.TrackProduct(sku, description, category, unitCost);
+
+            _inventoryRepo.Update(inventory);
+            _productRepo.Update(product);
+
+            _uow.Save();
         }
     
         public void PurchaseStock(string sku, int quantity)
@@ -60,12 +72,14 @@ namespace ECommerceApplication.InventoryService
             _uow.Save();
         }
 
-        public void ChangeInventoryItemDetails(string sku, string description, string category, decimal unitCost)
+        public void ChangeProductDetails(int inventoryId, string sku, string description, string category)
         {
-            var inventory = _inventoryRepo.FindById(1);
-            var inventoryItem = GetInventoryItem(sku);
+            var product = _productRepo.GetBySKU(inventoryId, sku);
 
-            _inventoryRepo.Update(inventory);
+            product.ChangeDescription(description);
+            product.ChangeCategory(category);
+
+            _productRepo.Update(product);
 
             _uow.Save();
         }
