@@ -3,6 +3,7 @@ using ECommerceData.Customer;
 using ECommerceData.InventoryManagement.Inventory;
 using ECommerceData.InventoryManagement.Product;
 using ECommerceData.Order;
+using ECommerceData.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceData
@@ -21,6 +22,8 @@ namespace ECommerceData
             
             modelBuilder.Entity<InventoryDTO>().HasMany(i => i.InventoryItems).WithOne(i => i.Inventory).HasForeignKey(i => i.InventoryId);
         }
+
+        internal DbSet<UserDTO> Users { get; set; }
 
         internal DbSet<CustomerDTO> Customers { get; set; }
 

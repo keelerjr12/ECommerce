@@ -1,4 +1,5 @@
 using ECommerceApplication;
+using ECommerceApplication.AuthService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +14,7 @@ using ECommerceData.Cart;
 using ECommerceData.Customer;
 using ECommerceData.InventoryManagement.Inventory;
 using ECommerceData.Product;
+using ECommerceData.User;
 using ECommerceDomain.InventoryManagement.Inventory;
 using ECommerceDomain.Sales.Cart;
 using ECommerceDomain.Sales.Customer;
@@ -64,6 +66,9 @@ namespace ECommerceWeb
 
             services.AddScoped<ECommerceContext>();
             services.AddScoped<UnitOfWork>();
+
+            services.AddScoped<AuthService>();
+            services.AddScoped<UserRepository>();
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
 
