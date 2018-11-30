@@ -26,6 +26,10 @@ namespace ECommerceWeb.Areas.Inventory.Pages
         public void OnGet(string id)
         {
             var inventoryItem = _inventoryService.GetInventoryItem(id);
+            var product = _inventoryService.GetProductBySKU(inventoryItem.SKU);
+
+            Description = product.Description;
+            Category = product.Category;
             SKU = inventoryItem.SKU;
             UnitCost = inventoryItem.UnitCost;
         }

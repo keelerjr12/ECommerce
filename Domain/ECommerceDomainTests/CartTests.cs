@@ -14,8 +14,8 @@ namespace ECommerceDomainTests
 
         private readonly List<Product> _inventory = new List<Product>()
         {
-            new Product("0xasdgrasdf", "Sony", "Sony 65\" TV", 769.99m),
-            new Product("0basdgasddg", "Samsung", "Samsung 80\" HDTV", 1349.99m)
+            new Product("0xasdgrasdf", "Sony", "Sony 65\" TV", 769.99m, "Electronics"),
+            new Product("0basdgasddg", "Samsung", "Samsung 80\" HDTV", 1349.99m, "Electronics")
         };
 
         public CartTests()

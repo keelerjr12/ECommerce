@@ -119,4 +119,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="InventoryId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="0b72c87d-d6b5-4765-b9d6-78c111f86391" ChangeDateTime="11/29/2018 22:02:49">
+    <Property Name="ElementName" Value="[dbo].[InventoryItemEntry].[InventoryId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[InventoryItemEntry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="InventoryItemId" />
+  </Operation>
 </Operations>

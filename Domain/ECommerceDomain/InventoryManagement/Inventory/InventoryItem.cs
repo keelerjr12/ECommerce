@@ -12,7 +12,7 @@ namespace ECommerceDomain.InventoryManagement.Inventory
 
         public int Stock => StockByDate(DateTime.Today);
 
-       public IReadOnlyList<InventoryItemEntry> Entries => _entries.ToList();
+        public IReadOnlyList<InventoryItemEntry> Entries => _entries.ToList();
 
         public decimal UnitCost { get; }
 
@@ -35,12 +35,12 @@ namespace ECommerceDomain.InventoryManagement.Inventory
 
         internal void Purchase(int quantity, DateTime dateOccurred)
         {
-            _entries.Add(new InventoryItemEntry(SKU, dateOccurred.Date, "PURCHASE", quantity));
+            _entries.Add(new InventoryItemEntry(dateOccurred.Date, "PURCHASE", quantity));
         }
 
         internal void Sell(int quantity, DateTime dateOccurred)
         {
-            _entries.Add(new InventoryItemEntry(SKU, dateOccurred.Date, "SALE", quantity));
+            _entries.Add(new InventoryItemEntry(dateOccurred.Date, "SALE", quantity));
         }
 
         public override bool Equals(object obj)

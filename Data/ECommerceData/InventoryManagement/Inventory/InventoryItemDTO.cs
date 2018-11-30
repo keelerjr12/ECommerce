@@ -1,4 +1,5 @@
-﻿using ECommerceData.InventoryManagement.Product;
+﻿using System.Collections.Generic;
+using ECommerceData.InventoryManagement.Product;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerceData.InventoryManagement.Inventory
@@ -15,7 +16,7 @@ namespace ECommerceData.InventoryManagement.Inventory
         [Column("UnitCost")]
         public decimal UnitCost { get; set; }
 
-        //public List<InventoryItemEntryDTO> Entries { get; set; }
+        public List<InventoryItemEntryDTO> Entries { get; set; }
 
         [ForeignKey("InventoryId")]
         public InventoryDTO Inventory { get; set; }
