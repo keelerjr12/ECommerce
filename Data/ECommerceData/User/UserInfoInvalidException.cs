@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace ECommerceData.User
 {
     [Serializable]
-    internal class UserInfoInvalidException : Exception
+    public class UserInfoInvalidException : Exception
     {
         public UserInfoInvalidException()
         {

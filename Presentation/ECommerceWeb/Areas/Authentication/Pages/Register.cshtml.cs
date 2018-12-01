@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ECommerceApplication.AuthService;
+using ECommerceData.User;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -24,8 +25,16 @@ namespace ECommerceWeb.Pages
 
         public IActionResult OnPost(string username, string password, string firstName, string lastName, string email)
         {
-            _authService.Register(username, password, firstName, lastName, email);
-            
+            try
+            {
+                _authService.Register(username, password, firstName, lastName, email);
+            }
+            catch (UserInfoInvalidException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
             return RedirectToPage("/Account");
         }
 

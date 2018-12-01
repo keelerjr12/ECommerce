@@ -15,6 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Areas\Authentication\Pages\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Authentication\Pages\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Areas\Inventory\Pages\_ViewImports.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
