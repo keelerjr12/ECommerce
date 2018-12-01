@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ECommerceWeb.Pages
 {
@@ -19,7 +18,7 @@ namespace ECommerceWeb.Pages
             types.Add(new SelectType() { Value = "userType", Text = "Select user type" });
             types.Add(new SelectType() { Value = "customer", Text = "Customer" });
             types.Add(new SelectType() { Value = "seller", Text = "Seller" });
-            userTypeList = new SelectList(types);
+            userTypeList = types;
 
 
         }
@@ -70,7 +69,7 @@ namespace ECommerceWeb.Pages
 
 
         //temp stuff..move this to register after
-        public readonly SelectList userTypeList;
+        public readonly List<SelectType> userTypeList;
         public string userType{ get; set; }
     }
 }
