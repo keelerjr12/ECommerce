@@ -84,6 +84,18 @@ namespace ECommerceApplication.InventoryService
             _uow.Save();
         }
 
+        public void ChangeUnitCost(int inventoryId, string sku, decimal unitCost)
+        {
+            var inventory = _inventoryRepo.FindById(inventoryId);
+            var product = _productRepo.GetBySKU(inventoryId, sku);
+
+            inventory.ChangeProductUnitPrice(product, unitCost);
+
+            _inventoryRepo.Update(inventory);
+
+            _uow.Save();
+        }
+
         private readonly UnitOfWork _uow;
         private readonly IInventoryRepository _inventoryRepo;
         private readonly IProductRepository _productRepo;

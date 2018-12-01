@@ -33,6 +33,14 @@ namespace ECommerceData.InventoryManagement.Inventory
             AddNewItems(inventory, inventoryDTO);
 
             AddNewEntries(inventory.Items, inventoryDTO);
+
+            foreach (var item in inventory.Items)
+            {
+                var itemDTO = inventoryDTO.InventoryItems.First(i =>
+                    i.InventoryId == inventory.Id && i.Product.Product.SKU == item.SKU);
+
+                itemDTO.UnitCost = item.UnitCost;
+            }
         }
         
         private InventoryDTO GetInventoryDTOById(int id)

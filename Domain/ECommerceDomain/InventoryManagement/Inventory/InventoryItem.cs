@@ -14,7 +14,7 @@ namespace ECommerceDomain.InventoryManagement.Inventory
 
         public IReadOnlyList<InventoryItemEntry> Entries => _entries.ToList();
 
-        public decimal UnitCost { get; }
+        public decimal UnitCost { get; private set; }
 
         public InventoryItem(int inventoryId, Product.Product product, decimal unitCost, List<InventoryItemEntry> entries)
         {
@@ -43,6 +43,11 @@ namespace ECommerceDomain.InventoryManagement.Inventory
             _entries.Add(new InventoryItemEntry(dateOccurred.Date, "SALE", quantity));
         }
 
+        public void ChangeUnitCost(decimal unitCost)
+        {
+            UnitCost = unitCost;
+        }
+
         public override bool Equals(object obj)
         {
             if ((obj == null) || !ReferenceEquals(this, obj))
@@ -59,5 +64,6 @@ namespace ECommerceDomain.InventoryManagement.Inventory
         }
 
         private readonly List<InventoryItemEntry> _entries;
+
     }
 }

@@ -42,6 +42,7 @@ namespace ECommerceWeb.Areas.Inventory.Pages
             const int inventoryId = 1;
 
             _inventoryService.ChangeProductDetails(inventoryId, SKU, Description, Category);
+            _inventoryService.ChangeUnitCost(inventoryId, SKU, UnitCost);
         }
 
         private readonly InventoryService _inventoryService;

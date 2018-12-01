@@ -48,6 +48,14 @@ namespace ECommerceDomain.InventoryManagement.Inventory
             _items.Remove(product.SKU);
         }
 
+        public void ChangeProductUnitPrice(Product.Product product, decimal unitCost)
+        {
+            CheckProductExists(product);
+
+            var item = _items[product.SKU];
+            item.ChangeUnitCost(unitCost);
+        }
+
         public void Purchase(Product.Product product, int quantity, DateTime dateOccurred)
         {
             CheckProductExists(product);

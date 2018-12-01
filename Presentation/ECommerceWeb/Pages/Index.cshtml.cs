@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ECommerceApplication.CartService;
 using ECommerceDomain.Sales.Product;
+using ECommerceWeb.Areas.Product.Pages;
 
-namespace ECommerceWeb.Pages
+namespace ECommerceWeb
 {
     public class IndexModel : PageModel
     {
@@ -28,7 +30,7 @@ namespace ECommerceWeb.Pages
                     SKU = prod.SKU,
                     Description = prod.Description,
                     Price = prod.Price,
-                    Category=prod.Category
+                    Category = prod.Category
 
                 };
 
@@ -40,7 +42,7 @@ namespace ECommerceWeb.Pages
         {
             _cartService.AddProductToCart(1, sku, 1);
 
-            return RedirectToPage("Cart", new { area = "Sales" });
+            return Redirect("Cart");
         }
 
         private IProductRepository _productRepo;
