@@ -8,9 +8,20 @@
 
 <form method="post">
     <label>Username: </label>
-    <input type="text" name="username"/>
+    <input type="text" name="username" />
     <label>Password: </label>
-    <input type="password" name="password"/>
-    <button type="submit">Submit</button>
-    <button type="button">Forgot Password</button>
+    <input type="text" name="password" />
+    <button type="submit" name="action" value="loginButton">Login</button>
+    <button type="submit" name="action" value="registerButton">Register</button>
 </form>
+
+<form method="post">
+    <button type="submit" name="action" value="registerButton">Register</button>
+    @Html.DropDownListFor(model => model.userType,
+                  new SelectList(Model.userTypeList, "Value", "Text"),
+                  new { id = "Type" })
+    <input id="submit" type="submit" name="Submit" value="Submit" />
+    
+    
+</form>
+

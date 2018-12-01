@@ -9,34 +9,37 @@ namespace ECommerceData.User
             _eCommerceContext = eCommerceContext;
         }
 
-        public void CreateUser(string username, string password)
+        public void CreateUser(string username, string password, string firstName, string lastName, string email)
         {
-
-            //if (_eCommerceContext.Users.Any(user))
-            //    throw new UsernameAlreadyExistsException("msgasdgsdg");
-
-            _eCommerceContext.Users.Add(new UserDTO
+            if (username == null
+                || password == null 
+                || firstName == null
+                || lastName == null
+                || email == null
+                || _eCommerceContext.Users.Any(_userDTO => _userDTO.Username == username))
             {
-                Username = username,
-                Password = password
-            });
+                throw new UserInfoInvalidException("User info inputs invalid.");
+            }
+
+            _eCommerceContext.Users.Add(new UserDTO(username, password, firstName, lastName, email));
+            _eCommerceContext.SaveChanges();
 
         }
 
-        public User GetUserByUsernameAndPassword(string username, string password)
+        public bool CheckIfUserExists(string username, string password)
         {
             var isFound = _eCommerceContext.Users.Any(user => user.Username == username && user.Password == password);
 
-            if (!isFound)
-            {
-                return null;
-            }
+            return isFound;
+        }
 
-            var userDTO = _eCommerceContext.Users.First(user => user.Username == username && user.Password == password);
+        public User GetUser(string username, string password)
+        {
+            var userDTO = _eCommerceContext.Users.First(_userDTO => _userDTO.Username == username && _userDTO.Password == password);
 
-            var userToReturn = new User(userDTO.Username);
+            var user = new User(userDTO.Username);
 
-            return userToReturn;
+            return user;
         }
 
         private readonly ECommerceContext _eCommerceContext;

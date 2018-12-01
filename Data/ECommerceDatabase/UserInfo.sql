@@ -2,6 +2,8 @@
 (
 	[username] VARCHAR(50) NOT NULL PRIMARY KEY, 
     [password] NCHAR(10) NOT NULL, 
-    [first_name] NCHAR(10) NOT NULL, 
-    [last_name] NCHAR(10) NOT NULL 
+    [firstName] NCHAR(10) NOT NULL, 
+    [lastName] NCHAR(10) NOT NULL, 
+    [email] NCHAR(10) NOT NULL, 
+    [userType] NCHAR(10) NOT NULL 
 )

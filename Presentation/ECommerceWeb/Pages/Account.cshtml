@@ -1,7 +1,11 @@
 ﻿@page
-@model ECommerceWeb.Pages.AccountModel
+@model ECommerceWeb.Pages.LogoutModel
 @{
     ViewData["Title"] = "Account";
 }
 
 <h2>Account</h2>
+
+<form method="post">
+    <button type="submit" name="action" value="logoutButton">Logout</button>
+</form>
