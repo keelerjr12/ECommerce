@@ -2,6 +2,8 @@
 {
     public class Product
     {
+        public int Id { get; }
+
         public string SKU { get; }
 
         public string Description { get; }
@@ -10,8 +12,9 @@
 
         public string Category { get; }
 
-        public Product(string sku, string manufacturer, string description, decimal price, string category )
+        public Product(int id, string sku, string manufacturer, string description, decimal price, string category )
         {
+            Id = id;
             SKU = sku;
             _manufacturer = manufacturer;
             Description = description;

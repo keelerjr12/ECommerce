@@ -15,7 +15,7 @@ namespace ECommerceData.Product
         {
             var productDTO = _eCommerceContext.Products.First(p => p.SKU == sku);
 
-            var product = new ECommerceDomain.Sales.Product.Product(productDTO.SKU, productDTO.Manufacturer, productDTO.Description, productDTO.Price, productDTO.Category);
+            var product = new ECommerceDomain.Sales.Product.Product(productDTO.Id, productDTO.SKU, productDTO.Manufacturer, productDTO.Description, productDTO.Price, productDTO.Category);
 
             return product;
         }
@@ -28,7 +28,7 @@ namespace ECommerceData.Product
             foreach (var product in productSet)
             {
                 products.Add(new ECommerceDomain.Sales.Product.
-                    Product(product.SKU, product.Manufacturer, product.Description, product.Price, product.Category));
+                    Product(product.Id, product.SKU, product.Manufacturer, product.Description, product.Price, product.Category));
             }
 
             return products;

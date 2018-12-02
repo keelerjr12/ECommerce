@@ -8,7 +8,6 @@ namespace ECommerceWeb.Areas.Sales.Pages
 {
     public class CheckoutModel : PageModel
     {
-        [BindProperty]
         public CustomerModel Customer { get; set; }
 
         public CheckoutModel(CustomerService customerService, OrderService orderService)
@@ -26,12 +25,14 @@ namespace ECommerceWeb.Areas.Sales.Pages
             Customer = new CustomerModel(customer);
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
             var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
             var customerId = int.Parse(customerIdStr);
 
             _orderService.PlaceOrder(customerId);
+
+            return RedirectToPage("/Index");
         }
 
         private readonly CustomerService _customerService;

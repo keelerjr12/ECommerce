@@ -13,7 +13,7 @@
     <h6>$@product.Price</h6>
     if (User.Identity.IsAuthenticated)
     {
-        <form asp-route="/Cart" method="post">
+        <form asp-page="/Cart" asp-area="Sales" method="post">
             <input value="@product.SKU" name="sku" type="hidden" />
             <button type="submit">Add To Cart</button>
         </form>

@@ -16,6 +16,8 @@ namespace ECommerceDomain.Sales.Order
 
         public Order(Customer.Customer customer, IReadOnlyList<Item> items)
         {
+            DateTime = DateTime.Now;
+
             Customer = customer;
 
             foreach (var item in items)

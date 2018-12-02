@@ -4,6 +4,8 @@ namespace ECommerceDomain.Sales.Cart
 {
     public class Item
     {
+        public int ProductId { get; set; }
+
         public string SKU { get; }
 
         public string Description { get; }
@@ -14,6 +16,7 @@ namespace ECommerceDomain.Sales.Cart
 
         public Item(Product.Product product, Quantity quantity)
         {
+            ProductId = product.Id;
             SKU = product.SKU;
             Description = product.Description;
             Price = product.Price;

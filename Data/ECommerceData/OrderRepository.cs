@@ -15,9 +15,27 @@ namespace ECommerceData
 
         public void Create(ECommerceDomain.Sales.Order.Order order)
         {
+            var orderLineDTOs = new List<OrderLineDTO>();
+            foreach (var orderLine in order.OrderLines)
+            {
+                orderLineDTOs.Add(new OrderLineDTO
+                {
+                    SKU = orderLine.SKU,
+                    Quantity = orderLine.Quantity,
+                    Price = orderLine.Price
+                });
+            }
+
             var orderDTO = new OrderDTO
             {
-                CustomerId = order.Customer.Id
+                DateTime = order.DateTime,
+                CustomerId = order.Customer.Id,
+                Street = order.Customer.StreetAddress,
+                City = order.Customer.City,
+                State = order.Customer.State,
+                Country = order.Customer.Country,
+                Zipcode = order.Customer.ZipCode,
+                OrderLines = orderLineDTOs
             };
 
             _eCommerceContext.Orders.Add(orderDTO);
@@ -50,7 +68,7 @@ namespace ECommerceData
         {
             var customerDTO = orderDTO.CustomerDTO;
 
-            var customer = new ECommerceDomain.Sales.Customer.Customer(orderDTO.Id, customerDTO.FirstName,
+            var customer = new ECommerceDomain.Sales.Customer.Customer(customerDTO.Id, customerDTO.FirstName,
                 customerDTO.MiddleName, customerDTO.LastName, orderDTO.Street, orderDTO.City,
                 orderDTO.State, orderDTO.Country, orderDTO.Zipcode);
 
