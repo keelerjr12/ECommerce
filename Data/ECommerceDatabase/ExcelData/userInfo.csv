@@ -1,2 +1,3 @@
-test,test1,fname,lname,varunpat@umich.edu,customer
-test2,test2,fname2,lname2,varunpat@umich.edu,customer
+USERNAME,PASSWORD,FIRSTNAME,LASTNAME,EMAIL,USERTYPE
+admin,admin,Admin,Admin,fivejewelers@gmail.com,seller
+varunpatel0917,password,Varun,Patel,varunpat@umich.edu,customer
