@@ -15,7 +15,7 @@ namespace ECommerceData.Customer
             var customerDTO = _eCommerceContext.Customers.First(c => c.Id == id);
 
             var customer = new ECommerceDomain.Sales.Customer.Customer(customerDTO.Id, customerDTO.FirstName, customerDTO.MiddleName,
-                customerDTO.LastName, customerDTO.StreetAddress, customerDTO.City, customerDTO.State, customerDTO.ZipCode);
+                customerDTO.LastName, customerDTO.StreetAddress, customerDTO.City, customerDTO.State, "United States", customerDTO.ZipCode);
 
             return customer;
         }

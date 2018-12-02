@@ -1,6 +1,6 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using ECommerceApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ECommerceApplication.CartService;
@@ -13,15 +13,15 @@ namespace ECommerceWeb
     {
         public List<ProductViewModel> Products { get; } = new List<ProductViewModel>();
 
-        public IndexModel(IProductRepository productRepo, CartService cartService)
+        public IndexModel(ProductService productService, CartService cartService)
         {
-            _productRepo = productRepo;
+            _productService = productService;
             _cartService = cartService;
         }
 
         public void OnGet()
         {
-            var products = _productRepo.GetAllProducts().OrderBy(product => product.Description);
+            var products = _productService.GetTopSellingProducts(12);
 
             foreach (var prod in products)
             {
@@ -31,7 +31,6 @@ namespace ECommerceWeb
                     Description = prod.Description,
                     Price = prod.Price,
                     Category = prod.Category
-
                 };
 
                 Products.Add(productVM);
@@ -45,7 +44,7 @@ namespace ECommerceWeb
             return Redirect("Cart");
         }
 
-        private IProductRepository _productRepo;
+        private ProductService _productService;
         private CartService _cartService;
     }
 }

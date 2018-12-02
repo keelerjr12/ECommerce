@@ -6,6 +6,6 @@ namespace ECommerceDomain.Sales.Product
     {
         Product FindBySku(string sku);
 
-        IReadOnlyList<Product> GetAllProducts();
+        IList<Product> GetAllProducts();
     }
 }

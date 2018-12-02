@@ -20,7 +20,7 @@ namespace ECommerceData.Product
             return product;
         }
 
-        public IReadOnlyList<ECommerceDomain.Sales.Product.Product> GetAllProducts()
+        public IList<ECommerceDomain.Sales.Product.Product> GetAllProducts()
         {
             var productSet = _eCommerceContext.Products.ToList();
             var products = new List<ECommerceDomain.Sales.Product.Product>();

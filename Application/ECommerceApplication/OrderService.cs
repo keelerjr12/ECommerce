@@ -1,4 +1,5 @@
-﻿using ECommerceData;
+﻿using System.Collections.Generic;
+using ECommerceData;
 using ECommerceDomain.Sales.Cart;
 using ECommerceDomain.Sales.Customer;
 using ECommerceDomain.Sales.Order;
@@ -15,6 +16,13 @@ namespace ECommerceApplication
             _orderRepo = orderRepo;
         }
 
+        public int GetQuantityOrdered(string productSKU)
+        {
+            var orders = _orderRepo.GetOrders();
+
+            return 0;
+        }
+
         public void PlaceOrder(int customerId)
         {
             var customer = _customerRepo.GetById(customerId);
@@ -29,9 +37,20 @@ namespace ECommerceApplication
             _uow.Save();
         }
 
+        public IEnumerable<Order> GetAllOrders()
+        {
+            return _orderRepo.GetOrders();
+        }
+
+        public Order GetOrderById(int orderId)
+        {
+            return _orderRepo.GetOrderById(orderId);
+        }
+
         private readonly UnitOfWork _uow;
         private readonly ICustomerRepository _customerRepo;
         private readonly ICartRepository _cartRepo;
         private readonly IOrderRepository _orderRepo;
+
     }
 }

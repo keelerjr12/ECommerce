@@ -1,0 +1,51 @@
+﻿@page "{id}"
+@model ECommerceWeb.Pages.OrderDetailsModel
+@{
+    ViewData["Title"] = "OrderDetails";
+}
+
+<h2>OrderDetails</h2>
+
+<div>
+    <label>Order ID: @Model.OrderVM.Id</label>
+</div>
+<div>
+    <label>Order Placed: @Model.OrderVM.DateTime</label>
+</div>
+<div>
+    <label>Customer ID: @Model.OrderVM.CustomerId</label>
+</div>
+<div>
+    <label>Street Address: @Model.OrderVM.StreetAddress</label>
+</div>
+<div>
+    <label>City: @Model.OrderVM.City</label>
+</div>
+<div>
+    <label>State: @Model.OrderVM.State</label>
+</div>
+<div>
+    <label>Country: @Model.OrderVM.Country</label>
+</div>
+<div>
+    <label>Zipcode: @Model.OrderVM.Zipcode</label>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>SKU:</th>
+        <th>Quantity:</th>
+        <th>Price:</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var orderLine in Model.OrderLines)
+    {
+        <tr>
+            <td>@orderLine.SKU</td>
+            <td>@orderLine.Quantity</td>
+            <td>$@orderLine.Price</td>
+        </tr>
+    }
+    </tbody>
+</table>

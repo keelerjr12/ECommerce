@@ -10,9 +10,10 @@
         public string StreetAddress { get; }
         public string City { get; }
         public string State { get; }
+        public string Country { get; }
         public int ZipCode { get;  }
 
-        public Customer(int id, string firstName, string middleName, string lastName, string streetAddress, string city, string state, int zipCode)
+        public Customer(int id, string firstName, string middleName, string lastName, string streetAddress, string city, string state, string country, int zipCode)
         {
             Id = id;
             FirstName = firstName;
@@ -21,6 +22,7 @@
             StreetAddress = streetAddress;
             City = city;
             State = state;
+            Country = country;
             ZipCode = zipCode;
         }
     }
