@@ -15,10 +15,3 @@
 </form>
 
 <a asp-page="/Register">Register</a>
-
-<form method="post">
-    @Html.DropDownListFor(model => model.userType,
-        new SelectList(Model.userTypeList, "Value", "Text"),
-        new { id = "Type" })
-    <input id="submit" type="submit" name="Submit" value="Submit" />
-</form>

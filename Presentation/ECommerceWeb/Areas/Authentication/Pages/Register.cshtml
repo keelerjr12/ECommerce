@@ -19,16 +19,4 @@
     <label>Email: </label>
     <input type="text" name="email" />
     <button type="submit">Register</button>
-
-
-</form>
-
-<form>
-    @Html.DropDownListFor(model => model.userType,
-                      new List<SelectListItem> {
-                           new SelectListItem { Value = "0" , Text = "Option A" },
-                           new SelectListItem { Value = "1" , Text = "Option B" },
-                           new SelectListItem { Value = "2" , Text = "Option C" }
-                        },
-                      new { @class="myselect"})
 </form>

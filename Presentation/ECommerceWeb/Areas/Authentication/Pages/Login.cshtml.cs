@@ -13,14 +13,6 @@ namespace ECommerceWeb.Pages
         public LoginModel(AuthService authService)
         {
             _authService = authService;
-
-            var types = new List<SelectType>();
-            types.Add(new SelectType() { Value = "userType", Text = "Select user type" });
-            types.Add(new SelectType() { Value = "customer", Text = "Customer" });
-            types.Add(new SelectType() { Value = "seller", Text = "Seller" });
-            userTypeList = types;
-
-
         }
 
         public void OnGet()
@@ -38,7 +30,7 @@ namespace ECommerceWeb.Pages
             var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
             identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, username));
             identity.AddClaim(new Claim(ClaimTypes.Name, username));
-            identity.AddClaim(new Claim(ClaimTypes.Role, "Customer"));
+            identity.AddClaim(new Claim(ClaimTypes.Role, "customer"));
             var principal = new ClaimsPrincipal(identity);
             HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
                 new AuthenticationProperties { IsPersistent = true });
@@ -49,10 +41,5 @@ namespace ECommerceWeb.Pages
         }
 
         private readonly AuthService _authService;
-
-
-        //temp stuff..move this to register after
-        public readonly List<SelectType> userTypeList;
-        public string userType{ get; set; }
     }
 }
