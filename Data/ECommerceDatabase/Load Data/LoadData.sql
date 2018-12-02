@@ -1,5 +1,6 @@
 ﻿
- DELETE FROM dbo.userInfo
+--Load UserInfo Data
+DELETE FROM dbo.userInfo
 
 BULK
 INSERT userInfo

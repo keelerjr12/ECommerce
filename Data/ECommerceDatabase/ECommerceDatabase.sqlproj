@@ -57,6 +57,7 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Load Data" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Cart.sql" />
@@ -69,7 +70,7 @@
     <Build Include="UserInfo.sql" />
     <Build Include="InventoryItemEntry.sql" />
     <Build Include="InventoryProduct.sql" />
-    <None Include="LoadData.sql" />
+    <None Include="Load Data\LoadData.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ECommerceDatabase.refactorlog" />
