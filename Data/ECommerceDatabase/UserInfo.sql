@@ -1,7 +1,9 @@
 ﻿CREATE TABLE [dbo].[UserInfo]
 (
 	[username] VARCHAR(50) NOT NULL PRIMARY KEY, 
-    [password] NCHAR(10) NOT NULL, 
-    [first_name] NCHAR(10) NOT NULL, 
-    [last_name] NCHAR(10) NOT NULL 
+    [password] NVARCHAR(50) NOT NULL, 
+    [firstName] VARCHAR(50) NOT NULL, 
+    [lastName] VARCHAR(50) NOT NULL, 
+    [email] NVARCHAR(50) NOT NULL, 
+    [userType] VARCHAR(10) NULL DEFAULT 'customer' 
 )
