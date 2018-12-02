@@ -9,7 +9,7 @@ namespace ECommerceData.User
             _eCommerceContext = eCommerceContext;
         }
 
-        public void CreateUser(string username, string password, string firstName, string lastName, string email)
+        public void CreateUser(string username, string password, string firstName, string lastName, string email, string userType)
         {
             if (username == null
                 || password == null 

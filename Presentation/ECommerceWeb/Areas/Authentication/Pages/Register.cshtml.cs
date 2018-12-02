@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ECommerceApplication;
 using ECommerceApplication.AuthService;
 using ECommerceData.User;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ namespace ECommerceWeb.Pages
         public RegisterModel(AuthService authService)
         {
             _authService = authService;
+            _emailService = new EmailService();
         }
 
 
@@ -27,7 +29,8 @@ namespace ECommerceWeb.Pages
         {
             try
             {
-                _authService.Register(username, password, firstName, lastName, email);
+                string userType = null;
+                _authService.Register(username, password, firstName, lastName, email, userType);
             }
             catch (UserInfoInvalidException e)
             {
@@ -35,10 +38,23 @@ namespace ECommerceWeb.Pages
                 throw;
             }
 
+            try
+            {
+                string emailBody = "Dear " + firstName + " " + lastName + ",\n" + "Hope you find everything you are looking for. \n\n" + "P.S. Nice Password ;)";
+                _emailService.SendEmail("varunpat@umich.edu", "Welcome to The Five Jewelers", emailBody);
+            }
+            catch (MailServiceFailedException ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+
+
             return RedirectToPage("/Account");
         }
 
         private AuthService _authService;
+        private EmailService _emailService;
         public string userType;
     }
 }

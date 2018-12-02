@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECommerceWeb.Pages;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
@@ -6,9 +7,9 @@ using System.Text;
 
 namespace ECommerceApplication
 {
-    class EmailService
+    public class EmailService
     {
-        EmailService()
+        public EmailService()
         {
             _message = new MailMessage(); 
             _message.IsBodyHtml = false;
@@ -31,7 +32,14 @@ namespace ECommerceApplication
             _message.Subject = messageSubject;
             _message.Body = messageBody;
 
-            _smtp.Send(_message);
+            try
+            {
+                _smtp.Send(_message);
+            }
+            catch
+            {
+                throw new MailServiceFailedException("Email did not send");
+            }
         }
 
         private MailMessage _message;

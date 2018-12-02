@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace ECommerceWeb.Pages
 {
     [Serializable]
-    internal class MailServiceFailedException : Exception
+    public class MailServiceFailedException : Exception
     {
         public MailServiceFailedException()
         {

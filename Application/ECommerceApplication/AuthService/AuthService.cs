@@ -9,9 +9,9 @@ namespace ECommerceApplication.AuthService
             _userRepo = userRepo;
         }
 
-        public void Register(string username, string password, string firstName, string lastName, string email)
+        public void Register(string username, string password, string firstName, string lastName, string email, string userType)
         {
-            _userRepo.CreateUser(username, password, firstName, lastName, email);
+            _userRepo.CreateUser(username, password, firstName, lastName, email, userType);
         }
 
         public bool CanLogin(string username, string password)
