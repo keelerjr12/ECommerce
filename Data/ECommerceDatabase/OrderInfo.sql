@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Order]
+﻿CREATE TABLE [dbo].[OrderInfo]
 (
     [Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [DateTime] DATETIME2 NOT NULL, 

@@ -11,7 +11,7 @@ SET @Path = 'C:\Users\rz9fxj\Downloads\0 Code\ECommerce\Data\ECommerceDatabase\L
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---Load Cart Data
+PRINT 'Load Cart Data'
 SET @FileName = 'Cart'
 
 EXEC('DELETE FROM ' + @FileName)
@@ -30,7 +30,7 @@ EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---Load CartItems Data
+PRINT 'Load CartItems Data'
 SET @FileName = 'CartItems'
 
 EXEC('DELETE FROM ' + @FileName)
@@ -49,7 +49,7 @@ EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---Load Customer Data
+PRINT 'Load Customer Data'
 SET @FileName = 'Customer'
 
 EXEC('DELETE FROM ' + @FileName)
@@ -68,7 +68,7 @@ EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---Load Inventory Data
+PRINT 'Load Inventory Data'
 SET @FileName = 'Inventory'
 
 EXEC('DELETE FROM ' + @FileName)
@@ -87,7 +87,7 @@ EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---Load InventoryItem Data
+PRINT 'Load InventoryItem Data'
 SET @FileName = 'InventoryItem'
 
 EXEC('DELETE FROM ' + @FileName)
@@ -106,7 +106,7 @@ EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---Load InventoryItemEntry Data
+PRINT 'Load InventoryItemEntry Data'
 SET @FileName = 'InventoryItemEntry'
 
 EXEC('DELETE FROM ' + @FileName)
@@ -125,8 +125,8 @@ EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---Load InventoryItemProduct Data
-SET @FileName = 'InventoryItemProduct'
+PRINT 'Load InventoryProduct Data'
+SET @FileName = 'InventoryProduct'
 
 EXEC('DELETE FROM ' + @FileName)
 
@@ -144,8 +144,8 @@ EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---Load Order Data
-SET @FileName = 'Order'
+PRINT 'Load OrderInfo Data'
+SET @FileName = 'OrderInfo'
 
 EXEC('DELETE FROM ' + @FileName)
 
@@ -163,7 +163,26 @@ EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---Load Product Data
+PRINT 'Load OrderLine Data'
+SET @FileName = 'OrderLine'
+
+EXEC('DELETE FROM ' + @FileName)
+
+SET @Stmt = 
+'BULK
+INSERT ECommerceDatabase.dbo.' + (@FileName) + '
+FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
+WITH
+(
+FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
+ROWTERMINATOR = ''\n''
+)'
+--PRINT @Stmt
+EXEC (@Stmt)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PRINT 'Load Product Data'
 SET @FileName = 'Product'
 
 EXEC('DELETE FROM ' + @FileName)
@@ -182,7 +201,7 @@ EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---Load UserInfo Data
+PRINT 'Load UserInfo Data'
 SET @FileName = 'UserInfo'
 
 EXEC('DELETE FROM ' + @FileName)

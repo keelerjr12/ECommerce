@@ -13,8 +13,8 @@ namespace ECommerceConsole
         {
             List<Product> inventory = new List<Product>()
             {
-                new Product("jkh23jkasd", "Sony", "Sony 65\" TV", 915.99m, "TV"),
-                new Product("klaj32ioua", "Panasonic", "Panasonic 42\" HDTV", 415.99m, "TV"),
+                //new Product("jkh23jkasd", "Sony", "Sony 65\" TV", 915.99m, "TV"),
+                //new Product("klaj32ioua", "Panasonic", "Panasonic 42\" HDTV", 415.99m, "TV"),
             };
             var cart = new Cart(0);
             bool running = true;
