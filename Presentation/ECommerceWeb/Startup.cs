@@ -48,6 +48,7 @@ namespace ECommerceWeb
             {
                 //options.Conventions.AuthorizeFolder("/");
                 options.Conventions.AuthorizePage("/Account");
+                options.Conventions.AuthorizePage("/Register");
                 options.Conventions.AuthorizePage("/Cart");
             });
 

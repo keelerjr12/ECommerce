@@ -1,0 +1,17 @@
+﻿@page
+@model ECommerceWeb.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+<form method="post">
+    <label>Username: </label>
+    <input type="text" name="username" />
+    <label>Password: </label>
+    <input type="text" name="password" />
+    <button type="submit" name="action" value="loginButton">Login</button>
+</form>
+
+<a asp-page="/Register">Register</a>
