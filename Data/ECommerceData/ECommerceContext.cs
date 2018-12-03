@@ -31,7 +31,7 @@ namespace ECommerceData
 
         internal DbSet<Product.ProductDTO> Products { get; set; }
 
-        internal DbSet<OrderDTO> Orders { get; set; }
+        internal DbSet<OrderInfoDTO> Orders { get; set; }
 
         internal DbSet<InventoryDTO> Inventory { get; set; }
 

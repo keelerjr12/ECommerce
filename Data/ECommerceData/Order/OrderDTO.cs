@@ -5,8 +5,8 @@ using ECommerceData.Customer;
 
 namespace ECommerceData.Order
 {
-    [Table("Order")]
-    public class OrderDTO
+    [Table("OrderInfo")]
+    public class OrderInfoDTO
     {
         [Column("Id")]
         public int Id { get; set; }

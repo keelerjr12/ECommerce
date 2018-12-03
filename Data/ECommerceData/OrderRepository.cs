@@ -26,7 +26,7 @@ namespace ECommerceData
                 });
             }
 
-            var orderDTO = new OrderDTO
+            var orderDTO = new OrderInfoDTO
             {
                 DateTime = order.DateTime,
                 CustomerId = order.Customer.Id,
@@ -64,7 +64,7 @@ namespace ECommerceData
             return order;
         }
 
-        private ECommerceDomain.Sales.Order.Order RehydrateOrder(OrderDTO orderDTO)
+        private ECommerceDomain.Sales.Order.Order RehydrateOrder(OrderInfoDTO orderDTO)
         {
             var customerDTO = orderDTO.CustomerDTO;
 
