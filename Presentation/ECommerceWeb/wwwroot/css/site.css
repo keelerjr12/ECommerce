@@ -42,7 +42,7 @@ body {
 
 .home {
     float: left;
-    width: 140px;
+    width: 210px;
     margin: 0;
     padding: 0;
 }
@@ -102,6 +102,18 @@ body {
     font-size: 18px;
 }
 
+#content-left-sidebar {
+    display: flex
+}
+
+#main-navbar {
+    width: 210px;
+}
+
+#main-navbar ul{
+    margin-top: 20px;
+    padding: 0px;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
