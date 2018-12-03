@@ -1,10 +1,9 @@
-﻿
---Load UserInfo Data
-DELETE FROM dbo.userInfo
+﻿--Load UserInfo Data
+DELETE FROM ECommerceDatabase.dbo.UserInfo
 
 BULK
-INSERT userInfo
-FROM 'C:\Users\rz9fxj\Downloads\0 Code\ECommerce\Data\ECommerceDatabase\ExcelData\userInfo.csv'
+INSERT UserInfo
+FROM 'C:\Users\rz9fxj\Downloads\0 Code\ECommerce\Data\ECommerceDatabase\Load Data\UserInfo.csv'
 WITH
 (
 FIELDTERMINATOR = ',',
