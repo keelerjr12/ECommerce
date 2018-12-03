@@ -69,11 +69,8 @@
     <Build Include="UserInfo.sql" />
     <Build Include="InventoryItemEntry.sql" />
     <Build Include="InventoryProduct.sql" />
-<<<<<<< HEAD
     <Build Include="OrderLine.sql" />
-=======
     <None Include="LoadData.sql" />
->>>>>>> b76df00257ac384c17b281944811104b62f5210c
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ECommerceDatabase.refactorlog" />
