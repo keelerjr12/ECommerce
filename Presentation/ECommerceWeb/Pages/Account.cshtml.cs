@@ -22,7 +22,7 @@ namespace ECommerceWeb.Pages
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            return RedirectToPage("/Products");
+            return RedirectToPage("/Index");
         }
 
         private readonly AuthService _authService;

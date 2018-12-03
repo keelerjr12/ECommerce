@@ -41,7 +41,7 @@ namespace ECommerceWeb.Pages
             try
             {
                 string emailBody = "Dear " + firstName + " " + lastName + ",\n" + "Hope you find everything you are looking for. \n\n" + "P.S. Nice Password ;)";
-                _emailService.SendEmail("varunpat@umich.edu", "Welcome to The Five Jewelers", emailBody);
+                _emailService.SendEmail(email, "Welcome to The Five Jewelers", emailBody);
             }
             catch (MailServiceFailedException ex)
             {
@@ -50,7 +50,7 @@ namespace ECommerceWeb.Pages
             }
 
 
-            return RedirectToPage("/Account");
+            return RedirectToPage("/Login");
         }
 
         private AuthService _authService;
