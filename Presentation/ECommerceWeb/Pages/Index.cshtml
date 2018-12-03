@@ -3,25 +3,34 @@
 @{
     ViewData["Title"] = "Jewelry Biz";
 }
-<div id="main-navbar">
-    <ul>
-        <li>Mother's Bracelets</li>
-    </ul>
-</div>
-<div id="main-with-navbar">
-    <h2>Our Top-Sellers</h2>
-    @foreach (var product in Model.Products)
-    {
-        <h4>@product.Description</h4>
-        <h6>$@product.Price</h6>
-        if (User.Identity.IsAuthenticated)
+<div id="content-left-sidebar">
+    <div id="main-navbar">
+        <ul>
+            <li>Everyday Jewelry</li>
+            <li>Baby/Christening Bracelets</li>
+            <li>Mother's Bracelets</li>
+            <li>Grandmother's Bracelets</li>
+            <li>Wedding Bracelets</li>
+            <li>Earrings</li>
+            <li>Necklaces</li>
+            <li>Sets</li>
+        </ul>
+    </div>
+    <div id="main-with-navbar">
+        <h2>Our Top-Sellers</h2>
+        @foreach (var product in Model.Products)
         {
-            <form asp-page="/Cart" asp-area="Sales" method="post">
-                <input value="@product.SKU" name="sku" type="hidden" />
-                <button type="submit">Add To Cart</button>
-            </form>
+            <h4>@product.Description</h4>
+            <h6>$@product.Price</h6>
+            if (User.Identity.IsAuthenticated)
+            {
+                <form asp-page="/Cart" asp-area="Sales" method="post">
+                    <input value="@product.SKU" name="sku" type="hidden" />
+                    <button type="submit">Add To Cart</button>
+                </form>
+            }
         }
-    }
+    </div>
 </div>
 @*
 <h2>Baby/Christening bracelets</h2>
