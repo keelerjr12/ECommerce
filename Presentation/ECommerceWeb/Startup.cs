@@ -20,6 +20,7 @@ using ECommerceDomain.Sales.Cart;
 using ECommerceDomain.Sales.Customer;
 using ECommerceDomain.Sales.Order;
 using ECommerceDomain.Sales.Product;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
@@ -68,6 +69,8 @@ namespace ECommerceWeb
             services.AddScoped<ECommerceContext>();
             services.AddScoped<UnitOfWork>();
 
+            services.AddMediatR();
+
             services.AddScoped<AuthService>();
             services.AddScoped<UserRepository>();
 
@@ -76,7 +79,6 @@ namespace ECommerceWeb
             services.AddScoped<CartService>();
             services.AddScoped<ICartRepository, CartRepository>();
 
-            services.AddScoped<ProductService>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
             services.AddScoped<OrderService>();

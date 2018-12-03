@@ -1,40 +1,30 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ECommerceApplication;
+using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ECommerceWeb.Pages
 {
     public class OrdersModel : PageModel
     {
-        public List<OrderViewModel> Orders { get; } = new List<OrderViewModel>();
+        public List<OrderViewModel> Orders { get; private set; }
 
-        public OrdersModel(OrderService orderService)
+        public OrdersModel(IMediator mediator)
         {
-            _orderService = orderService;
+            _mediator = mediator;
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            var orders = _orderService.GetAllOrders();
-
-            foreach (var order in orders)
+            var orderResult = await _mediator.Send(new OrdersQuery
             {
-                var orderVM = new OrderViewModel
-                {
-                    Id = order.Id,
-                    DateTime = order.DateTime,
-                    CustomerId = order.Customer.Id,
-                    StreetAddress = order.Customer.StreetAddress,
-                    City = order.Customer.City,
-                    State = order.Customer.State,
-                    Country = order.Customer.Country,
-                    Zipcode = order.Customer.ZipCode
-                };
+                Status = "All"
+            });
 
-                Orders.Add(orderVM);
-            }
+            Orders = orderResult.Orders;
         }
 
-        private readonly OrderService _orderService;
+        private readonly IMediator _mediator;
     }
 }

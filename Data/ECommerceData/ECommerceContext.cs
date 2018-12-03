@@ -25,16 +25,16 @@ namespace ECommerceData
 
         internal DbSet<UserDTO> Users { get; set; }
 
-        internal DbSet<CustomerDTO> Customers { get; set; }
+        public DbSet<CustomerDTO> Customers { get; set; }
 
         internal DbSet<CartDTO> Cart { get; set; }
 
-        internal DbSet<Product.ProductDTO> Products { get; set; }
+        public DbSet<Product.ProductDTO> Products { get; set; }
 
-        internal DbSet<OrderDTO> Orders { get; set; }
+        public DbSet<OrderDTO> Orders { get; set; }
 
-        internal DbSet<InventoryDTO> Inventory { get; set; }
+        public DbSet<InventoryDTO> Inventory { get; set; }
 
-        internal DbSet<ProductDTO> InventoryProducts { get; set; }
+        public DbSet<ProductDTO> InventoryProducts { get; set; }
     }
 }

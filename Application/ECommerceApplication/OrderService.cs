@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using ECommerceApplication.InventoryService;
-using ECommerceData;
+﻿using ECommerceData;
 using ECommerceDomain.Sales.Cart;
 using ECommerceDomain.Sales.Customer;
 using ECommerceDomain.Sales.Order;
@@ -16,25 +14,6 @@ namespace ECommerceApplication
             _cartRepo = cartRepo;
             _orderRepo = orderRepo;
             _inventoryService = inventoryService;
-        }
-
-        public int GetQuantityOrdered(string productSKU)
-        {
-            var quantity = 0;
-            var orders = _orderRepo.GetOrders();
-
-            foreach (var order in orders)
-            {
-                foreach (var orderLine in order.OrderLines)
-                {
-                    if (orderLine.SKU == productSKU)
-                    {
-                        quantity++;
-                    }
-                }
-            }
-
-            return quantity;
         }
 
         public void PlaceOrder(int customerId)
@@ -54,11 +33,6 @@ namespace ECommerceApplication
             }
 
             _uow.Save();
-        }
-
-        public IEnumerable<Order> GetAllOrders()
-        {
-            return _orderRepo.GetOrders();
         }
 
         public Order GetOrderById(int orderId)

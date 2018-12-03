@@ -1,50 +1,41 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using ECommerceApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ECommerceApplication.CartService;
-using ECommerceDomain.Sales.Product;
-using ECommerceWeb.Areas.Product.Pages;
+using ECommerceWeb.Pages;
+using MediatR;
 
 namespace ECommerceWeb
 {
     public class IndexModel : PageModel
     {
-        public List<ProductViewModel> Products { get; } = new List<ProductViewModel>();
+        public List<ProductViewModel> Products { get; private set; } = new List<ProductViewModel>();
 
-        public IndexModel(ProductService productService, CartService cartService)
+        public IndexModel(IMediator mediator)
         {
-            _productService = productService;
-            _cartService = cartService;
+            _mediator = mediator;
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            var products = _productService.GetTopSellingProducts(12);
-
-            foreach (var prod in products)
+            var productResult = await _mediator.Send(new TopSellingProductsQuery
             {
-                var productVM = new ProductViewModel
-                {
-                    SKU = prod.SKU,
-                    Description = prod.Description,
-                    Price = prod.Price,
-                    Category = prod.Category
-                };
+                NumberOfProducts = 12
+            });
 
-                Products.Add(productVM);
-            }
+            Products = productResult.Products;
         }
 
         public IActionResult OnPost(string sku)
         {
-            _cartService.AddProductToCart(1, sku, 1);
+            //_cartService.AddProductToCart(1, sku, 1);
 
             return Redirect("Cart");
         }
 
-        private ProductService _productService;
-        private CartService _cartService;
+        private readonly IMediator _mediator;
     }
 }
