@@ -73,6 +73,7 @@
     <Build Include="OrderLine.sql" />
     <None Include="LoadData\Load Data.sql" />
     <Build Include="OrderInfo.sql" />
+    <Build Include="ProductCategory.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ECommerceDatabase.refactorlog" />

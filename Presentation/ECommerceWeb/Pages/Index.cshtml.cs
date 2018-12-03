@@ -30,7 +30,7 @@ namespace ECommerceWeb
                     SKU = prod.SKU,
                     Description = prod.Description,
                     Price = prod.Price,
-                    Category = prod.Category
+                    CategoryId = prod.CategoryId
                 };
 
                 Products.Add(productVM);

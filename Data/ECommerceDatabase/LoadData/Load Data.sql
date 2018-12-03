@@ -6,7 +6,7 @@ DECLARE @SingleQuotation VARCHAR(3)
 
 SET @Comma = ','
 SET @SingleQuotation = ''''
-SET @Path = 'C:\Users\rz9fxj\Downloads\0 Code\ECommerce\Data\ECommerceDatabase\LoadData'
+SET @Path = 'C:\Users\admin\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceDatabase\LoadData'
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -203,6 +203,23 @@ EXEC (@Stmt)
 
 PRINT 'Load UserInfo Data'
 SET @FileName = 'UserInfo'
+
+EXEC('DELETE FROM ' + @FileName)
+
+SET @Stmt = 
+'BULK
+INSERT ECommerceDatabase.dbo.' + (@FileName) + '
+FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
+WITH
+(
+FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
+ROWTERMINATOR = ''\n''
+)'
+--PRINT @Stmt
+EXEC (@Stmt)
+
+PRINT 'Load Product Category Data'
+SET @FileName = 'ProductCategory'
 
 EXEC('DELETE FROM ' + @FileName)
 
