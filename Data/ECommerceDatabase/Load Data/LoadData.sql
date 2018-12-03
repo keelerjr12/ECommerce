@@ -1,9 +1,9 @@
 ﻿--Load UserInfo Data
-DELETE FROM ECommerceDatabase.dbo.UserInfo
+DELETE FROM ECommerceDatabase.dbo.InventoryItemEntry
 
 BULK
-INSERT UserInfo
-FROM 'C:\Users\rz9fxj\Downloads\0 Code\ECommerce\Data\ECommerceDatabase\Load Data\UserInfo.csv'
+INSERT InventoryItemEntry
+FROM 'C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceDatabase\Load Data\InventoryItemEntry.csv'
 WITH
 (
 FIELDTERMINATOR = ',',
