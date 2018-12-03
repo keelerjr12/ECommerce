@@ -71,7 +71,6 @@
     <Build Include="InventoryItemEntry.sql" />
     <Build Include="InventoryProduct.sql" />
     <Build Include="OrderLine.sql" />
-    <None Include="LoadData.sql" />
     <Build Include="OrderLine.sql" />
     <None Include="LoadData.sql" />
     <None Include="Load Data\LoadData.sql" />
