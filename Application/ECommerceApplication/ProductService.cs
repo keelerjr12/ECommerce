@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using ECommerceDomain.Sales.Product;
 
 namespace ECommerceApplication
@@ -19,13 +20,23 @@ namespace ECommerceApplication
         public IEnumerable<Product> GetTopSellingProducts(int numberOfProducts)
         {
             var products = GetAllProducts();
+            var quantityOfProducts = new Dictionary<Product, int>();
 
             foreach (var product in products)
             {
-                var ordered =_orderService.GetQuantityOrdered(product.SKU);
+                var quantity =_orderService.GetQuantityOrdered(product.SKU);
+                quantityOfProducts.Add(product, quantity);
             }
 
-            return products;
+            var sortedProductPairs = quantityOfProducts.OrderByDescending(p => p.Value);
+
+            var topSellers = new List<Product>();
+            foreach (var sortedPair in sortedProductPairs.Take(numberOfProducts))
+            {
+                topSellers.Add(sortedPair.Key);
+            }
+
+            return topSellers;
         }
 
         private readonly IProductRepository _productRepo;

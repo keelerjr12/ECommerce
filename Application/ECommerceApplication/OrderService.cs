@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ECommerceApplication.InventoryService;
 using ECommerceData;
 using ECommerceDomain.Sales.Cart;
 using ECommerceDomain.Sales.Customer;
@@ -8,19 +9,32 @@ namespace ECommerceApplication
 {
     public class OrderService
     {
-        public OrderService(UnitOfWork uow, ICustomerRepository customerRepo, ICartRepository cartRepo, IOrderRepository orderRepo)
+        public OrderService(UnitOfWork uow, ICustomerRepository customerRepo, ICartRepository cartRepo, IOrderRepository orderRepo, InventoryService.InventoryService inventoryService)
         {
             _uow = uow;
             _customerRepo = customerRepo;
             _cartRepo = cartRepo;
             _orderRepo = orderRepo;
+            _inventoryService = inventoryService;
         }
 
         public int GetQuantityOrdered(string productSKU)
         {
+            var quantity = 0;
             var orders = _orderRepo.GetOrders();
 
-            return 0;
+            foreach (var order in orders)
+            {
+                foreach (var orderLine in order.OrderLines)
+                {
+                    if (orderLine.SKU == productSKU)
+                    {
+                        quantity++;
+                    }
+                }
+            }
+
+            return quantity;
         }
 
         public void PlaceOrder(int customerId)
@@ -33,6 +47,11 @@ namespace ECommerceApplication
 
             _orderRepo.Create(order);
             _cartRepo.Update(cart);
+
+            foreach (var orderLine in order.OrderLines)
+            {
+                _inventoryService.SellStock(orderLine.SKU, orderLine.Quantity);
+            }
 
             _uow.Save();
         }
@@ -51,6 +70,6 @@ namespace ECommerceApplication
         private readonly ICustomerRepository _customerRepo;
         private readonly ICartRepository _cartRepo;
         private readonly IOrderRepository _orderRepo;
-
+        private readonly InventoryService.InventoryService _inventoryService;
     }
 }

@@ -126,6 +126,7 @@ namespace ECommerceData.InventoryManagement.Inventory
                     {
                         var dtoEntry = new InventoryItemEntryDTO()
                         {
+                            InventoryItemId = inventoryDTO.Id,
                             DateOccurred = entry.DateOccured,
                             Quantity = entry.Quantity,
                             Type = entry.Type

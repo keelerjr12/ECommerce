@@ -65,6 +65,12 @@ namespace ECommerceData.Cart
                     foundDTO.Quantity = cartItem.Quantity.Value;
                 }
             }
+
+            foreach (var cartItem in cart.Items)
+            {
+                var cartitemDTO = cartDTO.CartItems.Find(c => c.CartId == 1 && c.ProductId == cartItem.ProductId);
+                cartitemDTO.Quantity = cartItem.Quantity.Value;
+            }
         }
 
         private IList<Item> ToCartItemList(IReadOnlyList<CartItemDTO> dtoItems)
