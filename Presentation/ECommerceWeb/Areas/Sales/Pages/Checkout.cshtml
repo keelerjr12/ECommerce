@@ -4,10 +4,10 @@
 <div>
     <label>Shipping address</label>
     <div>
-        <label>@Model.Customer.Name</label>
-        <label>@Model.Customer.Address</label>
-        <label>@Model.Customer.CityAndState</label>
-        <label>@Model.Customer.ZipCode</label>
+        <label>@Model.CustomerView.FirstName @Model.CustomerView.MiddleName @Model.CustomerView.LastName</label>
+        <label>@Model.CustomerView.Street</label>
+        <label>@Model.CustomerView.City, @Model.CustomerView.State, @Model.CustomerView.Country</label>
+        <label>@Model.CustomerView.ZipCode</label>
     </div>
 </div>
 <div>

@@ -1,18 +1,16 @@
 ﻿using System.Collections.Generic;
-using ECommerceApplication.InventoryService;
 using ECommerceData;
+using ECommerceDomain.Common;
 using ECommerceDomain.Sales.Cart;
-using ECommerceDomain.Sales.Customer;
 using ECommerceDomain.Sales.Order;
 
 namespace ECommerceApplication
 {
     public class OrderService
     {
-        public OrderService(UnitOfWork uow, ICustomerRepository customerRepo, ICartRepository cartRepo, IOrderRepository orderRepo, InventoryService.InventoryService inventoryService)
+        public OrderService(UnitOfWork uow, ICartRepository cartRepo, IOrderRepository orderRepo, InventoryService.InventoryService inventoryService)
         {
             _uow = uow;
-            _customerRepo = customerRepo;
             _cartRepo = cartRepo;
             _orderRepo = orderRepo;
             _inventoryService = inventoryService;
@@ -37,13 +35,15 @@ namespace ECommerceApplication
             return quantity;
         }
 
-        public void PlaceOrder(int customerId)
+        public void PlaceOrder(int customerId, string street, string city, string state, string country, int zipcode)
         {
-            var customer = _customerRepo.GetById(customerId);
             var cart = _cartRepo.FindById(customerId);
             var items = cart.Checkout();
 
-            var order = new Order(customer, items);
+            var billing = new Address(street, city, state, country, zipcode);
+            var shipping = new Address(street, city, state, country, zipcode);
+
+            var order = Order.Create(customerId, shipping, billing, items);
 
             _orderRepo.Create(order);
             _cartRepo.Update(cart);
@@ -67,7 +67,6 @@ namespace ECommerceApplication
         }
 
         private readonly UnitOfWork _uow;
-        private readonly ICustomerRepository _customerRepo;
         private readonly ICartRepository _cartRepo;
         private readonly IOrderRepository _orderRepo;
         private readonly InventoryService.InventoryService _inventoryService;

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ECommerceData.Order;
+using ECommerceDomain.Common;
 using ECommerceDomain.Sales.Order;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,13 +29,13 @@ namespace ECommerceData
 
             var orderDTO = new OrderDTO
             {
-                DateTime = order.DateTime,
-                CustomerId = order.Customer.Id,
-                Street = order.Customer.StreetAddress,
-                City = order.Customer.City,
-                State = order.Customer.State,
-                Country = order.Customer.Country,
-                Zipcode = order.Customer.ZipCode,
+                DateTime = order.Created,
+                CustomerId = order.CustomerId,
+                Street = order.ShippingAddress.Street,
+                City = order.ShippingAddress.City,
+                State = order.ShippingAddress.State,
+                Country = order.ShippingAddress.Country,
+                Zipcode = order.ShippingAddress.Zipcode,
                 OrderLines = orderLineDTOs
             };
 
@@ -80,7 +81,12 @@ namespace ECommerceData
                 orderLines.Add(orderLine);
             }
 
-            var order = new ECommerceDomain.Sales.Order.Order(orderDTO.Id, orderDTO.DateTime, customer, orderLines.AsReadOnly());
+            var shipping = new Address(orderDTO.Street, orderDTO.City, orderDTO.State, orderDTO.Country,
+                orderDTO.Zipcode);
+            var billing = new Address(orderDTO.Street, orderDTO.City, orderDTO.State, orderDTO.Country,
+                orderDTO.Zipcode);
+
+            var order = new ECommerceDomain.Sales.Order.Order(orderDTO.Id, orderDTO.CustomerId, orderDTO.DateTime, shipping, billing, orderLines.AsReadOnly());
             return order;
         }
 
