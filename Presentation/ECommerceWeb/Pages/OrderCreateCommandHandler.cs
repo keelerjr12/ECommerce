@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ECommerceData;
 using ECommerceData.Order;
+using ECommerceDomain.Common;
 using ECommerceDomain.Sales.Cart;
 using ECommerceDomain.Sales.Customer;
 using ECommerceDomain.Sales.Order;
@@ -16,37 +17,38 @@ namespace ECommerceWeb.Pages
     public class OrderCreateCommandHandler : IRequestHandler<OrderCreateCommand>
     {
 
-        public OrderCreateCommandHandler(ECommerceContext db)
+        public OrderCreateCommandHandler(UnitOfWork uow, IOrderRepository orderRepo)
         {
-            _db = db;
+            _uow = uow;
+            _orderRepo = orderRepo;
         }
 
         public async Task<Unit> Handle(OrderCreateCommand request, CancellationToken cancellationToken)
         {
-            var customer = new Customer(request.CustomerId, request.FirstName, request.MiddleName,
-                request.LastName, request.StreetAddress, request.City, request.State, request.Country,
-                request.ZipCode);
             
             var items = new List<Item>();
-            foreach (var itemDTO in request.Items)
+            /*foreach (var itemDTO in request.Items)
             {
 
                 var product = new Product();
                 var item = new Item(product, itemDTO.Quantity);
-            }
+            }*/
+            
+            var billing = new Address(request.StreetAddress, request.City, request.State, request.Country,
+                request.ZipCode);
+            var shipping = new Address(request.StreetAddress, request.City, request.State, request.Country,
+                request.ZipCode);
 
-            var order = new Order(DateTime.Now, customer, items);
+            var order = Order.Create(request.CustomerId, shipping, billing, items);
+            
+            _orderRepo.Create(order);
 
-            var orderDTO = new OrderDTO();
-            //{
+            _uow.Save();
 
-            //}
-
-            _db.Orders.Add(orderDTO);
-            */
             return new Unit();
         }
         
-        private readonly ECommerceContext _db;
+        private readonly UnitOfWork _uow;
+        private readonly IOrderRepository _orderRepo;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ECommerceDomain.Common;
 using ECommerceDomain.Sales.Cart;
 
 namespace ECommerceDomain.Sales.Order
@@ -8,36 +9,33 @@ namespace ECommerceDomain.Sales.Order
     public class Order
     {
         public int Id { get; }
-
-        public DateTime DateTime { get; }
-
-        public Customer.Customer Customer { get; }
+        public int CustomerId { get; }
+        public DateTime Created { get; }
+        public Address ShippingAddress { get; }
+        public Address BillingAddress { get; }
         public IReadOnlyList<OrderLine> OrderLines => _ordersLines.ToList();
 
-        public Order(Customer.Customer customer, IReadOnlyList<Item> items)
+        public static Order Create(int customerId, Address shipping, Address billing, IReadOnlyList<Item> items)
         {
-            DateTime = DateTime.Now;
-
-            Customer = customer;
-
+            var orderLines = new List<OrderLine>();
             foreach (var item in items)
             {
-                _ordersLines.Add(new OrderLine(item.SKU, item.Quantity.Value, item.Price));
+                orderLines.Add(new OrderLine(item.SKU, item.Quantity.Value, item.Price));
             }
+
+            return new Order(0, customerId, DateTime.Now, shipping, billing, orderLines);
         }
 
-        public Order(int id, DateTime dateTime, Customer.Customer customer, IReadOnlyList<OrderLine> orderLines)
+        public Order(int id, int customerId, DateTime created, Address shipping, Address billing, IReadOnlyList<OrderLine> orderLines)
         {
             Id = id;
-
-            DateTime = dateTime;
-
-            Customer = customer;
-
+            CustomerId = customerId;
+            Created = created;
+            ShippingAddress = shipping;
+            BillingAddress = billing;
             _ordersLines = orderLines.ToList();
         }
 
-
-        private readonly List<OrderLine> _ordersLines = new List<OrderLine>();
+        private readonly List<OrderLine> _ordersLines;
     }
 }

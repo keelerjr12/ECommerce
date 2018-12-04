@@ -23,13 +23,13 @@ namespace ECommerceWeb.Pages
             OrderVM = new OrderViewModel
             {
                 Id = order.Id,
-                DateTime = order.DateTime,
-                CustomerId = order.Customer.Id,
-                StreetAddress = order.Customer.StreetAddress,
-                City = order.Customer.City,
-                State = order.Customer.State,
-                Country = order.Customer.Country,
-                Zipcode = order.Customer.ZipCode
+                DateTime = order.Created,
+                CustomerId = order.CustomerId,
+                StreetAddress = order.ShippingAddress.Street,
+                City = order.ShippingAddress.City,
+                State = order.ShippingAddress.State,
+                Country = order.ShippingAddress.Country,
+                Zipcode = order.ShippingAddress.Zipcode
             };
 
             foreach (var orderLine in order.OrderLines)

@@ -18,7 +18,7 @@ namespace ECommerceApplication
 
         public void PlaceOrder(int customerId)
         {
-            var customer = _customerRepo.GetById(customerId);
+           /* var customer = _customerRepo.GetById(customerId);
             var cart = _cartRepo.FindById(customerId);
             var items = cart.Checkout();
 
@@ -32,7 +32,7 @@ namespace ECommerceApplication
                 _inventoryService.SellStock(orderLine.SKU, orderLine.Quantity);
             }
 
-            _uow.Save();
+            _uow.Save();*/
         }
 
         public Order GetOrderById(int orderId)

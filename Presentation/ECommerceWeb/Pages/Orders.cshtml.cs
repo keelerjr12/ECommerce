@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ECommerceApplication;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
