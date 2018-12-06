@@ -1,5 +1,4 @@
 using AutoMapper;
-using ECommerceApplication.AuthService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -7,20 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ECommerceApplication.CartService;
-using ECommerceApplication.CustomerService;
+using ECommerceApplication.Identity;
 using ECommerceApplication.InventoryService;
-using ECommerceApplication.OrderService;
-using ECommerceApplication.Reporting;
+using ECommerceApplication.Sales.Customer;
+using ECommerceApplication.Sales.Order;
 using ECommerceData;
 using ECommerceData.Cart;
-using ECommerceData.Customer;
+using ECommerceData.Identity.User;
 using ECommerceData.InventoryManagement.Inventory;
 using ECommerceData.Product;
-using ECommerceData.User;
+using ECommerceData.Sales.Customer;
+using ECommerceData.Sales.Order;
 using ECommerceDomain.InventoryManagement.Inventory;
-using ECommerceDomain.Ordering.Customer;
-using ECommerceDomain.Ordering.Order;
 using ECommerceDomain.Sales.Cart;
+using ECommerceDomain.Sales.Customer;
+using ECommerceDomain.Sales.Order;
 using ECommerceDomain.Sales.Product;
 using ECommerceWeb.Areas.Products.Pages;
 using MediatR;
@@ -80,7 +80,7 @@ namespace ECommerceWeb
 
             services.AddMediatR();
 
-            services.AddScoped<AuthService>();
+            services.AddScoped<IdentityService>();
             services.AddScoped<UserRepository>();
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
@@ -97,7 +97,6 @@ namespace ECommerceWeb
             services.AddScoped<IInventoryRepository, InventoryRepository>();
             services.AddScoped<ECommerceDomain.InventoryManagement.Product.IProductRepository,
                 ECommerceData.InventoryManagement.Product.ProductRepository > ();
-            services.AddScoped<InventoryLevelReport>();
 
             services.AddMvc().AddRazorPagesOptions(options =>
             {

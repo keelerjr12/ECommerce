@@ -1,9 +1,8 @@
 using System.Linq;
 using System.Security.Claims;
 using AutoMapper;
-using ECommerceApplication.CustomerService;
-using ECommerceApplication.OrderService;
-using ECommerceData.Customer;
+using ECommerceApplication.Sales.Customer;
+using ECommerceApplication.Sales.Order;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ECommerceDomain.Sales.Product;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceData.Product
 {
@@ -13,7 +14,7 @@ namespace ECommerceData.Product
 
         public ECommerceDomain.Sales.Product.Product FindBySku(string sku)
         {
-            var productDTO = _eCommerceContext.Products.First(p => p.SKU == sku);
+            var productDTO = _eCommerceContext.Products.Include(p => p.ProductCategory).First(p => p.SKU == sku);
 
             var product = new ECommerceDomain.Sales.Product.Product(productDTO.Id, productDTO.SKU, productDTO.Manufacturer, productDTO.Description, productDTO.Price, productDTO.CategoryId);
 
@@ -22,7 +23,7 @@ namespace ECommerceData.Product
 
         public IList<ECommerceDomain.Sales.Product.Product> GetAllProducts()
         {
-            var productSet = _eCommerceContext.Products.ToList();
+            var productSet = _eCommerceContext.Products.Include(p => p.ProductCategory).ToList();
             var products = new List<ECommerceDomain.Sales.Product.Product>();
 
             foreach (var product in productSet)

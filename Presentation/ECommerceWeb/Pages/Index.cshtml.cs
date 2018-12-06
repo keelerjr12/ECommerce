@@ -21,26 +21,8 @@ namespace ECommerceWeb.Pages
         {
             var productResult = await _mediator.Send(new TopSellingProductsQuery
             {
-<<<<<<< HEAD
                 NumberOfProducts = 12
             });
-=======
-                var productVM = new ProductViewModel
-                {
-                    SKU = prod.SKU,
-                    Description = prod.Description,
-                    Price = prod.Price,
-                    CategoryId = prod.CategoryId
-                };
-
-                Products.Add(productVM);
-            }
-        }
-
-        public IActionResult OnPost(string sku)
-        {
-            _cartService.AddProductToCart(1, sku, 1);
->>>>>>> d6bebe82ac751b7ad10b8d996b993174c2f29f91
 
             ProductViews = Mapper.Map<List<ProductDTO>, List<ProductViewModel>>(productResult.Products);
         }

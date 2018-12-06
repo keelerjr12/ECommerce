@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[ProductCategory]
 (
-    [Id] INT NOT NULL, 
-    [Category] VARCHAR(50) NULL, 
+    [Id] INT NOT NULL IDENTITY, 
+    [Category] VARCHAR(200) NULL, 
     PRIMARY KEY ([Id]) 
 )

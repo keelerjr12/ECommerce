@@ -1,4 +1,4 @@
-﻿using ECommerceApplication.AuthService;
+﻿using ECommerceApplication.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +8,7 @@ namespace ECommerceWeb.Pages
 {
     public class LogoutModel : PageModel
     {
-        public LogoutModel(AuthService authService)
+        public LogoutModel(IdentityService authService)
         {
             _authService = authService;
         }
@@ -25,6 +25,6 @@ namespace ECommerceWeb.Pages
             return RedirectToPage("/Index");
         }
 
-        private readonly AuthService _authService;
+        private readonly IdentityService _authService;
     }
 }

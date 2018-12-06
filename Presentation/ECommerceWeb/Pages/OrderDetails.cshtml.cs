@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ECommerceApplication.OrderService;
+using ECommerceApplication.Sales.Order;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ECommerceWeb.Pages

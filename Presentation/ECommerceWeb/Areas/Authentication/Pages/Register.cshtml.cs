@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ECommerceApplication;
-using ECommerceApplication.AuthService;
-using ECommerceData.User;
+using ECommerceApplication.Identity;
+using ECommerceData.Identity.User;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -13,7 +10,7 @@ namespace ECommerceWeb.Pages
     public class RegisterModel : PageModel
     {
        
-        public RegisterModel(AuthService authService)
+        public RegisterModel(IdentityService authService)
         {
             _authService = authService;
             _emailService = new EmailService();
@@ -53,7 +50,7 @@ namespace ECommerceWeb.Pages
             return RedirectToPage("/Login");
         }
 
-        private AuthService _authService;
+        private IdentityService _authService;
         private EmailService _emailService;
         public string userType;
     }

@@ -16,5 +16,8 @@ namespace ECommerceData.Product
         public decimal Price { get; set; }
 
         public int CategoryId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public ProductCategoryDTO ProductCategory { get; set; }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using ECommerceData.Cart;
-using ECommerceData.Customer;
+using ECommerceData.Identity.User;
 using ECommerceData.InventoryManagement.Inventory;
 using ECommerceData.InventoryManagement.Product;
-using ECommerceData.Order;
-using ECommerceData.User;
+using ECommerceData.Sales.Customer;
+using ECommerceData.Sales.Order;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceData

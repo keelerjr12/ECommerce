@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using ECommerceApplication.OrderService;
+using ECommerceApplication.Sales.Order;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

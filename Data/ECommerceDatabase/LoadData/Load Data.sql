@@ -6,7 +6,7 @@ DECLARE @SingleQuotation VARCHAR(3)
 
 SET @Comma = ','
 SET @SingleQuotation = ''''
-SET @Path = 'C:\Users\admin\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceDatabase\LoadData'
+SET @Path = 'C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceDatabase\LoadData'
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -12,10 +12,10 @@
 
         public Product(string sku, string description, decimal price, string category)
         {
-            Category = category;
             SKU = sku;
             Description = description;
             Price = price;
+            Category = category;
         }
     }
 }

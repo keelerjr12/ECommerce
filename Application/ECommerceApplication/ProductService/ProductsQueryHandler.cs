@@ -16,7 +16,7 @@ namespace ECommerceApplication.ProductService
 
         public async Task<ProductsResult> Handle(ProductsQuery request, CancellationToken cancellationToken)
         {
-            var productDTOs = _db.Products.Where(p => p.Category == request.Category);
+            var productDTOs = _db.Products.Where(p => p.ProductCategory.Category == request.Category);
             
             List<ProductDTO> productsToReturn = new List<ProductDTO>();
             foreach (var dto in productDTOs)

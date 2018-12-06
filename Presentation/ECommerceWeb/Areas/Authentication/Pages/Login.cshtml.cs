@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Security.Claims;
-using ECommerceApplication.AuthService;
+﻿using System.Security.Claims;
+using ECommerceApplication.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +9,7 @@ namespace ECommerceWeb.Pages
 {
     public class LoginModel : PageModel
     {
-        public LoginModel(AuthService authService)
+        public LoginModel(IdentityService authService)
         {
             _authService = authService;
         }
@@ -40,6 +39,6 @@ namespace ECommerceWeb.Pages
 
         }
 
-        private readonly AuthService _authService;
+        private readonly IdentityService _authService;
     }
 }
