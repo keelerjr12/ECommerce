@@ -10,16 +10,16 @@
 
         public decimal Price { get; }
 
-        public string Category { get; }
+        public int CategoryId { get; }
 
-        public Product(int id, string sku, string manufacturer, string description, decimal price, string category )
+        public Product(int id, string sku, string manufacturer, string description, decimal price, int categoryId )
         {
             Id = id;
             SKU = sku;
             _manufacturer = manufacturer;
             Description = description;
             Price = price;
-            Category = category;
+            CategoryId = categoryId;
         }
 
         private readonly string _manufacturer;

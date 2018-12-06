@@ -5,6 +5,7 @@
     [Manufacturer] VARCHAR(MAX) NULL, 
     [Description] VARCHAR(MAX) NULL, 
     [Price] MONEY NULL, 
-    [Category] VARCHAR(50) NULL, 
-    PRIMARY KEY ([Id]) 
+    [CategoryId] INT NULL, 
+    PRIMARY KEY ([Id]), 
+	CONSTRAINT [FK_Product_ToProductCategory] FOREIGN KEY ([CategoryId]) REFERENCES [ProductCategory]([Id])
 )

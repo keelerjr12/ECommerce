@@ -18,6 +18,6 @@ namespace ECommerceData.Order
         public decimal Price { get; set; }
 
         [ForeignKey("OrderId")]
-        public OrderDTO Order { get; set; }
+        public OrderInfoDTO Order { get; set; }
     }
 }
