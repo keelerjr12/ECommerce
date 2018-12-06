@@ -1,5 +1,6 @@
 ﻿using System.Linq;
-using ECommerceDomain.Sales.Customer;
+using ECommerceDomain.Common;
+using ECommerceDomain.Ordering.Customer;
 
 namespace ECommerceData.Customer
 {
@@ -10,12 +11,16 @@ namespace ECommerceData.Customer
             _eCommerceContext = eCommerceContext;
         }
 
-        public ECommerceDomain.Sales.Customer.Customer GetById(int id)
+        public ECommerceDomain.Ordering.Customer.Customer GetById(int id)
         {
             var customerDTO = _eCommerceContext.Customers.First(c => c.Id == id);
 
-            var customer = new ECommerceDomain.Sales.Customer.Customer(customerDTO.Id, customerDTO.FirstName, customerDTO.MiddleName,
-                customerDTO.LastName, customerDTO.StreetAddress, customerDTO.City, customerDTO.State, "United States", customerDTO.ZipCode);
+            var shippingAddress = new Address(customerDTO.Street, customerDTO.City, customerDTO.State,
+                "United States", customerDTO.ZipCode);
+            var billingAddress = new Address(customerDTO.Street, customerDTO.City, customerDTO.State,
+                "United States", customerDTO.ZipCode);
+
+            var customer = new ECommerceDomain.Ordering.Customer.Customer(customerDTO.Id, customerDTO.FirstName, customerDTO.MiddleName, customerDTO.LastName, billingAddress, shippingAddress);
 
             return customer;
         }

@@ -1,18 +1,16 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using ECommerceApplication;
-using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+using ECommerceApplication.ProductService;
+using ECommerceWeb.Areas.Products.Pages;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ECommerceApplication.CartService;
-using ECommerceWeb.Pages;
 using MediatR;
 
-namespace ECommerceWeb
+namespace ECommerceWeb.Pages
 {
     public class IndexModel : PageModel
     {
-        public List<ProductViewModel> Products { get; private set; } = new List<ProductViewModel>();
+        public List<ProductViewModel> ProductViews { get; private set; }
 
         public IndexModel(IMediator mediator)
         {
@@ -26,14 +24,7 @@ namespace ECommerceWeb
                 NumberOfProducts = 12
             });
 
-            Products = productResult.Products;
-        }
-
-        public IActionResult OnPost(string sku)
-        {
-            //_cartService.AddProductToCart(1, sku, 1);
-
-            return Redirect("Cart");
+            ProductViews = Mapper.Map<List<ProductDTO>, List<ProductViewModel>>(productResult.Products);
         }
 
         private readonly IMediator _mediator;

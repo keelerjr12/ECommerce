@@ -72,7 +72,7 @@
     <Build Include="OrderLine.sql" />
     <Build Include="OrderLine.sql" />
     <None Include="LoadData\Load Data.sql" />
-    <Build Include="OrderInfo.sql" />
+    <Build Include="Order.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ECommerceDatabase.refactorlog" />

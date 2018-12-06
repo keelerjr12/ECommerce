@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ECommerceApplication;
+using ECommerceApplication.OrderService;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ECommerceWeb.Pages
@@ -17,7 +17,7 @@ namespace ECommerceWeb.Pages
         public void OnGet(string id)
         {
             var orderId = int.Parse(id);
-
+            /*
             var order = _orderService.GetOrderById(orderId);
 
             OrderVM = new OrderViewModel
@@ -41,7 +41,7 @@ namespace ECommerceWeb.Pages
                     Price = orderLine.Price
                 });
 
-            }
+            }*/
         }
 
         private readonly OrderService _orderService;

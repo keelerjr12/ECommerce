@@ -1,13 +1,13 @@
 ﻿@page
-@model ECommerceWeb.IndexModel
+@model IndexModel
 @{
     ViewData["Title"] = "Jewelry Biz";
 }
 <div id="content-left-sidebar">
     <div id="main-navbar">
         <ul>
-            <li>Everyday Jewelry</li>
-            <li>Baby/Christening Bracelets</li>
+            <li><a asp-page="/Index" asp-area="Products" asp-route-category="Everyday">Everyday Jewelry</a></li>
+            <li><a asp-page="/Index" asp-area="Products" asp-route-category="BabyBracelets">Baby/Christening Bracelets</a></li>
             <li>Mother's Bracelets</li>
             <li>Grandmother's Bracelets</li>
             <li>Wedding Bracelets</li>
@@ -18,7 +18,7 @@
     </div>
     <div id="main-with-navbar">
         <h2>Our Top-Sellers</h2>
-        @foreach (var product in Model.Products)
+        @foreach (var product in Model.ProductViews)
         {
             <h4>@product.Description</h4>
             <h6>$@product.Price</h6>

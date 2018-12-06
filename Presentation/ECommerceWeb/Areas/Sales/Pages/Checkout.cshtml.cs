@@ -1,8 +1,9 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using ECommerceApplication;
+using AutoMapper;
+using ECommerceApplication.CustomerService;
+using ECommerceApplication.OrderService;
+using ECommerceData.Customer;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,13 +12,12 @@ namespace ECommerceWeb.Areas.Sales.Pages
 {
     public class CheckoutModel : PageModel
     {
-        public CustomerModel Customer { get; set; }
+        public CustomerViewModel CustomerView { get; set; }
 
-        public CheckoutModel(IMediator mediator, CustomerService customerService, OrderService orderService)
+        public CheckoutModel(IMediator mediator, OrderService orderService)
         {
             _mediator = mediator;
 
-            _customerService = customerService;
             _orderService = orderService;
         }
 
@@ -26,8 +26,12 @@ namespace ECommerceWeb.Areas.Sales.Pages
             var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
             var customerId = int.Parse(customerIdStr);
 
-            var customer = _customerService.GetCustomer(customerId);
-            Customer = new CustomerModel(customer);
+            var customerQuery = _mediator.Send(new CustomerQueryRequest
+            {
+                CustomerId = customerId
+            }).Result;
+
+            CustomerView = Mapper.Map<CustomerQueryResult, CustomerViewModel>(customerQuery);
         }
 
         public IActionResult OnPost()
@@ -35,20 +39,12 @@ namespace ECommerceWeb.Areas.Sales.Pages
             var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
             var customerId = int.Parse(customerIdStr);
 
-            _mediator.Send(new OrderCreateCommand
-            {
-                CustomerId = customerId,
-                Items = new List<CartItemModel>()
-            });
-
-
-            //_orderService.PlaceOrder(customerId);
+            _orderService.PlaceOrder(customerId);
 
             return RedirectToPage("/Index");
         }
 
         private readonly IMediator _mediator;
-        private readonly CustomerService _customerService;
         private readonly OrderService _orderService;
     }
 }

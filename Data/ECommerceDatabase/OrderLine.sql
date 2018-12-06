@@ -5,5 +5,5 @@
     [SKU] VARCHAR(50) NOT NULL, 
     [Quantity] INT NOT NULL, 
     [Price] MONEY NOT NULL, 
-    CONSTRAINT [FK_OrderLine_ToOrder] FOREIGN KEY ([OrderId]) REFERENCES [OrderInfo]([Id])
+    CONSTRAINT [FK_OrderLine_ToOrder] FOREIGN KEY ([OrderId]) REFERENCES [Order]([Id])
 )

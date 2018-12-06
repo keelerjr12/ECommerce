@@ -144,8 +144,8 @@ EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-PRINT 'Load OrderInfo Data'
-SET @FileName = 'OrderInfo'
+PRINT 'Load Order Data'
+SET @FileName = 'Order'
 
 EXEC('DELETE FROM ' + @FileName)
 

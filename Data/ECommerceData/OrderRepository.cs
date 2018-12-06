@@ -2,7 +2,7 @@
 using System.Linq;
 using ECommerceData.Order;
 using ECommerceDomain.Common;
-using ECommerceDomain.Sales.Order;
+using ECommerceDomain.Ordering.Order;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceData
@@ -14,7 +14,7 @@ namespace ECommerceData
             _eCommerceContext = eCommerceContext;
         }
 
-        public void Create(ECommerceDomain.Sales.Order.Order order)
+        public void Save(ECommerceDomain.Ordering.Order.Order order)
         {
             var orderLineDTOs = new List<OrderLineDTO>();
             foreach (var orderLine in order.OrderLines)
@@ -42,10 +42,10 @@ namespace ECommerceData
             _eCommerceContext.Orders.Add(orderDTO);
         }
 
-        IEnumerable<ECommerceDomain.Sales.Order.Order> IOrderRepository.GetOrders()
+        IEnumerable<ECommerceDomain.Ordering.Order.Order> IOrderRepository.GetOrders()
         {
             var ordersDTO = _eCommerceContext.Orders.Include(o => o.CustomerDTO).Include(o => o.OrderLines);
-            var orders = new List<ECommerceDomain.Sales.Order.Order>();
+            var orders = new List<ECommerceDomain.Ordering.Order.Order>();
 
             foreach (var orderDTO in ordersDTO)
             {
@@ -56,7 +56,7 @@ namespace ECommerceData
             return orders;
         }
 
-        public ECommerceDomain.Sales.Order.Order GetOrderById(int orderId)
+        public ECommerceDomain.Ordering.Order.Order GetOrderById(int orderId)
         {
             var orderDTO = _eCommerceContext.Orders.Include(o => o.CustomerDTO).Include(o => o.OrderLines).First(o => o.Id == orderId);
 
@@ -65,14 +65,14 @@ namespace ECommerceData
             return order;
         }
 
-        private ECommerceDomain.Sales.Order.Order RehydrateOrder(OrderDTO orderDTO)
+        private ECommerceDomain.Ordering.Order.Order RehydrateOrder(OrderDTO orderDTO)
         {
             var customerDTO = orderDTO.CustomerDTO;
 
-            var customer = new ECommerceDomain.Sales.Customer.Customer(customerDTO.Id, customerDTO.FirstName,
+            /*var customer = new ECommerceDomain.Ordering.Customer.Customer(customerDTO.Id, customerDTO.FirstName,
                 customerDTO.MiddleName, customerDTO.LastName, orderDTO.Street, orderDTO.City,
                 orderDTO.State, orderDTO.Country, orderDTO.Zipcode);
-
+                */
             var orderLines = new List<OrderLine>();
 
             foreach (var orderLineDto in orderDTO.OrderLines)
@@ -86,7 +86,8 @@ namespace ECommerceData
             var billingAddress = new Address(orderDTO.Street, orderDTO.City, orderDTO.State, orderDTO.Country,
                 orderDTO.Zipcode);
 
-            var order = new ECommerceDomain.Sales.Order.Order(orderDTO.Id, orderDTO.CustomerId, orderDTO.DateTime, shippingAddress, billingAddress, orderLines.AsReadOnly());
+            var order = new ECommerceDomain.Ordering.Order.Order(orderDTO.Id, orderDTO.CustomerId, orderDTO.DateTime, shippingAddress, billingAddress, orderLines.AsReadOnly());
+
             return order;
         }
 

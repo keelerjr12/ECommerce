@@ -1,4 +1,4 @@
-using ECommerceApplication;
+using AutoMapper;
 using ECommerceApplication.AuthService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ECommerceApplication.CartService;
+using ECommerceApplication.CustomerService;
 using ECommerceApplication.InventoryService;
+using ECommerceApplication.OrderService;
 using ECommerceApplication.Reporting;
 using ECommerceData;
 using ECommerceData.Cart;
@@ -16,10 +18,11 @@ using ECommerceData.InventoryManagement.Inventory;
 using ECommerceData.Product;
 using ECommerceData.User;
 using ECommerceDomain.InventoryManagement.Inventory;
+using ECommerceDomain.Ordering.Customer;
+using ECommerceDomain.Ordering.Order;
 using ECommerceDomain.Sales.Cart;
-using ECommerceDomain.Sales.Customer;
-using ECommerceDomain.Sales.Order;
 using ECommerceDomain.Sales.Product;
+using ECommerceWeb.Areas.Products.Pages;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
@@ -63,6 +66,12 @@ namespace ECommerceWeb
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<ProductDTO, ProductViewModel>();
+                cfg.CreateMap<CustomerQueryResult, Customer>();
+            });
+
             services.AddDbContext<ECommerceContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("ECommerceContext")));
 
@@ -89,8 +98,6 @@ namespace ECommerceWeb
             services.AddScoped<ECommerceDomain.InventoryManagement.Product.IProductRepository,
                 ECommerceData.InventoryManagement.Product.ProductRepository > ();
             services.AddScoped<InventoryLevelReport>();
-
-            services.AddScoped<CustomerService>();
 
             services.AddMvc().AddRazorPagesOptions(options =>
             {

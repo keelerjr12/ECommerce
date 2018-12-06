@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
+using ECommerceApplication.OrderService;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -20,8 +22,9 @@ namespace ECommerceWeb.Pages
             {
                 Status = "All"
             });
+            var orders = orderResult.Orders;
 
-            Orders = orderResult.Orders;
+            Orders = Mapper.Map<List<OrderDTO>, List<OrderViewModel>>(orders);
         }
 
         private readonly IMediator _mediator;
