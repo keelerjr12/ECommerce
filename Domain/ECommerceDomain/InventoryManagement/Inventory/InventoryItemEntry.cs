@@ -4,7 +4,7 @@ namespace ECommerceDomain.InventoryManagement.Inventory
 {
     public class InventoryItemEntry
     {
-        public DateTime DateOccured { get; }
+        public DateTime DateOccurred { get; }
 
         public string Type { get; }
 
@@ -12,7 +12,7 @@ namespace ECommerceDomain.InventoryManagement.Inventory
 
         public InventoryItemEntry(DateTime dateOccurred, string type, int quantity)
         {
-            DateOccured = dateOccurred;
+            DateOccurred = dateOccurred;
             Type = type;
             Quantity = quantity;
         }

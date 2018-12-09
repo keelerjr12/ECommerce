@@ -1,0 +1,47 @@
+﻿@page
+@model ECommerceWeb.Areas.Admin.Pages.Inventory.InventoryModel
+@{
+    ViewData["Title"] = "Inventory";
+}
+
+<h2>Inventory</h2>
+<div>
+    <label asp-for="Stock">Stock: @Model.Stock</label>
+</div>
+<div>
+    <label asp-for="InventoryValue">Total inventory value: @Model.InventoryValue</label>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>Edit</th>
+        <th>SKU</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Unit Cost</th>
+        <th>Stock Available</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ItemViewModels)
+        {
+        <tr>
+            <td><a asp-page="Edit" asp-route-id="@item.SKU">Edit</a></td>
+            <td>@item.SKU </td>
+            <td>@item.Description</td>
+            <td>@item.Category</td>
+            <td>@item.UnitCost</td>
+            <td>@item.Stock</td>
+            <td>
+                <form method="post">
+                    <input hidden asp-for="ItemPurchase.SKU" value="@item.SKU" />
+                    <input asp-for="ItemPurchase.Quantity" value="1">
+                    <button type="submit">Order</button>
+                    <span asp-validation-for="ItemPurchase.Quantity"></span>
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<a asp-page="Add">Add Inventory</a>

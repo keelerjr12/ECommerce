@@ -19,11 +19,9 @@ namespace ECommerceData
         {
             modelBuilder.Entity<CartDTO>().HasMany(c => c.CartItems).WithOne(c => c.Cart).HasForeignKey(c => c.CartId);
             modelBuilder.Entity<CartItemDTO>().HasKey(c => new {c.CartId, c.ProductId});
-            
-            modelBuilder.Entity<InventoryDTO>().HasMany(i => i.InventoryItems).WithOne(i => i.Inventory).HasForeignKey(i => i.InventoryId);
         }
 
-        internal DbSet<UserDTO> Users { get; set; }
+        public DbSet<UserDTO> Users { get; set; }
 
         public DbSet<CustomerDTO> Customers { get; set; }
 
@@ -33,7 +31,7 @@ namespace ECommerceData
 
         public DbSet<OrderDTO> Orders { get; set; }
 
-        public DbSet<InventoryDTO> Inventory { get; set; }
+        public DbSet<InventoryItemDTO> InventoryItems { get; set; }
 
         public DbSet<ProductDTO> InventoryProducts { get; set; }
     }

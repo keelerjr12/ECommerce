@@ -1,44 +1,59 @@
 ﻿using System.Security.Claims;
+using System.Threading.Tasks;
 using ECommerceApplication.Identity;
+using ECommerceWeb.Areas.Authentication.Models;
+using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ECommerceWeb.Pages
+namespace ECommerceWeb.Areas.Authentication.Pages
 {
     public class LoginModel : PageModel
     {
-        public LoginModel(IdentityService authService)
+        [BindProperty]
+        public Credentials Credentials { get; set; }
+
+        public string Message { get; set; }
+
+        public LoginModel(IMediator mediator)
         {
-            _authService = authService;
+            _mediator = mediator;
         }
 
-        public void OnGet()
+        public async Task<IActionResult> OnPost()
         {
-
-        }
-
-        public IActionResult OnPost(string username, string password, string action, string submit)
-        {
-            if (!_authService.CanLogin(username, password))
+            if (!ModelState.IsValid)
             {
-                return RedirectToPage();
+                return Page();
+            }
+
+            var credentials = await _mediator.Send(new AuthenticationQuery
+            {
+                Username = Credentials.Username,
+                Password = Credentials.Password
+            });
+
+            if (credentials == null)
+            {
+                Message = "Invalid username and/or password";
+                return Page();
             }
 
             var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
-            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, username));
-            identity.AddClaim(new Claim(ClaimTypes.Name, username));
+            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, credentials.Id.ToString()));
+            identity.AddClaim(new Claim(ClaimTypes.Name, credentials.Username));
+            identity.AddClaim(new Claim(ClaimTypes.Email, credentials.Email));
             identity.AddClaim(new Claim(ClaimTypes.Role, "customer"));
             var principal = new ClaimsPrincipal(identity);
-            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
                 new AuthenticationProperties { IsPersistent = true });
 
-            //want to redirect to Product but does not work
-            return RedirectToPage("/Account");
+            return RedirectToPage("/Index");
 
         }
 
-        private readonly IdentityService _authService;
+        private readonly IMediator _mediator;
     }
 }

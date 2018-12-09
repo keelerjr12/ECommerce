@@ -21,7 +21,14 @@ namespace ECommerceData.Identity.User
                 throw new UserInfoInvalidException("User info inputs invalid.");
             }
 
-            _eCommerceContext.Users.Add(new UserDTO(username, password, firstName, lastName, email));
+            var userDTO = new UserDTO
+            {
+                Username = username,
+                Password = password,
+                Email = email
+            };
+
+            _eCommerceContext.Users.Add(userDTO);
             _eCommerceContext.SaveChanges();
 
         }

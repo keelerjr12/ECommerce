@@ -7,9 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ECommerceApplication.CartService;
 using ECommerceApplication.Identity;
-using ECommerceApplication.InventoryService;
-using ECommerceApplication.Sales.Customer;
-using ECommerceApplication.Sales.Order;
+using ECommerceApplication.Inventory;
+using ECommerceApplication.Ordering.Customer;
+using ECommerceApplication.Ordering.Order;
 using ECommerceData;
 using ECommerceData.Cart;
 using ECommerceData.Identity.User;
@@ -18,14 +18,14 @@ using ECommerceData.Product;
 using ECommerceData.Sales.Customer;
 using ECommerceData.Sales.Order;
 using ECommerceDomain.InventoryManagement.Inventory;
-using ECommerceDomain.Sales.Cart;
-using ECommerceDomain.Sales.Customer;
-using ECommerceDomain.Sales.Order;
-using ECommerceDomain.Sales.Product;
-using ECommerceWeb.Areas.Products.Pages;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using ECommerceDomain.Ordering.Customer;
+using ECommerceDomain.Ordering.Order;
+using ECommerceDomain.Shopping.Cart;
+using ECommerceDomain.Shopping.Product;
+using ECommerceWeb.Areas.Products.Models;
 
 namespace ECommerceWeb
 {

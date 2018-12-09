@@ -6,8 +6,6 @@ namespace ECommerceDomain.InventoryManagement.Inventory
 {
     public class InventoryItem
     {
-        public int InventoryId { get; }
-
         public string SKU { get; }
 
         public int Stock => StockByDate(DateTime.Today);
@@ -16,9 +14,8 @@ namespace ECommerceDomain.InventoryManagement.Inventory
 
         public decimal UnitCost { get; private set; }
 
-        public InventoryItem(int inventoryId, Product.Product product, decimal unitCost, List<InventoryItemEntry> entries)
+        public InventoryItem(Product.Product product, decimal unitCost, List<InventoryItemEntry> entries)
         {
-            InventoryId = inventoryId;
             SKU = product.SKU;
             UnitCost = unitCost;
            _entries = entries;
@@ -26,8 +23,8 @@ namespace ECommerceDomain.InventoryManagement.Inventory
 
         public int StockByDate(DateTime date)
         {
-            var purchases = _entries.Where(entry => entry.DateOccured <= date && entry.Type == "PURCHASE").Sum(entry => entry.Quantity);
-            var sales = _entries.Where(entry => entry.DateOccured <= date && entry.Type == "SALE")
+            var purchases = _entries.Where(entry => entry.DateOccurred <= date && entry.Type == "PURCHASE").Sum(entry => entry.Quantity);
+            var sales = _entries.Where(entry => entry.DateOccurred <= date && entry.Type == "SALE")
                .Sum(entry => entry.Quantity);
 
             return purchases - sales;

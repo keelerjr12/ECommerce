@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ECommerceDomain.Sales.Cart;
-using ECommerceDomain.Sales.Common;
-using ECommerceDomain.Sales.Product;
+using ECommerceDomain.Shopping.Cart;
+using ECommerceDomain.Shopping.Common;
+using ECommerceDomain.Shopping.Product;
 using Xunit;
 
 namespace ECommerceDomainTests

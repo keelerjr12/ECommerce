@@ -63,10 +63,9 @@
     <Build Include="Cart.sql" />
     <Build Include="CartItem.sql" />
     <Build Include="Product.sql" />
-    <Build Include="Inventory.sql" />
     <Build Include="InventoryItem.sql" />
     <Build Include="Customer.sql" />
-    <Build Include="UserInfo.sql" />
+    <Build Include="User.sql" />
     <Build Include="InventoryItemEntry.sql" />
     <Build Include="InventoryProduct.sql" />
     <Build Include="OrderLine.sql" />

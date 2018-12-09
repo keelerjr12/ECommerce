@@ -2,7 +2,7 @@
 {
     public interface IProductRepository
     {
-        Product GetBySKU(int inventoryId, string sku);
+        Product GetBySKU(string sku);
         void Update(Product product);
     }
 }

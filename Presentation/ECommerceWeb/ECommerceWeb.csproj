@@ -18,28 +18,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Areas\Authentication\Pages\_ViewImports.cshtml">
+    <Content Update="Areas\Admin\Pages\Inventory\Add.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Areas\Authentication\Pages\_ViewStart.cshtml">
+    <Content Update="Areas\Admin\Pages\Inventory\Edit.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Areas\Inventory\Pages\_ViewImports.cshtml">
+    <Content Update="Areas\Admin\Pages\Inventory\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Areas\Inventory\Pages\_ViewStart.cshtml">
+    <Content Update="Areas\_ViewImports.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Areas\Products\Pages\_ViewImports.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Areas\Products\Pages\_ViewStart.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Areas\Sales\Pages\_ViewImports.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Areas\Sales\Pages\_ViewStart.cshtml">
+    <Content Update="Areas\_ViewStart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Index.cshtml">

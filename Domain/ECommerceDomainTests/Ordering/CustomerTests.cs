@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ECommerceDomain.Common;
-using ECommerceDomain.Ordering;
 using ECommerceDomain.Ordering.Customer;
+using ECommerceDomain.Shopping.Common;
 using Xunit;
 
 namespace ECommerceDomainTests.Ordering

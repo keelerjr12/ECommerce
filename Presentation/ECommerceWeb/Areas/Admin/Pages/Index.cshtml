@@ -1,0 +1,16 @@
+﻿@page
+@model ECommerceWeb.Areas.Admin.Pages.AccountModel
+@{
+    ViewData["Title"] = "Account";
+}
+
+<h2>Account</h2>
+
+<ul>
+    <li><a asp-page="Inventory/Index">Inventory</a></li>
+    <li><a asp-page="Orders/Index">Orders</a></li>
+</ul>
+
+<form method="post">
+    <button type="submit">Logout</button>
+</form>

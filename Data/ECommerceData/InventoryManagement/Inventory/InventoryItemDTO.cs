@@ -10,16 +10,10 @@ namespace ECommerceData.InventoryManagement.Inventory
         [Column("Id")]
         public int Id { get; set; }
 
-        [Column("InventoryId")]
-        public int InventoryId { get; set; }
-
         [Column("UnitCost")]
         public decimal UnitCost { get; set; }
 
         public List<InventoryItemEntryDTO> Entries { get; set; }
-
-        [ForeignKey("InventoryId")]
-        public InventoryDTO Inventory { get; set; }
 
         [ForeignKey("Id")]
         public ProductDTO Product { get; set; }

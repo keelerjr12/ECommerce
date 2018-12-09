@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ECommerceDomain.Sales.Cart;
-using ECommerceDomain.Sales.Common;
-using ECommerceDomain.Sales.Product;
+using ECommerceDomain.Product;
+using ECommerceDomain.Shopping.Cart;
 
 namespace ECommerceConsole
 {
@@ -53,7 +52,7 @@ namespace ECommerceConsole
                             var productId = int.Parse(tokens[1]);
                             var quantity = int.Parse(tokens[2]);
                             var product = inventory[productId];
-                            cart.Add(product, Quantity.Is(quantity));
+                            //cart.Add(product, Quantity.Is(quantity));
                         }
                             break;
                             

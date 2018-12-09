@@ -4,7 +4,7 @@ using ECommerceData;
 using ECommerceDomain.InventoryManagement.Inventory;
 using ECommerceDomain.InventoryManagement.Product;
 
-namespace ECommerceApplication.InventoryService
+namespace ECommerceApplication.Inventory
 {
     public class InventoryService
     {
@@ -15,66 +15,62 @@ namespace ECommerceApplication.InventoryService
             _productRepo = productRepo;
         }
 
-        public Inventory GetInventory()
+        public ECommerceDomain.InventoryManagement.Inventory.Inventory GetInventory()
         {
-            return _inventoryRepo.FindById(1);
+            return _inventoryRepo.Get();
         }
-    
+
         public InventoryItem GetInventoryItem(string sku)
         {
             return GetInventory().Items.First(item => item.SKU == sku);
         }
 
-        public Product GetProductBySKU(int inventoryId, string sku)
+        public Product GetProductBySKU(string sku)
         {
-            return _productRepo.GetBySKU(inventoryId, sku);
+            return _productRepo.GetBySKU(sku);
         }
 
-        public void TrackProduct(int inventoryId, string sku, string description, string category, decimal unitCost)
+        public void TrackProduct(string sku, string description, string category, decimal unitCost)
         {
-            var inventory = _inventoryRepo.FindById(inventoryId);
+            var inventory = _inventoryRepo.Get();
 
             var product = inventory.TrackProduct(sku, description, category, unitCost);
 
-            _inventoryRepo.Update(inventory);
+            _inventoryRepo.Save(inventory);
             _productRepo.Update(product);
 
             _uow.Save();
         }
-    
+
         public void PurchaseStock(string sku, int quantity)
         {
-            var inventoryId = 1;
+            var inventory = _inventoryRepo.Get();
 
-            var inventory = _inventoryRepo.FindById(inventoryId);
-
-            var product = _productRepo.GetBySKU(inventoryId, sku);
+            var product = _productRepo.GetBySKU(sku);
 
             inventory.Purchase(product, quantity, DateTime.Now);
 
-            _inventoryRepo.Update(inventory);
+            _inventoryRepo.Save(inventory);
 
             _uow.Save();
         }
 
         public void SellStock(string sku, int quantity)
         {
-            var inventoryId = 1;
+            var inventory = _inventoryRepo.Get();
 
-            var inventory = _inventoryRepo.FindById(inventoryId);
-
-            var product = _productRepo.GetBySKU(inventoryId, sku);
+            var product = _productRepo.GetBySKU(sku);
 
             inventory.Sell(product, quantity, DateTime.Now);
-            
-            _inventoryRepo.Update(inventory);
+
+            _inventoryRepo.Save(inventory);
 
             _uow.Save();
         }
 
-        public void ChangeProductDetails(int inventoryId, string sku, string description, string category)
+        public void ChangeProductDetails(string sku, string description, string category)
         {
-            var product = _productRepo.GetBySKU(inventoryId, sku);
+            var product = _productRepo.GetBySKU(sku);
 
             product.ChangeDescription(description);
             product.ChangeCategory(category);
@@ -84,14 +80,14 @@ namespace ECommerceApplication.InventoryService
             _uow.Save();
         }
 
-        public void ChangeUnitCost(int inventoryId, string sku, decimal unitCost)
+        public void ChangeUnitCost(string sku, decimal unitCost)
         {
-            var inventory = _inventoryRepo.FindById(inventoryId);
-            var product = _productRepo.GetBySKU(inventoryId, sku);
+            var inventory = _inventoryRepo.Get();
+            var product = _productRepo.GetBySKU(sku);
 
             inventory.ChangeProductUnitPrice(product, unitCost);
 
-            _inventoryRepo.Update(inventory);
+            _inventoryRepo.Save(inventory);
 
             _uow.Save();
         }

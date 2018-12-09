@@ -2,10 +2,11 @@
 using ECommerceApplication;
 using ECommerceApplication.Identity;
 using ECommerceData.Identity.User;
+using ECommerceWeb.Pages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ECommerceWeb.Pages
+namespace ECommerceWeb.Areas.Authentication.Pages
 {
     public class RegisterModel : PageModel
     {

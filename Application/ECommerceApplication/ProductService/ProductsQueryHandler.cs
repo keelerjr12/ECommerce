@@ -17,8 +17,8 @@ namespace ECommerceApplication.ProductService
         public async Task<ProductsResult> Handle(ProductsQuery request, CancellationToken cancellationToken)
         {
             var productDTOs = _db.Products.Where(p => p.ProductCategory.Category == request.Category);
-            
-            List<ProductDTO> productsToReturn = new List<ProductDTO>();
+
+            var productsToReturn = new List<ProductDTO>();
             foreach (var dto in productDTOs)
             {
                 var product = new ProductDTO(dto.SKU, dto.Description, dto.Price);
@@ -33,7 +33,7 @@ namespace ECommerceApplication.ProductService
             return result;
         }
 
-        private ECommerceContext _db;
+        private readonly ECommerceContext _db;
 
     }
 }

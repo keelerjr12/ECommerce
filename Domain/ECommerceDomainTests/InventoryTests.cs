@@ -1,6 +1,4 @@
-﻿using ECommerceDomain.InventoryManagement.Inventory;
-using ECommerceDomain.InventoryManagement.Product;
-using Xunit;
+﻿using Xunit;
 
 namespace ECommerceDomainTests
 {

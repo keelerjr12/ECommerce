@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ECommerceDomain.Sales.Cart;
-using ECommerceDomain.Sales.Common;
+using ECommerceDomain.Shopping.Cart;
+using ECommerceDomain.Shopping.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceData.Cart
@@ -13,16 +13,16 @@ namespace ECommerceData.Cart
             _eCommerceContext = eCommerceContext;
         }
 
-        public ECommerceDomain.Sales.Cart.Cart FindById(int id)
+        public ECommerceDomain.Shopping.Cart.Cart FindById(int id)
         {
             var cartDTO = _eCommerceContext.Cart.Where(c => c.Id == id).Include(c => c.CartItems).ThenInclude(p => p.Product).FirstOrDefault();
 
-            var cart = new ECommerceDomain.Sales.Cart.Cart(cartDTO.Id);
+            var cart = new ECommerceDomain.Shopping.Cart.Cart(cartDTO.Id);
 
             foreach (var item in cartDTO.CartItems)
             {
                 var product = item.Product;
-                cart.Add(new ECommerceDomain.Sales.Product.Product(product.Id, product.SKU, product.Manufacturer, product.Description, product.Price, product.CategoryId),
+                cart.Add(new ECommerceDomain.Shopping.Product.Product(product.Id, product.SKU, product.Manufacturer, product.Description, product.Price, product.CategoryId),
                     Quantity.Is(item.Quantity));
             }
 
@@ -31,7 +31,7 @@ namespace ECommerceData.Cart
 
         //TODO: Change DTOs to domain models prior to EXCEPT()
         //TODO: Prevents null references
-        public void Update(ECommerceDomain.Sales.Cart.Cart cart)
+        public void Update(ECommerceDomain.Shopping.Cart.Cart cart)
         {
             var cartDTO = _eCommerceContext.Cart.Include(c => c.CartItems).First(c => c.Id == 1);
             var storedCartItems = ToCartItemList(cartDTO.CartItems);
@@ -80,7 +80,7 @@ namespace ECommerceData.Cart
             foreach (var itemDTO in dtoItems)
             {
                 var productDTO = itemDTO.Product;
-                var product = new ECommerceDomain.Sales.Product.Product(productDTO.Id, productDTO.SKU, productDTO.Manufacturer,
+                var product = new ECommerceDomain.Shopping.Product.Product(productDTO.Id, productDTO.SKU, productDTO.Manufacturer,
                     productDTO.Description, productDTO.Price, productDTO.CategoryId);
 
                 var cartItem = new Item(product, Quantity.Is(itemDTO.Quantity));

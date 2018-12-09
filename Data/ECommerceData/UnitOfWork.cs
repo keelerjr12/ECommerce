@@ -2,9 +2,9 @@
 {
     public class UnitOfWork
     {
-        public UnitOfWork(ECommerceContext eCommcereContext)
+        public UnitOfWork(ECommerceContext eCommerceContext)
         {
-            _eCommerceContext = eCommcereContext;
+            _eCommerceContext = eCommerceContext;
         }
 
         public void Save()
@@ -12,6 +12,6 @@
             _eCommerceContext.SaveChanges();
         }
 
-        private ECommerceContext _eCommerceContext;
+        private readonly ECommerceContext _eCommerceContext;
     }
 }

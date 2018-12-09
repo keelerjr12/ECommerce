@@ -10,9 +10,8 @@
 
         public string Category { get; private set; }
 
-        public Product(int inventoryId, string sku, string description, string category)
+        public Product(string sku, string description, string category)
         {
-            InventoryId = inventoryId;
             SKU = sku;
             Description = description;
             Category = category;

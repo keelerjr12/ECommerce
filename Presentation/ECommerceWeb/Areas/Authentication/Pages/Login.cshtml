@@ -1,17 +1,32 @@
 ﻿@page
-@model ECommerceWeb.Pages.LoginModel
+@model ECommerceWeb.Areas.Authentication.Pages.LoginModel
 @{
     ViewData["Title"] = "Login";
 }
 
 <h2>Login</h2>
 
+<div>
+    @if (!string.IsNullOrEmpty(@Model.Message))
+    {
+        <span>@Model.Message</span>
+    }
+</div>
+
 <form method="post">
-    <label>Username: </label>
-    <input type="text" name="username" />
-    <label>Password: </label>
-    <input type="text" name="password" />
-    <button type="submit" name="action" value="loginButton">Login</button>
+    <div>
+        <label asp-for="Credentials.Username">Username: </label>
+        <input asp-for="Credentials.Username"/>
+        <span asp-validation-for="Credentials.Username"></span>
+    </div>
+    <div>
+        <label asp-for="Credentials.Password">Password: </label>
+        <input asp-for="Credentials.Password"/>
+        <span asp-validation-for="Credentials.Password"></span>
+    </div>
+    <div>
+        <button type="submit">Login</button>
+    </div>
 </form>
 
 <a asp-page="/Register">Register</a>

@@ -14,26 +14,6 @@ namespace ECommerceApplication.Identity
             _userRepo.CreateUser(username, password, firstName, lastName, email, userType);
         }
 
-        public bool CanLogin(string username, string password)
-        {
-            var canLogin = _userRepo.CheckIfUserExists(username, password);
-            
-            return canLogin;
-        }
-
-        public void Login(string username, string password)
-        {
-
-        }
-
-
-        public User GetUser(string username, string password)
-        {
-            var user = _userRepo.GetUser(username, password);
-
-            return user;
-        }
-
         private readonly UserRepository _userRepo;
     }
 }

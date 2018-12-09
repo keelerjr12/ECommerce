@@ -6,8 +6,6 @@ namespace ECommerceDomain.InventoryManagement.Inventory
 {
     public class Inventory
     {
-        public int Id { get; }
-
         public IReadOnlyList<InventoryItem> Items => _items.Values.ToList();
 
         public int ItemCount
@@ -20,10 +18,8 @@ namespace ECommerceDomain.InventoryManagement.Inventory
             get { return _items.Values.Sum(i => i.Stock * i.UnitCost); }
         }
 
-        public Inventory(int id, IEnumerable<InventoryItem> items)
+        public Inventory(IEnumerable<InventoryItem> items)
         {
-            Id = id;
-            
             foreach (var item in items)
             {
                 _items.Add(item.SKU, item);
@@ -32,9 +28,9 @@ namespace ECommerceDomain.InventoryManagement.Inventory
 
         public Product.Product TrackProduct(string sku, string description, string category, decimal unitCost)
         {
-            var product = new Product.Product(Id, sku, description, category);
+            var product = new Product.Product(sku, description, category);
 
-            var item = new InventoryItem(Id, product, unitCost, new List<InventoryItemEntry>());
+            var item = new InventoryItem(product, unitCost, new List<InventoryItemEntry>());
 
             _items.Add(product.SKU, item);
 

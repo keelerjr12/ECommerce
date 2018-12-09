@@ -11,7 +11,7 @@ namespace ECommerceData.Sales.Order
         [Column("Id")]
         public int Id { get; set; }
 
-        public DateTime DateTime { get; set; }
+        public DateTime Created { get; set; }
        
         public int CustomerId { get; set; }
 

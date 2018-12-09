@@ -19,6 +19,6 @@ namespace ECommerceData.InventoryManagement.Inventory
         public int Quantity { get; set; }
 
         [ForeignKey("InventoryItemId")]
-        public InventoryItemDTO InventoryItem { get; set; }
+        public InventoryItemDTO InventoryItemDTO { get; set; }
     }
 }
