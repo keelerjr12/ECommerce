@@ -20,7 +20,7 @@ namespace ECommerceDomain.Ordering.Order
             var orderLines = new List<OrderLine>();
             foreach (var item in items)
             {
-                //orderLines.Add(new OrderLine(item.SKU, item.Quantity.Value, item.Price));
+                orderLines.Add(new OrderLine(item.SKU, item.Quantity, item.Price));
             }
 
             Id = 0;

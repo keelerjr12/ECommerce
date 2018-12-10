@@ -8,7 +8,6 @@ SET @Comma = ','
 SET @SingleQuotation = ''''
 SET @Path = 'C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceDatabase\LoadData'
 
-
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 PRINT 'Load Cart Data'
@@ -51,25 +50,6 @@ EXEC (@Stmt)
 
 PRINT 'Load Customer Data'
 SET @FileName = 'Customer'
-
-EXEC('DELETE FROM ' + @FileName)
-
-SET @Stmt = 
-'BULK
-INSERT ECommerceDatabase.dbo.' + (@FileName) + '
-FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
-WITH
-(
-FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
-ROWTERMINATOR = ''\n''
-)'
---PRINT @Stmt
-EXEC (@Stmt)
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-PRINT 'Load Inventory Data'
-SET @FileName = 'Inventory'
 
 EXEC('DELETE FROM ' + @FileName)
 
@@ -201,8 +181,8 @@ EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-PRINT 'Load UserInfo Data'
-SET @FileName = 'UserInfo'
+PRINT 'Load Product Category Data'
+SET @FileName = 'ProductCategory'
 
 EXEC('DELETE FROM ' + @FileName)
 
@@ -218,8 +198,10 @@ ROWTERMINATOR = ''\n''
 --PRINT @Stmt
 EXEC (@Stmt)
 
-PRINT 'Load Product Category Data'
-SET @FileName = 'ProductCategory'
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PRINT 'Load User Data'
+SET @FileName = 'User'
 
 EXEC('DELETE FROM ' + @FileName)
 

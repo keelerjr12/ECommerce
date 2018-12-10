@@ -10,6 +10,7 @@ namespace ECommerceWeb.Areas.Product.Pages
         public string SKU { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+        public string ImageFileName { get; set; }
 
         public ProductModel(IMediator mediator)
         {
@@ -26,6 +27,7 @@ namespace ECommerceWeb.Areas.Product.Pages
             SKU = result.SKU;
             Description = result.Description;
             Price = result.Price;
+            ImageFileName = result.ImageFileName;
         }
 
         private readonly IMediator _mediator;

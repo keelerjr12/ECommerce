@@ -19,5 +19,6 @@ namespace ECommerceData.Product
 
         [ForeignKey("CategoryId")]
         public ProductCategoryDTO ProductCategory { get; set; }
+        public string ImageFileName { get; set; }
     }
 }

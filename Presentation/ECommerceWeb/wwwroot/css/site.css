@@ -114,6 +114,37 @@ body {
     margin-top: 20px;
     padding: 0px;
 }
+
+.product-menu {
+    list-style-type: none;
+    padding-left: 0;
+    border-right-color: lightgray;
+    border-right-width: .08em;
+    border-right-style: solid;
+    border-bottom-color: lightgray;
+    border-bottom-width: .08em;
+    border-bottom-style: solid;
+}
+
+.product-menu li {
+    padding: 1em;
+}
+
+.item-list {
+    list-style-type: none;
+    padding-left: 0
+}
+
+.item-list li {
+    border-bottom-width: .08em;
+    border-bottom-color: lightgray;
+    border-bottom-style: solid;
+}
+
+.item-container {
+    display: flex;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

@@ -28,7 +28,7 @@ namespace ECommerceApplication.Ordering.Order
             var items = new List<LineItem>();
             foreach (var item in cartItems)
             {
-                items.Add(new LineItem(item.ProductId, item.Quantity.Value));
+                items.Add(new LineItem(item.SKU, item.Quantity.Value, item.Price));
             }
 
             var order = customer.PlaceOrder(items);

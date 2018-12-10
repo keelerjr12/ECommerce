@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ECommerceApplication.CartService;
@@ -35,9 +36,22 @@ namespace ECommerceWeb.Areas.Sales.Pages
             }
         }
 
-        public IActionResult OnPost(string sku)
+        public IActionResult OnPostAdd(string sku)
         {
-            _cartService.RemoveProductFromCart(1, sku, 1);
+            var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
+            var customerId = int.Parse(customerIdStr);
+
+            _cartService.AddProductToCart(customerId, sku, 1);
+
+            return RedirectToPage();
+        }
+
+        public IActionResult OnPostRemove(string sku)
+        {
+            var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
+            var customerId = int.Parse(customerIdStr);
+
+            _cartService.RemoveProductFromCart(customerId, sku, 1);
 
             return RedirectToPage();
         }

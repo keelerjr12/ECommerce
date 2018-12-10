@@ -2,10 +2,11 @@
 (
     [Id] INT NOT NULL IDENTITY,
     [SKU] VARCHAR(50) NOT NULL , 
-    [Manufacturer] VARCHAR(MAX) NULL, 
-    [Description] VARCHAR(MAX) NULL, 
-    [Price] MONEY NULL, 
-    [CategoryId] INT NULL, 
+    [Manufacturer] VARCHAR(MAX) NOT NULL, 
+    [Description] VARCHAR(MAX) NOT NULL, 
+    [Price] MONEY NOT NULL, 
+    [CategoryId] INT NOT NULL, 
+    [ImageFileName] VARCHAR(150) NOT NULL,
     PRIMARY KEY ([Id]), 
 	CONSTRAINT [FK_Product_ToProductCategory] FOREIGN KEY ([CategoryId]) REFERENCES [ProductCategory]([Id])
 )

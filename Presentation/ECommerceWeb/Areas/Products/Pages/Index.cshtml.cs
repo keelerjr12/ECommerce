@@ -9,13 +9,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ECommerceWeb.Areas.Products.Pages
 {
-
     public class IndexModel : PageModel
     {
         [BindProperty(SupportsGet = true)]
         public string Category { get; set; }
 
-        public List<ProductViewModel> Products { get; private set; }
+        public List<ProductViewModel> ProductViews { get; private set; }
 
         public IndexModel(IMediator mediator)
         {
@@ -29,7 +28,7 @@ namespace ECommerceWeb.Areas.Products.Pages
                 Category = Category
             });
 
-            Products = Mapper.Map<List<ProductDTO>, List<ProductViewModel>>(productResult.Products);
+            ProductViews = Mapper.Map<List<ProductDTO>, List<ProductViewModel>>(productResult.Products);
         }
 
         private readonly IMediator _mediator;

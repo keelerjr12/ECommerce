@@ -2,13 +2,15 @@
 {
     public class LineItem
     {
-        private int productId;
-        private int value;
+        public string SKU { get; }
+        public int Quantity { get; }
+        public decimal Price { get; }
 
-        public LineItem(int productId, int value)
+        public LineItem(string sku, int quantity, decimal price)
         {
-            this.productId = productId;
-            this.value = value;
+            SKU = sku;
+            Quantity = quantity;
+            Price = price;
         }
     }
 }

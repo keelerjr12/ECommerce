@@ -13,13 +13,13 @@
         <label>SKU: </label>
         @item.SKU
     </p>
-    <p>@string.Format("{0} units @ ${1}", item.Quantity, item.Price)</p>
-    <form asp-route="/Cart" method="post">
+    <p>@($"{item.Quantity} units @ ${item.Price}")</p>
+    <form method="post" asp-page="/Cart" asp-page-handler="Remove">
         <input value="@item.SKU" name="sku" type="hidden"/>
-        <button type="submit">Delete</button>
+        <input type="submit" value="Remove" />
     </form>
 }
 
-<h2>@string.Format("Subtotal: ${0} ({1} items)", Model.Subtotal, Model.ItemCount)</h2>
+<h2>@($"Subtotal: ${Model.Subtotal} ({Model.ItemCount} items)")</h2>
 
 <a asp-page="/Checkout">Checkout</a>

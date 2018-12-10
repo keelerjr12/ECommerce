@@ -28,7 +28,7 @@ namespace ECommerceApplication.Product.Queries
                 var productsToReturn = new List<ProductDTO>();
                 foreach (var dto in productDTOs)
                 {
-                    var product = new ProductDTO(dto.SKU, dto.Description, dto.Price);
+                    var product = new ProductDTO(dto.SKU, dto.Description, dto.Price, dto.ImageFileName);
                     productsToReturn.Add(product);
                 }
 

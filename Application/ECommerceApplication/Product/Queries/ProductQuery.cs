@@ -29,7 +29,8 @@ namespace ECommerceApplication.Product.Queries
                 {
                     SKU = productDTO.SKU,
                     Description = productDTO.Description,
-                    Price = productDTO.Price
+                    Price = productDTO.Price,
+                    ImageFileName = productDTO.ImageFileName
                 };
 
                 return result;
@@ -43,6 +44,7 @@ namespace ECommerceApplication.Product.Queries
             public string SKU { get; set; }
             public string Description { get; set; }
             public decimal Price { get; set; }
+            public string ImageFileName { get; set; }
         }
     }
 }

@@ -3,30 +3,10 @@
 @model IndexModel
 <div id="content-left-sidebar">
     <div id="main-navbar">
-        <ul>
-            <li><a asp-page="/Index" asp-area="Products" asp-route-category="Everyday">Everyday Jewelry</a></li>
-            <li><a asp-page="/Index" asp-area="Products" asp-route-category="BabyBracelets">Baby/Christening Bracelets</a></li>
-            <li>Mother's Bracelets</li>
-            <li>Grandmother's Bracelets</li>
-            <li>Wedding Bracelets</li>
-            <li>Earrings</li>
-            <li>Necklaces</li>
-            <li>Sets</li>
-        </ul>
+        <partial name="ProductMenu" />
     </div>
     <div id="main-with-navbar">
-        <h2>Products by Category</h2>
-        @foreach (var product in Model.Products)
-        {
-            <h4>@product.Description</h4>
-            <h6>$@product.Price</h6>
-            if (User.Identity.IsAuthenticated)
-            {
-                <form asp-page="/Cart" asp-area="Sales" method="post">
-                    <input value="@product.SKU" name="sku" type="hidden" />
-                    <button type="submit">Add To Cart</button>
-                </form>
-            }
-        }
+        <h2>@Model.Category</h2>
+        <partial name="ProductCatalog" model="@Model.ProductViews"/>
     </div>
 </div>

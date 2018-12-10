@@ -1,0 +1,18 @@
+﻿@model IEnumerable<ECommerceWeb.Areas.Products.Models.ProductViewModel>
+
+<ul class="item-list">
+    @foreach (var product in Model)
+    {
+        <li>
+            <div class="item-container">
+                <div>
+                    <img src="images/Products/Small/@product.ImageFileName" />
+                </div>
+                <div>
+                    <h4><a asp-page="/Index" asp-area="Product" asp-route-sku="@product.SKU">@product.Description</a></h4>
+                    <h6>$@product.Price</h6>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
