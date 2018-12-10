@@ -20,15 +20,8 @@
         <h2>Our Top-Sellers</h2>
         @foreach (var product in Model.ProductViews)
         {
-            <h4>@product.Description</h4>
+            <h4><a asp-page="/Index" asp-area="Product" asp-route-sku="@product.SKU">@product.Description</a></h4>
             <h6>$@product.Price</h6>
-            if (User.Identity.IsAuthenticated)
-            {
-                <form method="post">
-                    <input value="@product.SKU" name="sku" type="hidden" />
-                    <button type="submit">Add To Cart</button>
-                </form>
-            }
         }
     </div>
 </div>

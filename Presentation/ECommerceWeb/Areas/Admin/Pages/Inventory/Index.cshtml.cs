@@ -40,14 +40,15 @@ namespace ECommerceWeb.Areas.Admin.Pages.Inventory
 
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-               _inventoryService.PurchaseStock(ItemPurchase.SKU, ItemPurchase.Quantity.Value);
-
-                return RedirectToPage("Index");
+                return Page();
             }
 
-            return Page();
+            _inventoryService.PurchaseStock(ItemPurchase.SKU, ItemPurchase.Quantity.Value);
+
+            return RedirectToPage("Index");
+
         }
 
         private readonly InventoryService _inventoryService;

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
-using ECommerceApplication.ProductService;
+using ECommerceApplication.Product;
+using ECommerceApplication.Product.Queries;
 using ECommerceWeb.Areas.Products.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,7 @@ namespace ECommerceWeb.Areas.Products.Pages
 
         public async void OnGetAsync()
         {
-            var productResult = await _mediator.Send(new ProductsQuery
+            var productResult = await _mediator.Send(new ProductsQuery.Request
             {
                 Category = Category
             });

@@ -23,7 +23,7 @@ namespace ECommerceApplication.Ordering.Order
         {
             var customer = _customerRepo.GetById(customerId);
             var cart = _cartRepo.FindById(customerId);
-            var cartItems = cart.Checkout();
+            var cartItems = cart.Items;
 
             var items = new List<LineItem>();
             foreach (var item in cartItems)
@@ -32,6 +32,8 @@ namespace ECommerceApplication.Ordering.Order
             }
 
             var order = customer.PlaceOrder(items);
+
+            cart.Empty();
 
             _orderRepo.Save(order);
             _cartRepo.Update(cart);

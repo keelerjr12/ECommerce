@@ -4,7 +4,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using ECommerceApplication.CartService;
-using ECommerceApplication.ProductService;
+using ECommerceApplication.Product;
+using ECommerceApplication.Product.Queries;
 using ECommerceWeb.Areas.Products.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MediatR;
@@ -21,9 +22,7 @@ namespace ECommerceWeb.Pages
             _mediator = mediator;
             _cartService = cartService;
 
-
-            // TODO: need this???
-            var productResult = _mediator.Send(new TopSellingProductsQuery
+            var productResult = _mediator.Send(new TopSellingProductsQuery.Request
             {
                 NumberOfProducts = 12
             });
@@ -31,22 +30,12 @@ namespace ECommerceWeb.Pages
             ProductViews = Mapper.Map<List<ProductDTO>, List<ProductViewModel>>(productResult.Result.Products);
         }
 
-        public async Task OnGetAsync()
-        {
-            var productResult = await _mediator.Send(new TopSellingProductsQuery
-            {
-                NumberOfProducts = 12
-            });
-
-            ProductViews = Mapper.Map<List<ProductDTO>, List<ProductViewModel>>(productResult.Products);
-        }
-
         public async Task<IActionResult> OnPostAsync(string sku)
         {
             var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
-            //var customerId = int.Parse(customerIdStr);
+            var customerId = int.Parse(customerIdStr);
 
-            _cartService.AddProductToCart(1, sku, 1);
+            _cartService.AddProductToCart(customerId, sku, 1);
 
             return Page();
         }

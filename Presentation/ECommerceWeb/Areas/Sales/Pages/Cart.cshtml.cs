@@ -39,7 +39,7 @@ namespace ECommerceWeb.Areas.Sales.Pages
         {
             _cartService.RemoveProductFromCart(1, sku, 1);
 
-            return Page();
+            return RedirectToPage();
         }
 
         private readonly CartService _cartService;
