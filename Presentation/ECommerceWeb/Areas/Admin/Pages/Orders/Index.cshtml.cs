@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using ECommerceApplication.Ordering.Order;
+using ECommerceApplication.Ordering.Order.Queries;
 using ECommerceWeb.Areas.Admin.Models.Orders;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -19,7 +20,7 @@ namespace ECommerceWeb.Areas.Admin.Pages.Orders
 
         public async Task OnGetAsync()
         {
-            var orderResult = await _mediator.Send(new OrdersQuery
+            var orderResult = await _mediator.Send(new OrdersQuery.Request
             {
                 Status = "All"
             });

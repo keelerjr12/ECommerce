@@ -2,7 +2,7 @@ using System.Linq;
 using System.Security.Claims;
 using AutoMapper;
 using ECommerceApplication.Ordering.Customer;
-using ECommerceApplication.Ordering.Order;
+using ECommerceApplication.Ordering.Order.Commands;
 using ECommerceWeb.Areas.Sales.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +14,9 @@ namespace ECommerceWeb.Areas.Sales.Pages
     {
         public CustomerViewModel CustomerView { get; set; }
 
-        public CheckoutModel(IMediator mediator, OrderService orderService)
+        public CheckoutModel(IMediator mediator)
         {
             _mediator = mediator;
-
-            _orderService = orderService;
         }
 
         public void OnGet()
@@ -39,12 +37,14 @@ namespace ECommerceWeb.Areas.Sales.Pages
             var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
             var customerId = int.Parse(customerIdStr);
 
-            _orderService.PlaceOrder(customerId);
+            _mediator.Send(new CreateOrderCommand.Request
+            {
+                CustomerId = customerId
+            });
 
             return RedirectToPage("/Index");
         }
 
         private readonly IMediator _mediator;
-        private readonly OrderService _orderService;
     }
 }

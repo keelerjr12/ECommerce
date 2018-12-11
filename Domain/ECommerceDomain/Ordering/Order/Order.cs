@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using ECommerceDomain.Common;
+using ECommerceDomain.Ordering.Events;
 using ECommerceDomain.Shopping.Common;
 
 namespace ECommerceDomain.Ordering.Order
 {
-    public class Order
+    public class Order : AggregateRoot
     {
         public int Id { get; }
         public int CustomerId { get; }
@@ -29,6 +30,9 @@ namespace ECommerceDomain.Ordering.Order
             ShippingAddress = shipping;
             BillingAddress = billing;
             _orderLines = orderLines;
+
+
+            AddEvent(new OrderCreatedEvent(Created, items[0].SKU, items[0].Quantity));
         }
 
         public Order(int id, int customerId, DateTime created, Address shipping, Address billing, IReadOnlyList<OrderLine> orderLines)

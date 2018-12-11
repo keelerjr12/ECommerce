@@ -39,6 +39,13 @@ namespace ECommerceData.Sales.Order
             };
 
             _eCommerceContext.Orders.Add(orderDTO);
+
+            foreach (var domainEvent in order.DomainEvents)
+            {
+                _eCommerceContext.AddDomainEvent(domainEvent);
+            }
+
+            order.ClearEvents();
         }
 
         IEnumerable<ECommerceDomain.Ordering.Order.Order> IOrderRepository.GetOrders()

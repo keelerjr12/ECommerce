@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using ECommerceDomain.Common;
+using ECommerceDomain.Ordering.Events;
 using ECommerceDomain.Shopping.Common;
 
 namespace ECommerceDomain.Ordering.Customer
 {
-    public class Customer
+    public class Customer : AggregateRoot
     {
         private int Id { get; }
 
@@ -27,7 +28,9 @@ namespace ECommerceDomain.Ordering.Customer
 
         public Order.Order PlaceOrder(List<LineItem> items)
         {
-            return new Order.Order(Id, Billing, Shipping, items);
+            var order = new Order.Order(Id, Billing, Shipping, items);
+
+            return order;
         }
 
         public void UpdateShippingAddress(Address newShipping)

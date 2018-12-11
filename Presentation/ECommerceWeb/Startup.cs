@@ -17,6 +17,7 @@ using ECommerceData.InventoryManagement.Inventory;
 using ECommerceData.Product;
 using ECommerceData.Sales.Customer;
 using ECommerceData.Sales.Order;
+using ECommerceDomain.Common;
 using ECommerceDomain.InventoryManagement.Inventory;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -90,7 +91,6 @@ namespace ECommerceWeb
 
             services.AddScoped<IProductRepository, ProductRepository>();
 
-            services.AddScoped<OrderService>();
             services.AddScoped<IOrderRepository, OrderRepository>();
 
             services.AddScoped<InventoryService>();

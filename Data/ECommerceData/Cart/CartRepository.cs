@@ -29,8 +29,6 @@ namespace ECommerceData.Cart
             return cart;
         }
 
-        //TODO: Change DTOs to domain models prior to EXCEPT()
-        //TODO: Prevents null references
         public void Update(ECommerceDomain.Shopping.Cart.Cart cart)
         {
             var cartDTO = _eCommerceContext.Cart.Include(c => c.CartItems).First(c => c.Id == 1);

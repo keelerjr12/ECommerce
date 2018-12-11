@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ECommerceApplication.Ordering.Order;
+using ECommerceApplication.Ordering.Order.Queries;
 using ECommerceWeb.Areas.Admin.Models.Orders;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -21,7 +21,7 @@ namespace ECommerceWeb.Areas.Admin.Pages.Orders
         {
             var orderId = int.Parse(id);
 
-            var order = await _mediator.Send(new OrderQuery
+            var order = await _mediator.Send(new OrderQuery.Request
             {
                 Id = orderId
             });
