@@ -9,44 +9,47 @@ namespace ECommerceData.Identity.User
             _eCommerceContext = eCommerceContext;
         }
 
-        public void CreateUser(string username, string password, string firstName, string lastName, string email, string userType)
+        public void Save(User user)
         {
-            if (username == null
-                || password == null 
-                || firstName == null
-                || lastName == null
-                || email == null
-                || _eCommerceContext.Users.Any(_userDTO => _userDTO.Username == username))
+            if (user.Username == null
+                || user.Password == null
+                || user.Email == null
+                || user.UserType == null)
             {
                 throw new UserInfoInvalidException("User info inputs invalid.");
             }
 
-            var userDTO = new UserDTO
+            if (DoesUserExist(user))
             {
-                Username = username,
-                Password = password,
-                Email = email
-            };
+                var userDTO = GetUserDTO(user);
+                userDTO.Password = user.Password;
+                userDTO.Email = user.Email;
+                userDTO.UserType = user.UserType;
+            }
+            else
+            {
+                var userDTO = new UserDTO
+                {
+                    Username = user.Username,
+                    Password = user.Password,
+                    Email = user.Email,
+                    UserType = user.UserType
+                };
 
-            _eCommerceContext.Users.Add(userDTO);
-            _eCommerceContext.SaveChanges();
-
+                _eCommerceContext.Users.Add(userDTO);
+            }
         }
 
-        public bool CheckIfUserExists(string username, string password)
+        private bool DoesUserExist(User user)
         {
-            var isFound = _eCommerceContext.Users.Any(user => user.Username == username && user.Password == password);
+            var isFound = _eCommerceContext.Users.Any(userDTO => userDTO.Username == user.Username);
 
             return isFound;
         }
 
-        public User GetUser(string username, string password)
+        private UserDTO GetUserDTO(User user)
         {
-            var userDTO = _eCommerceContext.Users.First(_userDTO => _userDTO.Username == username && _userDTO.Password == password);
-
-            var user = new User(userDTO.Username);
-
-            return user;
+            return _eCommerceContext.Users.First(userDTO => userDTO.Username == user.Username);
         }
 
         private readonly ECommerceContext _eCommerceContext;

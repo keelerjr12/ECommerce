@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using ECommerceData.InventoryManagement.Product;
 using System.ComponentModel.DataAnnotations.Schema;
+using ECommerceData.Inventory.Product;
 
-namespace ECommerceData.InventoryManagement.Inventory
+namespace ECommerceData.Inventory.Inventory
 {
     [Table("InventoryItem")]
     public class InventoryItemDTO

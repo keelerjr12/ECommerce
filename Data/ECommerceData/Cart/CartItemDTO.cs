@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ECommerceData.Cart
 {
     [Table("CartItems")]
-    internal class CartItemDTO
+    public class CartItemDTO
     {
         [Column("CartID")]
         public int CartId { get; set; }

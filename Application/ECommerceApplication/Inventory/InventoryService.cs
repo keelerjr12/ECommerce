@@ -55,19 +55,6 @@ namespace ECommerceApplication.Inventory
             _uow.Save();
         }
 
-        public void SellStock(string sku, int quantity)
-        {
-            var inventory = _inventoryRepo.Get();
-
-            var product = _productRepo.GetBySKU(sku);
-
-            inventory.Sell(product, quantity, DateTime.Now);
-
-            _inventoryRepo.Save(inventory);
-
-            _uow.Save();
-        }
-
         public void ChangeProductDetails(string sku, string description, string category)
         {
             var product = _productRepo.GetBySKU(sku);

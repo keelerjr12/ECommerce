@@ -1,8 +1,9 @@
 ﻿using System;
 using ECommerceApplication;
-using ECommerceApplication.Identity;
+using ECommerceApplication.Identity.Commands;
 using ECommerceData.Identity.User;
 using ECommerceWeb.Pages;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -11,24 +12,17 @@ namespace ECommerceWeb.Areas.Authentication.Pages
     public class RegisterModel : PageModel
     {
        
-        public RegisterModel(IdentityService authService)
+        public RegisterModel(IMediator mediator)
         {
-            _authService = authService;
+            _mediator = mediator;
             _emailService = new EmailService();
-        }
-
-
-        public void OnGet()
-        {
-
         }
 
         public IActionResult OnPost(string username, string password, string firstName, string lastName, string email)
         {
             try
             {
-                string userType = null;
-                _authService.Register(username, password, firstName, lastName, email, userType);
+                _mediator.Send(new RegisterUserCommand.Request(username, password, email, "Customer"));
             }
             catch (UserInfoInvalidException e)
             {
@@ -38,7 +32,7 @@ namespace ECommerceWeb.Areas.Authentication.Pages
 
             try
             {
-                string emailBody = "Dear " + firstName + " " + lastName + ",\n" + "Hope you find everything you are looking for. \n\n" + "P.S. Nice Password ;)";
+                var emailBody = "Dear " + firstName + " " + lastName + ",\n" + "Hope you find everything you are looking for. \n\n" + "P.S. Nice Password ;)";
                 _emailService.SendEmail(email, "Welcome to The Five Jewelers", emailBody);
             }
             catch (MailServiceFailedException ex)
@@ -51,8 +45,7 @@ namespace ECommerceWeb.Areas.Authentication.Pages
             return RedirectToPage("/Login");
         }
 
-        private IdentityService _authService;
-        private EmailService _emailService;
-        public string userType;
+        private readonly IMediator _mediator;
+        private readonly EmailService _emailService;
     }
 }

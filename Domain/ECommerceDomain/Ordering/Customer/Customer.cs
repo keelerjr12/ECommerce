@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using ECommerceDomain.Common;
-using ECommerceDomain.Ordering.Events;
 using ECommerceDomain.Shopping.Common;
 
 namespace ECommerceDomain.Ordering.Customer

@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Security.Claims;
 using AutoMapper;
-using ECommerceApplication.Ordering.Customer;
+using ECommerceApplication.Ordering.Customer.Queries;
 using ECommerceApplication.Ordering.Order.Commands;
 using ECommerceWeb.Areas.Sales.Models;
 using MediatR;
@@ -24,12 +24,12 @@ namespace ECommerceWeb.Areas.Sales.Pages
             var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
             var customerId = int.Parse(customerIdStr);
 
-            var customerQuery = _mediator.Send(new CustomerQueryRequest
+            var customerQuery = _mediator.Send(new CustomerQuery.Request
             {
                 CustomerId = customerId
             }).Result;
 
-            CustomerView = Mapper.Map<CustomerQueryResult, CustomerViewModel>(customerQuery);
+            CustomerView = Mapper.Map<CustomerQuery.Result, CustomerViewModel>(customerQuery);
         }
 
         public IActionResult OnPost()

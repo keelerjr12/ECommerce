@@ -1,6 +1,4 @@
-﻿using ECommerceDomain.Shopping.Cart;
-
-namespace ECommerceWeb.Areas.Sales.Models
+﻿namespace ECommerceWeb.Areas.Sales.Models
 {
     public class CartItemModel
     {
@@ -12,12 +10,12 @@ namespace ECommerceWeb.Areas.Sales.Models
 
         public string Description { get; }
 
-        public CartItemModel(Item item)
+        public CartItemModel(string sku, string description, int quantity, decimal price)
         {
-            Description = item.Description;
-            SKU = item.SKU;
-            Quantity = item.Quantity.Value;
-            Price = item.Price;
+            Description = description;
+            SKU = sku;
+            Quantity = quantity;
+            Price = price;
         }
     }
 }

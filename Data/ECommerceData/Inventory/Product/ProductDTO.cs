@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ECommerceData.InventoryManagement.Product
+namespace ECommerceData.Inventory.Product
 {
     [Table("InventoryProduct")]
     public class ProductDTO

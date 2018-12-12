@@ -5,19 +5,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ECommerceApplication.CartService;
-using ECommerceApplication.Identity;
 using ECommerceApplication.Inventory;
-using ECommerceApplication.Ordering.Customer;
-using ECommerceApplication.Ordering.Order;
+using ECommerceApplication.Ordering.Customer.Queries;
 using ECommerceData;
 using ECommerceData.Cart;
 using ECommerceData.Identity.User;
-using ECommerceData.InventoryManagement.Inventory;
+using ECommerceData.Inventory.Inventory;
 using ECommerceData.Product;
 using ECommerceData.Sales.Customer;
 using ECommerceData.Sales.Order;
-using ECommerceDomain.Common;
 using ECommerceDomain.InventoryManagement.Inventory;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -47,19 +43,10 @@ namespace ECommerceWeb
                     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                }).AddCookie(options => { options.LoginPath = "/Login"; });
-
-            services.AddMvc().AddRazorPagesOptions(options =>
-            {
-                //options.Conventions.AuthorizeFolder("/");
-                options.Conventions.AuthorizePage("/Account");
-                options.Conventions.AuthorizePage("/Register");
-                options.Conventions.AuthorizePage("/Cart");
-            });
+                }).AddCookie(options => { options.LoginPath = "/Authentication/Login"; });
 
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
@@ -70,7 +57,7 @@ namespace ECommerceWeb
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<ProductDTO, ProductViewModel>();
-                cfg.CreateMap<CustomerQueryResult, Customer>();
+                cfg.CreateMap<CustomerQuery.Result, Customer>();
             });
 
             services.AddDbContext<ECommerceContext>(
@@ -81,12 +68,10 @@ namespace ECommerceWeb
 
             services.AddMediatR();
 
-            services.AddScoped<IdentityService>();
             services.AddScoped<UserRepository>();
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
 
-            services.AddScoped<CartService>();
             services.AddScoped<ICartRepository, CartRepository>();
 
             services.AddScoped<IProductRepository, ProductRepository>();
@@ -96,11 +81,12 @@ namespace ECommerceWeb
             services.AddScoped<InventoryService>();
             services.AddScoped<IInventoryRepository, InventoryRepository>();
             services.AddScoped<ECommerceDomain.InventoryManagement.Product.IProductRepository,
-                ECommerceData.InventoryManagement.Product.ProductRepository > ();
+                ECommerceData.Inventory.Product.ProductRepository > ();
 
             services.AddMvc().AddRazorPagesOptions(options =>
             {
                 options.AllowAreas = true;
+                options.Conventions.AuthorizeAreaFolder("Admin", "/");
             });
         }
 

@@ -11,7 +11,7 @@ namespace ECommerceWeb.Areas.Admin.Pages
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            return RedirectToPage("Index");
+            return Redirect("/");
         }
     }
 }

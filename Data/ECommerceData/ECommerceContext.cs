@@ -2,8 +2,8 @@
 using System.Linq;
 using ECommerceData.Cart;
 using ECommerceData.Identity.User;
-using ECommerceData.InventoryManagement.Inventory;
-using ECommerceData.InventoryManagement.Product;
+using ECommerceData.Inventory.Inventory;
+using ECommerceData.Inventory.Product;
 using ECommerceData.Sales.Customer;
 using ECommerceData.Sales.Order;
 using ECommerceDomain.Common;
@@ -45,7 +45,7 @@ namespace ECommerceData
 
         public DbSet<CustomerDTO> Customers { get; set; }
 
-        internal DbSet<CartDTO> Cart { get; set; }
+        public DbSet<CartDTO> Cart { get; set; }
 
         public DbSet<Product.ProductDTO> Products { get; set; }
 

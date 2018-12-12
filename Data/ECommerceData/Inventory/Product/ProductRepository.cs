@@ -2,7 +2,7 @@
 using ECommerceDomain.InventoryManagement.Product;
 using Microsoft.EntityFrameworkCore;
 
-namespace ECommerceData.InventoryManagement.Product
+namespace ECommerceData.Inventory.Product
 {
     public class ProductRepository : IProductRepository
     {

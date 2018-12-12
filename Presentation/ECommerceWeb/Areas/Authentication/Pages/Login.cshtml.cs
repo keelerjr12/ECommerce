@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
-using ECommerceApplication.Identity;
+using ECommerceApplication.Identity.Queries;
 using ECommerceWeb.Areas.Authentication.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
@@ -29,7 +29,7 @@ namespace ECommerceWeb.Areas.Authentication.Pages
                 return Page();
             }
 
-            var credentials = await _mediator.Send(new AuthenticationQuery
+            var credentials = await _mediator.Send(new AuthenticationQuery.Request
             {
                 Username = Credentials.Username,
                 Password = Credentials.Password

@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
+using ECommerceApplication.Cart.Commands;
+using ECommerceApplication.Cart.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ECommerceApplication.CartService;
 using ECommerceWeb.Areas.Sales.Models;
+using MediatR;
 
 namespace ECommerceWeb.Areas.Sales.Pages
 {
@@ -16,46 +19,51 @@ namespace ECommerceWeb.Areas.Sales.Pages
 
         public List<CartItemModel> Items { get; } = new List<CartItemModel>();
 
-        public CartModel(CartService cartService)
+        public CartModel(IMediator mediator)
         {
-            _cartService = cartService;
+            _mediator = mediator;
         }
 
-        public void OnGet()
+        public async void OnGetAsync()
         {
-            var cart = _cartService.GetCart();
+            var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
+            var customerId = int.Parse(customerIdStr);
 
-            ItemCount = cart.ItemCount.Value;
-            Subtotal = cart.Subtotal;
+            var result = await _mediator.Send(new CartQuery.Request(customerId));
 
-            var sortedItems = cart.Items.OrderBy(item => item.Description);
+            ItemCount = result.ItemCount;
+            Subtotal = result.Subtotal;
+
+
+            // TODO: Move into viewmodel
+            var sortedItems = result.Items.OrderBy(item => item.Description);
 
             foreach (var item in sortedItems)
             {
-                Items.Add(new CartItemModel(item));
+                Items.Add(new CartItemModel(item.SKU, item.Description, item.Quantity, item.Price));
             }
         }
 
-        public IActionResult OnPostAdd(string sku)
+        public async Task<IActionResult> OnPostAddAsync(string sku)
         {
             var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
             var customerId = int.Parse(customerIdStr);
 
-            _cartService.AddProductToCart(customerId, sku, 1);
+            await _mediator.Send(new AddProductToCartCommand.Request(customerId, sku, 1));
 
             return RedirectToPage();
         }
 
-        public IActionResult OnPostRemove(string sku)
+        public async Task<IActionResult> OnPostRemoveAsync(string sku)
         {
             var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
             var customerId = int.Parse(customerIdStr);
 
-            _cartService.RemoveProductFromCart(customerId, sku, 1);
+            await _mediator.Send(new RemoveProductFromCartCommand.Request(customerId, sku, 1));
 
             return RedirectToPage();
         }
 
-        private readonly CartService _cartService;
+        private readonly IMediator _mediator;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ECommerceData.Cart
 {
-    internal class CartDTO
+    public class CartDTO
     {
         public int Id { get; set; }
 

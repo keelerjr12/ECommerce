@@ -3,7 +3,7 @@ using System.Linq;
 using ECommerceDomain.InventoryManagement.Inventory;
 using Microsoft.EntityFrameworkCore;
 
-namespace ECommerceData.InventoryManagement.Inventory
+namespace ECommerceData.Inventory.Inventory
 {
     public class InventoryRepository : IInventoryRepository
     {
