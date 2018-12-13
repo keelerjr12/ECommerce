@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using ECommerceDomain.Shopping.Product;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,13 +13,20 @@ namespace ECommerceData.Product
             _eCommerceContext = eCommerceContext;
         }
 
-        public ECommerceDomain.Shopping.Product.Product FindBySku(string sku)
+        public ECommerceDomain.Shopping.Product.Product GetBySKU(string sku)
         {
             var productDTO = _eCommerceContext.Products.Include(p => p.ProductCategory).First(p => p.SKU == sku);
 
             var product = new ECommerceDomain.Shopping.Product.Product(productDTO.Id, productDTO.SKU, productDTO.Manufacturer, productDTO.Description, productDTO.Price, productDTO.CategoryId);
 
             return product;
+        }
+
+        public async Task RemoveBySKU(string sku)
+        {
+            var productDTO = await _eCommerceContext.Products.FirstAsync(p => p.SKU == sku);
+
+            _eCommerceContext.Products.Remove(productDTO);
         }
 
         public IList<ECommerceDomain.Shopping.Product.Product> GetAllProducts()

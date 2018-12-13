@@ -18,54 +18,42 @@
 </head>
 <body>
     <nav class="header-bar">
-        <div class="my-container">
-            <div class="home">
-                <a asp-page="/Index" asp-area="">The Five Jewelers</a>
-            </div>
-            <div class="nav-bar">
-                <div id="left-subnav-bar">
-                    <ul>
-                        <li><a asp-page="/Contact">Contact</a></li>
-                    </ul>
+        <div class="my-container-outside">
+            <div class="my-container-inside">
+                <div class="home">
+                    <a asp-page="/Index" asp-area="">The Five Jewelers</a>
                 </div>
-                <div id="right-subnav-bar">
-                    <ul>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li><a asp-page="/Cart" asp-area="Sales">Cart</a></li>
-                            <li><a asp-page="/Index" asp-area="Admin">Account</a></li>
-                        }
-                        else 
-                        {
-                            <li><a asp-page="/Login" asp-area="Authentication">Login</a></li>
-                        }
-                    </ul>
+                <div class="nav-bar-search-container">
+                    <div class="nav-bar">
+                        <div id="left-subnav-bar">
+                            <ul>
+                                <li><a asp-page="/Contact">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div id="right-subnav-bar">
+                            <ul>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a asp-page="/Cart" asp-area="Sales">Cart</a></li>
+                                    <li><a asp-page="/Index" asp-area="Admin">Account</a></li>
+                                }
+                                else
+                                {
+                                    <li><a asp-page="/Login" asp-area="Authentication">Login</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="search-bar-container">
+                        <form method="get" asp-page="SearchResults" asp-route-Query="Query">
+                            <input id="search" name="Query" type="text"/>
+                            <input id="submit-search" type="submit" value="Search"/>
+                        </form>
+                    </div>e
                 </div>
             </div>
         </div>
     </nav>
-    <!--
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a asp-page="/Index" class="navbar-brand">ShoppingWebUI</a>
-    </div>
-    <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-            <li><a asp-page="/Index">Home</a></li>
-            <li><a asp-page="/Cart">Cart</a></li>
-            <li><a asp-page="/Contact">Contact</a></li>
-        </ul>
-    </div>
-    <div id="login">
-        <input type="text"/>
-        <input type="button"/>
-    </div>
-    -->
 
     <partial name="_CookieConsentPartial" />
 
@@ -76,28 +64,6 @@
             <p>&copy; 2018 - The 5 Jeweler's Jewelry</p>
         </footer>
     </div>
-    <!--
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
-        -->
     @RenderSection("Scripts", required: false)
 </body>
 </html>

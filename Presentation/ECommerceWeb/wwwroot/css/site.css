@@ -12,39 +12,27 @@ body {
     padding-right: 15px;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
-}
-
-/* QR code generator */
-#qrCode {
-    margin: 15px;
-}
-
 .header-bar {
     background-color: #080808;
     min-height: 50px;
-    width: 100%;
     text-align: center;
 }
 
-.my-container {
+.my-container-outside {
     width: 1170px;
     display: inline-block;
 }
 
+.my-container-inside {
+    display: flex;
+}
+
 .home {
-    float: left;
-    width: 210px;
+    min-width: 200px;
     margin: 0;
     padding: 0;
+    display: flex;
+    align-items: center;
 }
 
 .home a {
@@ -53,6 +41,10 @@ body {
     display: block;
     font-size: 18px;
     font-weight: bolder;
+}
+
+.nav-bar-search-container {
+    width: 100%;
 }
 
 .nav-bar {
@@ -107,12 +99,26 @@ body {
 }
 
 #main-navbar {
-    width: 210px;
+    min-width: 200px;
 }
 
 #main-navbar ul{
     margin-top: 20px;
     padding: 0px;
+}
+
+.search-bar-container {
+    display: flex;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+.search-bar-container form {
+    width: 100%;
+    display: flex;
+}
+
+.search-bar-container form #search {
+    width: 100%;
 }
 
 .product-menu {

@@ -24,7 +24,7 @@ namespace ECommerceWeb.Areas.Sales.Pages
             _mediator = mediator;
         }
 
-        public async void OnGetAsync()
+        public async Task OnGetAsync()
         {
             var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
             var customerId = int.Parse(customerIdStr);

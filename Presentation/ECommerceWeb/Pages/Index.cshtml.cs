@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using ECommerceApplication.Product;
 using ECommerceApplication.Product.Queries;
@@ -17,7 +18,7 @@ namespace ECommerceWeb.Pages
             _mediator = mediator;
         }
 
-        public async void OnGetAsync()
+        public async Task OnGetAsync()
         {
             var productResult = await _mediator.Send(new TopSellingProductsQuery.Request
             {

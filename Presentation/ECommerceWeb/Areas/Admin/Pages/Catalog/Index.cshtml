@@ -1,0 +1,30 @@
+﻿@page
+@model Areas.Admin.Pages.Catalog.ProductCatalogModel
+
+<h2>Product Catalog</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Edit</th>
+        <th>SKU</th>
+        <th>Price</th>
+        <th>Remove</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var pv in Model.ProductViews)
+    {
+        <tr>
+            <td><a>Edit</a></td>
+            <td>@pv.SKU</td>
+            <td>@pv.Price</td>
+            <td>
+                <form method="post">
+                    <input hidden name="sku" value="@pv.SKU"/>
+                    <input type="submit" value="Remove"/>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

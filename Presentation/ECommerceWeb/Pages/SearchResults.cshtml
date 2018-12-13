@@ -1,0 +1,12 @@
+﻿@page
+@model SearchResultsModel
+
+<div id="content-left-sidebar">
+    <div id="main-navbar">
+        <partial name="ProductMenu" />
+    </div>
+    <div id="main-with-navbar">
+        <h2>Search Results...</h2>
+        <partial name="ProductCatalog" model="@Model.ProductViews" />
+    </div>
+</div>

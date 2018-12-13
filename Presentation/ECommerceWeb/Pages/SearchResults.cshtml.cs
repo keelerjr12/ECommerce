@@ -8,16 +8,16 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ECommerceWeb.Areas.Products.Pages
+namespace ECommerceWeb.Pages
 {
-    public class IndexModel : PageModel
+    public class SearchResultsModel : PageModel
     {
         [BindProperty(SupportsGet = true)]
-        public string Category { get; set; }
+        public string Query { get; set; }
 
         public List<ProductViewModel> ProductViews { get; private set; }
 
-        public IndexModel(IMediator mediator)
+        public SearchResultsModel(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -26,7 +26,7 @@ namespace ECommerceWeb.Areas.Products.Pages
         {
             var productResult = await _mediator.Send(new ProductsQuery.Request
             {
-                Category = Category
+                Description = Query
             });
 
             ProductViews = Mapper.Map<List<ProductDTO>, List<ProductViewModel>>(productResult.Products);

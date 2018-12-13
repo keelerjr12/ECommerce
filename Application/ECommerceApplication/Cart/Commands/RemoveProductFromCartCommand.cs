@@ -36,7 +36,7 @@ namespace ECommerceApplication.Cart.Commands
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {
                 var cart = _cartRepo.FindById(request.CustomerId);
-                var product = _productRepo.FindBySku(request.SKU);
+                var product = _productRepo.GetBySKU(request.SKU);
 
                 cart.Remove(product, Quantity.Is(request.Quantity));
                 _cartRepo.Update(cart);
