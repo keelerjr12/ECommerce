@@ -1,0 +1,32 @@
+﻿@page
+@model Areas.Account.Pages.Seller.Catalog.AddProductModel
+
+<form method="post">
+    <div>
+        <label asp-for="ProductView.SKU">SKU:</label>
+        <input asp-for="ProductView.SKU"/>
+        <span asp-validation-for="ProductView.SKU"></span>
+    </div>
+    <div>
+        <label asp-for="ProductView.Name">Name:</label>
+        <input asp-for="ProductView.Name"/>
+        <span asp-validation-for="ProductView.Name"></span>
+    </div>
+    <div>
+        <label asp-for="ProductView.Manufacturer">Manufacturer:</label>
+        <input asp-for="ProductView.Manufacturer"/>
+        <span asp-validation-for="ProductView.Manufacturer"></span>
+    </div>
+    <div>
+        <label asp-for="ProductView.Description">Description:</label>
+        <input asp-for="ProductView.Description"/>
+        <span asp-validation-for="ProductView.Description"></span>
+    </div>
+    <div>
+        <label asp-for="ProductView.Price">Price:</label>
+        <input asp-for="ProductView.Price"/>
+        <span asp-validation-for="ProductView.Price"></span>
+    </div>
+
+    <input type="submit" value="Add"/>
+</form>

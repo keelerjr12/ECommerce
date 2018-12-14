@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using ECommerceDomain.Shopping.Product;
 using Microsoft.EntityFrameworkCore;
@@ -17,30 +16,49 @@ namespace ECommerceData.Product
         {
             var productDTO = _eCommerceContext.Products.Include(p => p.ProductCategory).First(p => p.SKU == sku);
 
-            var product = new ECommerceDomain.Shopping.Product.Product(productDTO.Id, productDTO.SKU, productDTO.Manufacturer, productDTO.Description, productDTO.Price, productDTO.CategoryId);
+            var product = new ECommerceDomain.Shopping.Product.Product(productDTO.Id, productDTO.SKU, productDTO.Name, productDTO.Manufacturer, productDTO.Description, productDTO.Price, productDTO.CategoryId, productDTO.ImageFileName);
 
             return product;
         }
 
-        public async Task RemoveBySKU(string sku)
+        public async Task RemoveBySKUAsync(string sku)
         {
             var productDTO = await _eCommerceContext.Products.FirstAsync(p => p.SKU == sku);
 
             _eCommerceContext.Products.Remove(productDTO);
         }
 
-        public IList<ECommerceDomain.Shopping.Product.Product> GetAllProducts()
+        public async Task SaveAsync(ECommerceDomain.Shopping.Product.Product product)
         {
-            var productSet = _eCommerceContext.Products.Include(p => p.ProductCategory).ToList();
-            var products = new List<ECommerceDomain.Shopping.Product.Product>();
+            var exists = _eCommerceContext.Products.AnyAsync(p => p.SKU == product.SKU).Result;
 
-            foreach (var product in productSet)
+            if (exists)
             {
-                products.Add(new ECommerceDomain.Shopping.Product.
-                    Product(product.Id, product.SKU, product.Manufacturer, product.Description, product.Price, product.CategoryId));
+                var productDTO = await _eCommerceContext.Products.FirstAsync(p => p.SKU == product.SKU);
+                productDTO.SKU = product.SKU;
+                productDTO.Name = product.Name;
+                productDTO.Manufacturer = product.Manufacturer;
+                productDTO.Description = product.Description;
+                productDTO.Price = product.Price;
+                productDTO.CategoryId = product.CategoryId;
+                productDTO.ImageFileName = product.ImageFileName;
+            }
+            else
+            {
+                var productDTO = new ProductDTO
+                {
+                    SKU = product.SKU,
+                    Name = product.Name,
+                    Manufacturer = product.Manufacturer,
+                    Description = product.Description,
+                    Price = product.Price,
+                    CategoryId = product.CategoryId,
+                    ImageFileName = product.ImageFileName
+                };
+
+                _eCommerceContext.Products.Add(productDTO);
             }
 
-            return products;
         }
 
         private readonly ECommerceContext _eCommerceContext;

@@ -8,6 +8,8 @@ namespace ECommerceWeb.Areas.Product.Pages
     public class ProductModel : PageModel
     {
         public string SKU { get; set; }
+        public string Name { get; set; }
+        public string Manufacturer { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
         public string ImageFileName { get; set; }
@@ -25,6 +27,8 @@ namespace ECommerceWeb.Areas.Product.Pages
             });
 
             SKU = result.SKU;
+            Name = result.Name;
+            Manufacturer = result.Manufacturer;
             Description = result.Description;
             Price = result.Price;
             ImageFileName = result.ImageFileName;

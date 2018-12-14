@@ -9,6 +9,8 @@ namespace ECommerceData.Product
 
         public string SKU { get; set; }
 
+        public string Name { get; set; }
+
         public string Manufacturer { get; set; }
 
         public string Description { get; set; }
@@ -17,8 +19,9 @@ namespace ECommerceData.Product
 
         public int CategoryId { get; set; }
 
+        public string ImageFileName { get; set; }
+
         [ForeignKey("CategoryId")]
         public ProductCategoryDTO ProductCategory { get; set; }
-        public string ImageFileName { get; set; }
     }
 }

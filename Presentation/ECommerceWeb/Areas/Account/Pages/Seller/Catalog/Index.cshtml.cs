@@ -27,10 +27,11 @@ namespace ECommerceWeb.Areas.Account.Pages.Seller.Catalog
             {
                 ProductViews.Add(new ProductViewModel
                 {
+                    SKU = product.SKU,
+                    Name = product.Name,
                     Description = product.Description,
                     ImageFileName = product.ImageFileName,
-                    Price = product.Price,
-                    SKU = product.SKU
+                    Price = product.Price
                 });
             }
         }

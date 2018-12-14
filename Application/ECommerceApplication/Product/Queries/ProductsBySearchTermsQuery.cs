@@ -35,7 +35,7 @@ namespace ECommerceApplication.Product.Queries
 
                     foreach (var dto in productDB)
                     {
-                        var product = new ProductDTO(dto.SKU, dto.Description, dto.Price, dto.ImageFileName);
+                        var product = new ProductDTO(dto.SKU, dto.Name, dto.Description, dto.Price, dto.ImageFileName);
                         productsToReturn.Add(product);
                     }
                 }
@@ -48,7 +48,7 @@ namespace ECommerceApplication.Product.Queries
 
                     foreach (var dto in productDB)
                     {
-                        var product = new ProductDTO(dto.SKU, dto.Description, dto.Price, dto.ImageFileName);
+                        var product = new ProductDTO(dto.SKU, dto.Name, dto.Description, dto.Price, dto.ImageFileName);
                         productsToReturn.Add(product);
                     }
                 }

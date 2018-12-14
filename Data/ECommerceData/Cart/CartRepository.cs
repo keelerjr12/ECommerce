@@ -22,7 +22,7 @@ namespace ECommerceData.Cart
             foreach (var item in cartDTO.CartItems)
             {
                 var product = item.Product;
-                cart.Add(new ECommerceDomain.Shopping.Product.Product(product.Id, product.SKU, product.Manufacturer, product.Description, product.Price, product.CategoryId),
+                cart.Add(new ECommerceDomain.Shopping.Product.Product(product.Id, product.SKU, product.Name, product.Manufacturer, product.Description, product.Price, product.CategoryId, product.ImageFileName),
                     Quantity.Is(item.Quantity));
             }
 
@@ -78,8 +78,8 @@ namespace ECommerceData.Cart
             foreach (var itemDTO in dtoItems)
             {
                 var productDTO = itemDTO.Product;
-                var product = new ECommerceDomain.Shopping.Product.Product(productDTO.Id, productDTO.SKU, productDTO.Manufacturer,
-                    productDTO.Description, productDTO.Price, productDTO.CategoryId);
+                var product = new ECommerceDomain.Shopping.Product.Product(productDTO.Id, productDTO.SKU, productDTO.Name, productDTO.Manufacturer,
+                    productDTO.Description, productDTO.Price, productDTO.CategoryId, productDTO.ImageFileName);
 
                 var cartItem = new Item(product, Quantity.Is(itemDTO.Quantity));
 

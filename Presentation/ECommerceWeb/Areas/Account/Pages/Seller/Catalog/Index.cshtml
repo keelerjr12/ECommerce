@@ -7,6 +7,7 @@
     <tr>
         <th>Edit</th>
         <th>SKU</th>
+        <th>Name</th>
         <th>Price</th>
         <th>Remove</th>
     </tr>
@@ -17,6 +18,7 @@
         <tr>
             <td><a>Edit</a></td>
             <td>@pv.SKU</td>
+            <td>@pv.Name</td>
             <td>@pv.Price</td>
             <td>
                 <form method="post">
@@ -28,3 +30,4 @@
     }
     </tbody>
 </table>
+<a asp-page="AddProduct">Add Product</a>

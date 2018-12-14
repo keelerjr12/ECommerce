@@ -6,16 +6,17 @@ using MediatR;
 
 namespace ECommerceApplication.Product.Commands
 {
-    public class RemoveProductFromCatalogCommand
+    public class AddProductToCatalogCommand
     {
         public class Request : IRequest
         {
-            public string SKU { get; }
-
-            public Request(string sku)
-            {
-                SKU = sku;
-            }
+            public string SKU { get; set; }
+            public string Name { get; set; }
+            public string Manufacturer { get; set; }
+            public string Description { get; set; }
+            public decimal Price { get; set; }
+            public int CategoryId { get; set; }
+            public string ImageFileName { get; set; }
         }
 
         public class Handler : IRequestHandler<Request>
@@ -28,10 +29,12 @@ namespace ECommerceApplication.Product.Commands
 
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {
-                await _productRepo.RemoveBySKUAsync(request.SKU);
+                // TODO: FIX ID Creation
+                var product = new ECommerceDomain.Shopping.Product.Product(0, request.SKU, request.Name, request.Manufacturer, request.Description, request.Price, request.CategoryId, request.ImageFileName);
+                await _productRepo.SaveAsync(product);
 
                 _uow.Save();
-                
+
                 return Unit.Value;
             }
 

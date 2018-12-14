@@ -1,28 +1,37 @@
 ﻿@page "{sku}"
 @model Areas.Product.Pages.ProductModel
 
-<div class="item-container">
-    <div>
-        <img src="/images/Products/@Model.ImageFileName"/>
+<div id="content-left-sidebar">
+    <div id="main-navbar">
+        <partial name="ProductMenu"/>
     </div>
-    <div>
-        <h2>@Model.Description</h2>
+    <div class="item-container">
         <div>
-            <label>SKU:</label>
-            <span>@Model.SKU</span>
+            <img src="/images/Products/@Model.ImageFileName"/>
         </div>
         <div>
-            <label>Price:</label>
-            <span>$@Model.Price</span>
-        </div>
-        <div>
-            @if (User.IsInRole("Customer"))
-            {
-                <form method="post" asp-area="Sales" asp-page="/Cart" asp-page-handler="Add">
-                    <input value="@Model.SKU" name="sku" type="hidden"/>
-                    <input type="submit" value="Add To Cart" />
-                </form>
-            }
+            <h2>@Model.Name</h2>
+            <span>by @Model.Manufacturer</span>
+            <div>
+                <label>SKU:</label>
+                <span>@Model.SKU</span>
+            </div>
+            <div>
+                <label>Price:</label>
+                <span>@Model.Price</span>
+            </div>
+            <p>
+                @Model.Description
+            </p>
+            <div>
+                @if (User.IsInRole("Customer"))
+                {
+                    <form method="post" asp-area="Sales" asp-page="/Cart" asp-page-handler="Add">
+                        <input value="@Model.SKU" name="sku" type="hidden"/>
+                        <input type="submit" value="Add To Cart"/>
+                    </form>
+                }
+            </div>
         </div>
     </div>
 </div>

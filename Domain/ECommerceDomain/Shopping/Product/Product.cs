@@ -6,22 +6,29 @@
 
         public string SKU { get; }
 
+        public string Name { get; }
+
+        public string Manufacturer { get; }
+
         public string Description { get; }
 
         public decimal Price { get; }
 
         public int CategoryId { get; }
 
-        public Product(int id, string sku, string manufacturer, string description, decimal price, int categoryId )
+        public string ImageFileName { get; }
+        
+        public Product(int id, string sku, string name, string manufacturer, string description,
+            decimal price, int categoryId, string imageFileName)
         {
             Id = id;
             SKU = sku;
-            _manufacturer = manufacturer;
+            Name = name;
+            Manufacturer = manufacturer;
             Description = description;
             Price = price;
             CategoryId = categoryId;
+            ImageFileName = imageFileName;
         }
-
-        private readonly string _manufacturer;
     }
 }

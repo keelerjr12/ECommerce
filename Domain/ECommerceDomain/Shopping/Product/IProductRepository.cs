@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace ECommerceDomain.Shopping.Product
 {
@@ -7,8 +6,8 @@ namespace ECommerceDomain.Shopping.Product
     {
         Product GetBySKU(string sku);
 
-        Task RemoveBySKU(string sku);
+        Task RemoveBySKUAsync(string sku);
 
-        IList<Product> GetAllProducts();
+        Task SaveAsync(Product product);
     }
 }
