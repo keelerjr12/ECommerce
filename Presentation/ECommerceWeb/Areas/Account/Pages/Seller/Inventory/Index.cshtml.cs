@@ -4,7 +4,7 @@ using ECommerceWeb.Areas.Admin.Inventory.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ECommerceWeb.Areas.Admin.Pages.Inventory
+namespace ECommerceWeb.Areas.Account.Pages.Seller.Inventory
 {
     [Area("Admin/Inventory")]
     public class InventoryModel : PageModel

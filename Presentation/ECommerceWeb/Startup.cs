@@ -43,7 +43,11 @@ namespace ECommerceWeb
                     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                }).AddCookie(options => { options.LoginPath = "/Authentication/Login"; });
+                }).AddCookie(options =>
+                {
+                    options.LoginPath = "/Authentication/Login";
+                    options.AccessDeniedPath = "/Index";
+                });
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -83,10 +87,24 @@ namespace ECommerceWeb
             services.AddScoped<ECommerceDomain.InventoryManagement.Product.IProductRepository,
                 ECommerceData.Inventory.Product.ProductRepository > ();
 
+            services.AddAuthorization(cfg =>
+            {
+                cfg.AddPolicy("RequireSeller", builder =>
+                {
+                    builder.RequireRole("Seller");
+                });
+
+                cfg.AddPolicy("RequireCustomer", builder =>
+                {
+                    builder.RequireRole("Customer");
+                });
+            });
+
             services.AddMvc().AddRazorPagesOptions(options =>
             {
                 options.AllowAreas = true;
-                options.Conventions.AuthorizeAreaFolder("Admin", "/");
+                options.Conventions.AuthorizeAreaFolder("Account", "/Seller", "RequireSeller");
+                options.Conventions.AuthorizeAreaFolder("Account", "/Customer", "RequireCustomer");
             });
         }
 

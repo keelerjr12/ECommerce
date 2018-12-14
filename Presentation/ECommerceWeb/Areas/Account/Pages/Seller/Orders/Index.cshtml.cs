@@ -7,7 +7,7 @@ using ECommerceWeb.Areas.Admin.Models.Orders;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ECommerceWeb.Areas.Admin.Pages.Orders
+namespace ECommerceWeb.Areas.Account.Pages.Seller.Orders
 {
     public class OrdersModel : PageModel
     {

@@ -24,8 +24,9 @@ namespace ECommerceWeb.Pages
 
         public async Task OnGetAsync()
         {
-            var productResult = await _mediator.Send(new ProductsQuery.Request
+            var productResult = await _mediator.Send(new ProductsBySearchTermsQuery.Request
             {
+                Category = Query,
                 Description = Query
             });
 

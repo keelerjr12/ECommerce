@@ -45,7 +45,7 @@ namespace ECommerceWeb.Areas.Authentication.Pages
             identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, credentials.Id.ToString()));
             identity.AddClaim(new Claim(ClaimTypes.Name, credentials.Username));
             identity.AddClaim(new Claim(ClaimTypes.Email, credentials.Email));
-            identity.AddClaim(new Claim(ClaimTypes.Role, "customer"));
+            identity.AddClaim(new Claim(ClaimTypes.Role, credentials.UserType));
             var principal = new ClaimsPrincipal(identity);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
                 new AuthenticationProperties { IsPersistent = true });

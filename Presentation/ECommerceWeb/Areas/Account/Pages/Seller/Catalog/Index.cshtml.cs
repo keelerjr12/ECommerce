@@ -7,7 +7,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ECommerceWeb.Areas.Admin.Pages.Catalog
+namespace ECommerceWeb.Areas.Account.Pages.Seller.Catalog
 {
     public class ProductCatalogModel : PageModel
     {

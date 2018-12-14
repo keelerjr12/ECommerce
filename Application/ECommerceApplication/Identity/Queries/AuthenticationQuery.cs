@@ -30,11 +30,12 @@ namespace ECommerceApplication.Identity.Queries
 
                 var userDTO = _db.Users.FirstAsync(u => u.Username == request.Username && u.Password == request.Password).Result;
 
-                var result = new Result()
+                var result = new Result
                 {
                     Id = userDTO.Id,
                     Username = userDTO.Username,
-                    Email = userDTO.Email
+                    Email = userDTO.Email,
+                    UserType = userDTO.UserType
                 };
 
                 return result;
@@ -48,6 +49,7 @@ namespace ECommerceApplication.Identity.Queries
             public int Id { get; set; }
             public string Username { get; set; }
             public string Email { get; set; }
+            public string UserType { get; set; }
         }
     }
 }

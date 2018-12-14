@@ -18,13 +18,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Areas\Admin\Pages\Inventory\Add.cshtml">
+    <Content Update="Areas\Account\Pages\Seller\Inventory\Add.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Areas\Admin\Pages\Inventory\Edit.cshtml">
+    <Content Update="Areas\Account\Pages\Seller\Inventory\Edit.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Areas\Admin\Pages\Inventory\Index.cshtml">
+    <Content Update="Areas\Account\Pages\Seller\Inventory\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Areas\_ViewImports.cshtml">

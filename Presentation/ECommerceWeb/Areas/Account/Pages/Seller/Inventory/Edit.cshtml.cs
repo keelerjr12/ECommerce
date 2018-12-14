@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ECommerceWeb.Areas.Admin.Pages.Inventory
+namespace ECommerceWeb.Areas.Account.Pages.Seller.Inventory
 {
     public class EditModel : PageModel
     {
