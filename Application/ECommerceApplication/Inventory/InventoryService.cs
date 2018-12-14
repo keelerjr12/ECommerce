@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using ECommerceData;
-using ECommerceDomain.InventoryManagement.Inventory;
-using ECommerceDomain.InventoryManagement.Product;
+using ECommerceDomain.Inventory.Inventory;
+using ECommerceDomain.Inventory.Product;
 
 namespace ECommerceApplication.Inventory
 {
@@ -15,7 +15,7 @@ namespace ECommerceApplication.Inventory
             _productRepo = productRepo;
         }
 
-        public ECommerceDomain.InventoryManagement.Inventory.Inventory GetInventory()
+        public ECommerceDomain.Inventory.Inventory.Inventory GetInventory()
         {
             return _inventoryRepo.Get();
         }
@@ -25,7 +25,7 @@ namespace ECommerceApplication.Inventory
             return GetInventory().Items.First(item => item.SKU == sku);
         }
 
-        public ECommerceDomain.InventoryManagement.Product.Product GetProductBySKU(string sku)
+        public ECommerceDomain.Inventory.Product.Product GetProductBySKU(string sku)
         {
             return _productRepo.GetBySKU(sku);
         }

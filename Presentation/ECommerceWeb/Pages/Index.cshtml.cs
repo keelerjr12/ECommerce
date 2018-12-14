@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using ECommerceApplication.Product;
-using ECommerceApplication.Product.Queries;
+using ECommerceApplication.Shopping.Product;
+using ECommerceApplication.Shopping.Product.Queries;
 using ECommerceWeb.Areas.Products.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MediatR;

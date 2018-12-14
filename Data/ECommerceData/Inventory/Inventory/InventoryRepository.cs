@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ECommerceDomain.InventoryManagement.Inventory;
+using ECommerceDomain.Inventory.Inventory;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceData.Inventory.Inventory
@@ -12,18 +12,18 @@ namespace ECommerceData.Inventory.Inventory
             _eCommerceContext = eCommerceContext;
         }
 
-        public ECommerceDomain.InventoryManagement.Inventory.Inventory Get()
+        public ECommerceDomain.Inventory.Inventory.Inventory Get()
         {
             var items = GetAllInventoryItemDTOs();
 
             var inventoryItems = ConvertToInventoryItems(items);
 
-            var inventory = new ECommerceDomain.InventoryManagement.Inventory.Inventory(inventoryItems);
+            var inventory = new ECommerceDomain.Inventory.Inventory.Inventory(inventoryItems);
 
             return inventory;
         }
 
-        public void Save(ECommerceDomain.InventoryManagement.Inventory.Inventory inventory)
+        public void Save(ECommerceDomain.Inventory.Inventory.Inventory inventory)
         {
             RemoveDeletedItems(inventory);
 
@@ -40,7 +40,7 @@ namespace ECommerceData.Inventory.Inventory
             {
                 var itemEntries = ConvertToInventoryItemEntries(item.Entries);
 
-                items.Add(new InventoryItem(new ECommerceDomain.InventoryManagement.Product.Product(item.Product.Product.SKU, item.Product.Description, item.Product.Category), item.UnitCost, itemEntries));
+                items.Add(new InventoryItem(new ECommerceDomain.Inventory.Product.Product(item.Product.Product.SKU, item.Product.Description, item.Product.Category), item.UnitCost, itemEntries));
             }
 
             return items;
@@ -51,7 +51,7 @@ namespace ECommerceData.Inventory.Inventory
             return itemEntryDTOs.Select(itemEntry => new InventoryItemEntry(itemEntry.DateOccurred, itemEntry.Type, itemEntry.Quantity)).ToList();
         }
 
-        private void RemoveDeletedItems(ECommerceDomain.InventoryManagement.Inventory.Inventory inventory)
+        private void RemoveDeletedItems(ECommerceDomain.Inventory.Inventory.Inventory inventory)
         {
             var itemDTOs = GetAllInventoryItemDTOs();
 
@@ -65,7 +65,7 @@ namespace ECommerceData.Inventory.Inventory
             }
         }
 
-        private void AddNewItems(ECommerceDomain.InventoryManagement.Inventory.Inventory inventory)
+        private void AddNewItems(ECommerceDomain.Inventory.Inventory.Inventory inventory)
         {
             var itemsDTOs = GetAllInventoryItemDTOs();
 

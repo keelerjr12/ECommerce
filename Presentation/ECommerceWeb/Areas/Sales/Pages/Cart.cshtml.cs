@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using ECommerceApplication.Cart.Commands;
-using ECommerceApplication.Cart.Queries;
+using ECommerceApplication.Shopping.Cart.Commands;
+using ECommerceApplication.Shopping.Cart.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ECommerceWeb.Areas.Sales.Models;

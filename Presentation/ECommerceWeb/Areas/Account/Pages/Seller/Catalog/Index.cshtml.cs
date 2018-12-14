@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ECommerceApplication.Product.Commands;
-using ECommerceApplication.Product.Queries;
+using ECommerceApplication.Shopping.Product.Commands;
+using ECommerceApplication.Shopping.Product.Queries;
 using ECommerceWeb.Areas.Products.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

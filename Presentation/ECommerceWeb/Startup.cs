@@ -8,13 +8,14 @@ using Microsoft.Extensions.DependencyInjection;
 using ECommerceApplication.Inventory;
 using ECommerceApplication.Ordering.Customer.Queries;
 using ECommerceData;
-using ECommerceData.Cart;
 using ECommerceData.Identity.User;
 using ECommerceData.Inventory.Inventory;
-using ECommerceData.Product;
-using ECommerceData.Sales.Customer;
-using ECommerceData.Sales.Order;
-using ECommerceDomain.InventoryManagement.Inventory;
+using ECommerceData.Ordering.Customer;
+using ECommerceData.Ordering.Order;
+using ECommerceData.Shopping.Cart;
+using ECommerceData.Shopping.Product;
+using ECommerceData.Shopping.ProductCategory;
+using ECommerceDomain.Inventory.Inventory;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ using ECommerceDomain.Ordering.Customer;
 using ECommerceDomain.Ordering.Order;
 using ECommerceDomain.Shopping.Cart;
 using ECommerceDomain.Shopping.Product;
+using ECommerceDomain.Shopping.ProductCategory;
 using ECommerceWeb.Areas.Products.Models;
 
 namespace ECommerceWeb
@@ -79,12 +81,13 @@ namespace ECommerceWeb
             services.AddScoped<ICartRepository, CartRepository>();
 
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
 
             services.AddScoped<IOrderRepository, OrderRepository>();
 
             services.AddScoped<InventoryService>();
             services.AddScoped<IInventoryRepository, InventoryRepository>();
-            services.AddScoped<ECommerceDomain.InventoryManagement.Product.IProductRepository,
+            services.AddScoped<ECommerceDomain.Inventory.Product.IProductRepository,
                 ECommerceData.Inventory.Product.ProductRepository > ();
 
             services.AddAuthorization(cfg =>

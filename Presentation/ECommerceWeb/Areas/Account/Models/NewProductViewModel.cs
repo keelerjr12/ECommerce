@@ -20,5 +20,7 @@ namespace ECommerceWeb.Areas.Account.Models
         [Required]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
+
+        public int CategoryId { get; set; }
     }
 }

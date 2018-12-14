@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ECommerceData.Cart;
 using ECommerceData.Identity.User;
 using ECommerceData.Inventory.Inventory;
 using ECommerceData.Inventory.Product;
-using ECommerceData.Sales.Customer;
-using ECommerceData.Sales.Order;
+using ECommerceData.Ordering.Customer;
+using ECommerceData.Ordering.Order;
+using ECommerceData.Shopping.Cart;
+using ECommerceData.Shopping.ProductCategory;
 using ECommerceDomain.Common;
 using Microsoft.EntityFrameworkCore;
 
@@ -47,7 +48,9 @@ namespace ECommerceData
 
         public DbSet<CartDTO> Cart { get; set; }
 
-        public DbSet<Product.ProductDTO> Products { get; set; }
+        public DbSet<Shopping.Product.ProductDTO> Products { get; set; }
+
+        public DbSet<ProductCategoryDTO> ProductCategories { get; set; }
 
         public DbSet<OrderDTO> Orders { get; set; }
 

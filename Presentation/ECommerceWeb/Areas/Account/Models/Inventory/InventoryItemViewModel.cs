@@ -1,4 +1,4 @@
-﻿using ECommerceDomain.InventoryManagement.Inventory;
+﻿using ECommerceDomain.Inventory.Inventory;
 
 namespace ECommerceWeb.Areas.Admin.Inventory.Models
 {
@@ -14,7 +14,7 @@ namespace ECommerceWeb.Areas.Admin.Inventory.Models
 
         public decimal UnitCost { get; }
 
-        public InventoryItemViewModel(ECommerceDomain.InventoryManagement.Product.Product product, InventoryItem item)
+        public InventoryItemViewModel(ECommerceDomain.Inventory.Product.Product product, InventoryItem item)
         {
             SKU = item.SKU;
             Description = product.Description;

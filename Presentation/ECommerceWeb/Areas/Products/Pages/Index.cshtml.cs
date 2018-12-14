@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using ECommerceApplication.Product;
-using ECommerceApplication.Product.Queries;
+using ECommerceApplication.Shopping.Product;
+using ECommerceApplication.Shopping.Product.Queries;
 using ECommerceWeb.Areas.Products.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +15,9 @@ namespace ECommerceWeb.Areas.Products.Pages
         [BindProperty(SupportsGet = true)]
         public string Category { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public int CategoryId { get; set; }
+
         public List<ProductViewModel> ProductViews { get; private set; }
 
         public IndexModel(IMediator mediator)
@@ -26,7 +29,7 @@ namespace ECommerceWeb.Areas.Products.Pages
         {
             var productResult = await _mediator.Send(new ProductsQuery.Request
             {
-                Category = Category
+                CategoryId = CategoryId
             });
 
             ProductViews = Mapper.Map<List<ProductDTO>, List<ProductViewModel>>(productResult.Products);

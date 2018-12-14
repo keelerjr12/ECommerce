@@ -13,6 +13,6 @@ namespace ECommerceData.Inventory.Product
         public string Category { get; set; }
 
         [ForeignKey("Id")]
-        public ECommerceData.Product.ProductDTO Product { get; set; }
+        public ECommerceData.Shopping.Product.ProductDTO Product { get; set; }
     }
 }

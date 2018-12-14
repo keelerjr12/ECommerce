@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using ECommerceApplication.Product.Queries;
+using ECommerceApplication.Shopping.Product.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

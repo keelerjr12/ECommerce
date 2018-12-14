@@ -27,6 +27,10 @@
         <input asp-for="ProductView.Price"/>
         <span asp-validation-for="ProductView.Price"></span>
     </div>
-
+    <div>
+        <label>Category: </label>
+        <select asp-for="ProductView.CategoryId" asp-items="@Model.ProductCategories">
+        </select>
+    </div>
     <input type="submit" value="Add"/>
 </form>

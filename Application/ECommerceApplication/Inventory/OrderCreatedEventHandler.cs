@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using ECommerceData;
-using ECommerceDomain.InventoryManagement.Inventory;
-using ECommerceDomain.InventoryManagement.Product;
+using ECommerceDomain.Inventory.Inventory;
+using ECommerceDomain.Inventory.Product;
 using ECommerceDomain.Ordering.Events;
 using MediatR;
 

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ECommerceDomain.Product;
 using ECommerceDomain.Shopping.Cart;
+using ECommerceDomain.Shopping.Product;
 
 namespace ECommerceConsole
 {

@@ -102,6 +102,10 @@ body {
     min-width: 200px;
 }
 
+#main-with-navbar {
+    width: 100%;
+}
+
 #main-navbar ul{
     margin-top: 20px;
     padding: 0px;
