@@ -1,0 +1,8 @@
+﻿@model List<ECommerceApplication.Shopping.ProductCategory.ProductCategoryDTO>
+
+<ul class="product-menu">
+    @foreach (var category in Model)
+    {
+        <li><a asp-page="/Index" asp-area="Products" asp-route-categoryId=@category.Id asp-route-category="@category.Name">@category.Name</a></li>
+    }
+</ul>
