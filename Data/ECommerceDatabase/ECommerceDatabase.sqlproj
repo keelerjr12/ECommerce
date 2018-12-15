@@ -60,7 +60,6 @@
     <Folder Include="LoadData" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Cart.sql" />
     <Build Include="CartItem.sql" />
     <Build Include="Product.sql" />
     <Build Include="InventoryItem.sql" />

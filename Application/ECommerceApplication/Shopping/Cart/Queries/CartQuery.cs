@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ECommerceData;
@@ -29,13 +30,13 @@ namespace ECommerceApplication.Shopping.Cart.Queries
             // TODO: This logic should be in a library or view
             public async Task<Result> Handle(Request request, CancellationToken cancellationToken)
             {
-                var cartDTO = _db.Cart.Include(c => c.CartItems).ThenInclude(p => p.Product).FirstAsync(cart => cart.Id == request.CustomerId).Result;
+                var cartItemDTOs = _db.CartItems.Include(p => p.Product).Where(cart => cart.CustomerId == request.CustomerId).ToListAsync().Result;
 
                 var subtotal = 0m;
                 var itemCount = 0;
                 var items = new List<ItemDTO>();
 
-                foreach (var item in cartDTO.CartItems)
+                foreach (var item in cartItemDTOs)
                 {
                     subtotal += item.Quantity * item.Product.Price;
                     itemCount += item.Quantity;

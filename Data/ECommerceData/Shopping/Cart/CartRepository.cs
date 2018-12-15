@@ -15,11 +15,11 @@ namespace ECommerceData.Shopping.Cart
 
         public ECommerceDomain.Shopping.Cart.Cart FindById(int id)
         {
-            var cartDTO = _eCommerceContext.Cart.Where(c => c.Id == id).Include(c => c.CartItems).ThenInclude(p => p.Product).FirstOrDefault();
+            var cartItemDTOs = _eCommerceContext.CartItems.Where(c => c.CustomerId == id).Include(p => p.Product);
 
-            var cart = new ECommerceDomain.Shopping.Cart.Cart(cartDTO.Id);
+            var cart = new ECommerceDomain.Shopping.Cart.Cart(id);
 
-            foreach (var item in cartDTO.CartItems)
+            foreach (var item in cartItemDTOs)
             {
                 var product = item.Product;
                 cart.Add(new ECommerceDomain.Shopping.Product.Product(product.Id, product.SKU, product.Name, product.Manufacturer, product.Description, product.Price, product.CategoryId, product.ImageFileName),
@@ -31,8 +31,8 @@ namespace ECommerceData.Shopping.Cart
 
         public void Update(ECommerceDomain.Shopping.Cart.Cart cart)
         {
-            var cartDTO = _eCommerceContext.Cart.Include(c => c.CartItems).First(c => c.Id == 1);
-            var storedCartItems = ToCartItemList(cartDTO.CartItems);
+            var cartItemDTOs = _eCommerceContext.CartItems.Where(c => c.CustomerId == cart.Id);
+            var storedCartItems = ToCartItemList(cartItemDTOs);
 
             var cartItemsToAdd = cart.Items.Except(storedCartItems, new CartItemComparer());
             var cartItemsToDelete = storedCartItems.Except(cart.Items, new CartItemComparer()).ToList();
@@ -40,38 +40,46 @@ namespace ECommerceData.Shopping.Cart
             
             foreach (var itemToDelete in cartItemsToDelete)
             {
-                cartDTO.CartItems.RemoveAll(item => item.Product.SKU == itemToDelete.SKU);
+                var itemDTO = _eCommerceContext.CartItems.First(item => item.Product.SKU == itemToDelete.SKU);
+                _eCommerceContext.CartItems.Remove(itemDTO);
             }
 
             foreach (var cartItem in cartItemsToAdd)
             {
-                var foundDTO = cartDTO.CartItems.Find(item => item.Product.SKU == cartItem.SKU);
+                var foundDTO = _eCommerceContext.CartItems.Any(item => item.Product.SKU == cartItem.SKU);
 
-                if (foundDTO == null)
+                if (!foundDTO)
                 {
                     var cartItemDTO = new CartItemDTO
                     {
-                        CartId = cartDTO.Id,
+                        CustomerId = cart.Id,
                         ProductId = cartItem.ProductId,
                         Quantity = cartItem.Quantity.Value
                     };
 
-                    cartDTO.CartItems.Add(cartItemDTO);
+                    _eCommerceContext.CartItems.Add(cartItemDTO);
                 }
                 else
                 {
-                    foundDTO.Quantity = cartItem.Quantity.Value;
+                    var foundItem = _eCommerceContext.CartItems.First(item => item.Product.SKU == cartItem.SKU);
+                    foundItem.Quantity = cartItem.Quantity.Value;
                 }
             }
 
             foreach (var cartItem in cart.Items)
             {
-                var cartitemDTO = cartDTO.CartItems.Find(c => c.CartId == 1 && c.ProductId == cartItem.ProductId);
-                cartitemDTO.Quantity = cartItem.Quantity.Value;
+                //TODO: fix this
+                var exists = _eCommerceContext.CartItems.Include(c => c.CustomerDTO).Include(p => p.Product).Any(c => c.CustomerId == cart.Id && c.ProductId == cartItem.ProductId);
+
+                if (exists)
+                {
+                    var cartitemDTO = _eCommerceContext.CartItems.Include(c => c.CustomerDTO).Include(p => p.Product).First(c => c.CustomerId == cart.Id && c.ProductId == cartItem.ProductId);
+                    cartitemDTO.Quantity = cartItem.Quantity.Value;
+                }
             }
         }
 
-        private IList<Item> ToCartItemList(IReadOnlyList<CartItemDTO> dtoItems)
+        private IList<Item> ToCartItemList(IQueryable<CartItemDTO> dtoItems)
         {
             var cartItems = new List<Item>();
 

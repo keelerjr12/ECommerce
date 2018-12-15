@@ -6,14 +6,17 @@ namespace ECommerceDomain.Shopping.Cart
 {
     public class Cart
     {
+        public int Id;
+
         public Quantity ItemCount => Quantity.Is(_items.Sum(item => item.Quantity.Value));
+
         public decimal Subtotal =>_items.Sum(item => item.Price * item.Quantity.Value);
 
         public IReadOnlyList<Item> Items => _items.ToList();
 
         public Cart(int id)
         {
-            _id = id;
+            Id = id;
         }
 
         public void Add(Product.Product product, Quantity quantity)
@@ -52,6 +55,5 @@ namespace ECommerceDomain.Shopping.Cart
         }
 
         private readonly List<Item> _items = new List<Item>();
-        private readonly int _id;
     }
 }

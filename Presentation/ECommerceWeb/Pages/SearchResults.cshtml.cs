@@ -26,6 +26,7 @@ namespace ECommerceWeb.Pages
         {
             var productResult = await _mediator.Send(new ProductsBySearchTermsQuery.Request
             {
+                Name = Query,
                 Category = Query,
                 Description = Query
             });

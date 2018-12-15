@@ -8,26 +8,7 @@ SET @Comma = ','
 SET @SingleQuotation = ''''
 SET @Path = 'C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceDatabase\LoadData'
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-PRINT 'Load Cart Data'
-SET @FileName = 'Cart'
-
-EXEC('DELETE FROM ' + @FileName)
-
-SET @Stmt = 
-'BULK
-INSERT ECommerceDatabase.dbo.' + (@FileName) + '
-FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
-WITH
-(
-FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
-ROWTERMINATOR = ''\n''
-)'
---PRINT @Stmt
-EXEC (@Stmt)
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------S
 
 PRINT 'Load CartItems Data'
 SET @FileName = 'CartItems'

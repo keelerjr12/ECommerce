@@ -16,6 +16,7 @@ namespace ECommerceDomain.Shopping.Cart
 
         public Item(Product.Product product, Quantity quantity)
         {
+            ProductId = product.Id;
             SKU = product.SKU;
             Description = product.Description;
             Price = product.Price;

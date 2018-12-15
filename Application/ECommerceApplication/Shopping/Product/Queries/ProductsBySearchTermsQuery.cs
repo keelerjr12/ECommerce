@@ -12,6 +12,7 @@ namespace ECommerceApplication.Shopping.Product.Queries
     {
         public class Request : IRequest<Result>
         {
+            public string Name { get; set; }
             public string Category { get; set; }
             public string Description { get; set; }
         }
@@ -27,9 +28,22 @@ namespace ECommerceApplication.Shopping.Product.Queries
             {
                 var productsToReturn = new List<ProductDTO>();
 
+                if (!string.IsNullOrEmpty(request.Name))
+                {
+                    var normalizedName = Normalize(request.Name);
+                    var nameSplitByToken = normalizedName.Split();
+                    var productDB = _db.Products.Where(p => nameSplitByToken.Intersect(Normalize(p.Name).Split()).Any());
+
+                    foreach (var dto in productDB)
+                    {
+                        var product = new ProductDTO(dto.SKU, dto.Name, dto.Description, dto.Price, dto.ImageFileName);
+                        productsToReturn.Add(product);
+                    }
+                }
+
                 if (!string.IsNullOrEmpty(request.Category))
                 {
-                    var normalizedCategory = Normalize(request.Description);
+                    var normalizedCategory = Normalize(request.Category);
                     var categorySplitByToken = normalizedCategory.Split();
                     var productDB = _db.Products.Include(p => p.ProductCategory).Where(p => categorySplitByToken.Intersect(Normalize(p.ProductCategory.Name).Split()).Any());
 
