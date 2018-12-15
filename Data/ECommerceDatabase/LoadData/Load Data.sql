@@ -8,16 +8,14 @@ SET @Comma = ','
 SET @SingleQuotation = ''''
 SET @Path = 'C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceDatabase\LoadData'
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------S
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 PRINT 'Load CartItems Data'
 SET @FileName = 'CartItems'
 
-EXEC('DELETE FROM ' + @FileName)
-
 SET @Stmt = 
 'BULK
-INSERT ECommerceDatabase.dbo.' + (@FileName) + '
+INSERT [CartItems]
 FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
 WITH
 (
@@ -32,11 +30,9 @@ EXEC (@Stmt)
 PRINT 'Load Customer Data'
 SET @FileName = 'Customer'
 
-EXEC('DELETE FROM ' + @FileName)
-
 SET @Stmt = 
 'BULK
-INSERT ECommerceDatabase.dbo.' + (@FileName) + '
+INSERT [Customer]
 FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
 WITH
 (
@@ -45,7 +41,7 @@ ROWTERMINATOR = ''\n''
 )'
 --PRINT @Stmt
 EXEC (@Stmt)
-
+/*
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 PRINT 'Load InventoryItem Data'
@@ -102,17 +98,15 @@ ROWTERMINATOR = ''\n''
 )'
 --PRINT @Stmt
 EXEC (@Stmt)
-
+*/
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 PRINT 'Load Order Data'
 SET @FileName = 'Order'
 
-EXEC('DELETE FROM ' + @FileName)
-
 SET @Stmt = 
 'BULK
-INSERT ECommerceDatabase.dbo.' + (@FileName) + '
+INSERT [Order]
 FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
 WITH
 (
@@ -127,11 +121,9 @@ EXEC (@Stmt)
 PRINT 'Load OrderLine Data'
 SET @FileName = 'OrderLine'
 
-EXEC('DELETE FROM ' + @FileName)
-
 SET @Stmt = 
 'BULK
-INSERT ECommerceDatabase.dbo.' + (@FileName) + '
+INSERT [OrderLine]
 FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
 WITH
 (
@@ -145,8 +137,6 @@ EXEC (@Stmt)
 
 PRINT 'Load Product Data'
 SET @FileName = 'Product'
-
-EXEC('DELETE FROM ' + @FileName)
 
 SET @Stmt = 
 'BULK
@@ -165,8 +155,6 @@ EXEC (@Stmt)
 PRINT 'Load Product Category Data'
 SET @FileName = 'ProductCategory'
 
-EXEC('DELETE FROM ' + @FileName)
-
 SET @Stmt = 
 'BULK
 INSERT ECommerceDatabase.dbo.' + (@FileName) + '
@@ -184,11 +172,9 @@ EXEC (@Stmt)
 PRINT 'Load User Data'
 SET @FileName = 'User'
 
-EXEC('DELETE FROM ' + @FileName)
-
 SET @Stmt = 
 'BULK
-INSERT ECommerceDatabase.dbo.' + (@FileName) + '
+INSERT [User]
 FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
 WITH
 (

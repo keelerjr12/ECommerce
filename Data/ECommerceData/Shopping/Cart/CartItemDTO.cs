@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using ECommerceData.Ordering.Customer;
 using ECommerceData.Shopping.Product;
 
@@ -8,7 +9,7 @@ namespace ECommerceData.Shopping.Cart
     public class CartItemDTO
     {
         [Column("CustomerId")]
-        public int CustomerId { get; set; }
+        public Guid CustomerId { get; set; }
 
         [Column("ProductId")]
         public int ProductId { get; set; }

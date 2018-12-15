@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using ECommerceData;
 using MediatR;
@@ -9,7 +10,7 @@ namespace ECommerceApplication.Ordering.Customer.Queries
     {
         public class Request : IRequest<Result>
         {
-            public int CustomerId { get; set; }
+            public Guid CustomerId { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Result>
@@ -44,7 +45,7 @@ namespace ECommerceApplication.Ordering.Customer.Queries
 
         public class Result
         {
-            public int Id { get; set; }
+            public Guid Id { get; set; }
             public string FirstName { get; set; }
             public string MiddleName { get; set; }
             public string LastName { get; set; }

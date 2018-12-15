@@ -1,15 +1,16 @@
 ﻿using System.Linq;
+using ECommerceDomain.Identity.User;
 
 namespace ECommerceData.Identity.User
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         public UserRepository(ECommerceContext eCommerceContext)
         {
             _eCommerceContext = eCommerceContext;
         }
 
-        public void Save(User user)
+        public void Save(ECommerceDomain.Identity.User.User user)
         {
             if (user.Username == null
                 || user.Password == null
@@ -22,6 +23,7 @@ namespace ECommerceData.Identity.User
             if (DoesUserExist(user))
             {
                 var userDTO = GetUserDTO(user);
+                userDTO.Username = user.Username;
                 userDTO.Password = user.Password;
                 userDTO.Email = user.Email;
                 userDTO.UserType = user.UserType;
@@ -30,6 +32,7 @@ namespace ECommerceData.Identity.User
             {
                 var userDTO = new UserDTO
                 {
+                    Id = user.Id,
                     Username = user.Username,
                     Password = user.Password,
                     Email = user.Email,
@@ -40,14 +43,14 @@ namespace ECommerceData.Identity.User
             }
         }
 
-        private bool DoesUserExist(User user)
+        private bool DoesUserExist(ECommerceDomain.Identity.User.User user)
         {
             var isFound = _eCommerceContext.Users.Any(userDTO => userDTO.Username == user.Username);
 
             return isFound;
         }
 
-        private UserDTO GetUserDTO(User user)
+        private UserDTO GetUserDTO(ECommerceDomain.Identity.User.User user)
         {
             return _eCommerceContext.Users.First(userDTO => userDTO.Username == user.Username);
         }

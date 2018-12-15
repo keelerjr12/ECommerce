@@ -3,6 +3,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using ECommerceData.Identity.User;
+using ECommerceDomain.Identity.User;
 
 namespace ECommerceApplication.Identity.Commands
 {
@@ -34,7 +35,7 @@ namespace ECommerceApplication.Identity.Commands
 
             public Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {
-                var user = new User(request.Username, request.Password, request.Email, request.Username);
+                var user = new User(request.Username, request.Password, request.Email, request.UserType);
                 _userRepo.Save(user);
 
                 _uow.Save();

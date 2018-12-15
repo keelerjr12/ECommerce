@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ECommerceDomain.Common;
 using ECommerceDomain.Shopping.Common;
 
@@ -6,7 +7,7 @@ namespace ECommerceDomain.Ordering.Customer
 {
     public class Customer : AggregateRoot
     {
-        private int Id { get; }
+        private Guid Id { get; }
 
         public string FirstName { get; }
         public string MiddleName { get; }
@@ -15,7 +16,7 @@ namespace ECommerceDomain.Ordering.Customer
         public Address Shipping { get; private set; }
         public Address Billing { get; }
 
-        public Customer(int id, string firstName, string middleName, string lastName, Address billing, Address shipping)
+        public Customer(Guid id, string firstName, string middleName, string lastName, Address billing, Address shipping)
         {
             Id = id;
             FirstName = firstName;

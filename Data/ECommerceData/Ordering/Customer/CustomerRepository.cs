@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ECommerceDomain.Common;
 using ECommerceDomain.Ordering.Customer;
 
@@ -11,7 +12,7 @@ namespace ECommerceData.Ordering.Customer
             _eCommerceContext = eCommerceContext;
         }
 
-        public ECommerceDomain.Ordering.Customer.Customer GetById(int id)
+        public ECommerceDomain.Ordering.Customer.Customer GetById(Guid id)
         {
             var customerDTO = _eCommerceContext.Customers.First(c => c.Id == id);
 

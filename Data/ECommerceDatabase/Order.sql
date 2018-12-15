@@ -2,7 +2,7 @@
 (
     [Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Created] DATETIME2 NOT NULL, 
-    [CustomerId] INT NOT NULL, 
+    [CustomerId] UNIQUEIDENTIFIER NOT NULL, 
     [Street] VARCHAR(MAX) NULL, 
     [City] VARCHAR(MAX) NULL, 
     [State] VARCHAR(50) NULL, 

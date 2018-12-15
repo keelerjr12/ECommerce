@@ -1,8 +1,10 @@
-﻿namespace ECommerceDomain.Shopping.Cart
+﻿using System;
+
+namespace ECommerceDomain.Shopping.Cart
 {
     public interface ICartRepository
     {
-        Cart FindById(int id);
+        Cart FindById(Guid id);
 
         void Update(Cart cart);
     }

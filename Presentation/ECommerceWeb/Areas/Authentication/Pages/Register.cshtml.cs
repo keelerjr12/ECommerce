@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ECommerceApplication;
 using ECommerceApplication.Identity.Commands;
 using ECommerceData.Identity.User;
@@ -18,11 +19,11 @@ namespace ECommerceWeb.Areas.Authentication.Pages
             _emailService = new EmailService();
         }
 
-        public IActionResult OnPost(string username, string password, string firstName, string lastName, string email)
+        public async Task<IActionResult> OnPostAsync(string username, string password, string firstName, string lastName, string email)
         {
             try
             {
-                _mediator.Send(new RegisterUserCommand.Request(username, password, email, "Customer"));
+                await _mediator.Send(new RegisterUserCommand.Request(username, password, email, "Customer"));
             }
             catch (UserInfoInvalidException e)
             {

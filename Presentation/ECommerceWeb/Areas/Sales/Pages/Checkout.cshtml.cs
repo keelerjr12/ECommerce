@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Security.Claims;
 using AutoMapper;
@@ -21,8 +22,7 @@ namespace ECommerceWeb.Areas.Sales.Pages
 
         public void OnGet()
         {
-            var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
-            var customerId = int.Parse(customerIdStr);
+            var customerId = Guid.Parse(User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value);
 
             var customerQuery = _mediator.Send(new CustomerQuery.Request
             {
@@ -34,8 +34,7 @@ namespace ECommerceWeb.Areas.Sales.Pages
 
         public IActionResult OnPost()
         {
-            var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
-            var customerId = int.Parse(customerIdStr);
+            var customerId = Guid.Parse(User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value);
 
             _mediator.Send(new CreateOrderCommand.Request
             {

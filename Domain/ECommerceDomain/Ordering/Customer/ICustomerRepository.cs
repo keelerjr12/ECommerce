@@ -1,7 +1,9 @@
-﻿namespace ECommerceDomain.Ordering.Customer
+﻿using System;
+
+namespace ECommerceDomain.Ordering.Customer
 { 
     public interface ICustomerRepository
     {
-        Customer GetById(int id);
+        Customer GetById(Guid id);
     }
 }

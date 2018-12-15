@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerceData.Identity.User
 {
     [Table("User")]
     public class UserDTO
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Username { get; set; }
 

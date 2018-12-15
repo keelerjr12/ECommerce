@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using ECommerceData;
@@ -14,7 +15,7 @@ namespace ECommerceApplication.Ordering.Order.Commands
     {
         public class Request : IRequest
         {
-            public int CustomerId { get; set; }
+            public Guid CustomerId { get; set; }
         }
 
         public class Handler : IRequestHandler<Request>

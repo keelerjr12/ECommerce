@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ECommerceDomain.Shopping.Cart;
 using ECommerceDomain.Shopping.Common;
@@ -13,7 +14,7 @@ namespace ECommerceData.Shopping.Cart
             _eCommerceContext = eCommerceContext;
         }
 
-        public ECommerceDomain.Shopping.Cart.Cart FindById(int id)
+        public ECommerceDomain.Shopping.Cart.Cart FindById(Guid id)
         {
             var cartItemDTOs = _eCommerceContext.CartItems.Where(c => c.CustomerId == id).Include(p => p.Product);
 
@@ -46,7 +47,7 @@ namespace ECommerceData.Shopping.Cart
 
             foreach (var cartItem in cartItemsToAdd)
             {
-                var foundDTO = _eCommerceContext.CartItems.Any(item => item.Product.SKU == cartItem.SKU);
+                var foundDTO = _eCommerceContext.CartItems.Any(item => item.CustomerId == cart.Id && item.Product.SKU == cartItem.SKU);
 
                 if (!foundDTO)
                 {

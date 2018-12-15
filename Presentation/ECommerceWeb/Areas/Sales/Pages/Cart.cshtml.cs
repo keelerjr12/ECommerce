@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -26,8 +27,7 @@ namespace ECommerceWeb.Areas.Sales.Pages
 
         public async Task OnGetAsync()
         {
-            var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
-            var customerId = int.Parse(customerIdStr);
+            var customerId = Guid.Parse(User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value);
 
             var result = await _mediator.Send(new CartQuery.Request(customerId));
 
@@ -46,8 +46,7 @@ namespace ECommerceWeb.Areas.Sales.Pages
 
         public async Task<IActionResult> OnPostAddAsync(string sku)
         {
-            var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
-            var customerId = int.Parse(customerIdStr);
+            var customerId = Guid.Parse(User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value);
 
             await _mediator.Send(new AddProductToCartCommand.Request(customerId, sku, 1));
 
@@ -56,8 +55,7 @@ namespace ECommerceWeb.Areas.Sales.Pages
 
         public async Task<IActionResult> OnPostRemoveAsync(string sku)
         {
-            var customerIdStr = User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value;
-            var customerId = int.Parse(customerIdStr);
+            var customerId = Guid.Parse(User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value);
 
             await _mediator.Send(new RemoveProductFromCartCommand.Request(customerId, sku, 1));
 

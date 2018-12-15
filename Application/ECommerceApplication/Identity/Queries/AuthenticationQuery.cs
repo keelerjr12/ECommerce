@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using ECommerceData;
 using MediatR;
@@ -46,7 +47,7 @@ namespace ECommerceApplication.Identity.Queries
 
         public class Result
         {
-            public int Id { get; set; }
+            public Guid Id { get; set; }
             public string Username { get; set; }
             public string Email { get; set; }
             public string UserType { get; set; }

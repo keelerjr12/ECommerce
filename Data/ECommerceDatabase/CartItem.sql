@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[CartItems]
 (
-    [CustomerID] INT NOT NULL, 
+    [CustomerID] UNIQUEIDENTIFIER NOT NULL, 
     [ProductId] INT NOT NULL, 
     [Quantity] INT NOT NULL, 
     CONSTRAINT [FK_CartItem_ToCustomer] FOREIGN KEY ([CustomerID]) REFERENCES [Customer]([Id]), 

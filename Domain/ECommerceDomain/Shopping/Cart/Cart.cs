@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ECommerceDomain.Shopping.Common;
 
@@ -6,7 +7,7 @@ namespace ECommerceDomain.Shopping.Cart
 {
     public class Cart
     {
-        public int Id;
+        public Guid Id;
 
         public Quantity ItemCount => Quantity.Is(_items.Sum(item => item.Quantity.Value));
 
@@ -14,7 +15,7 @@ namespace ECommerceDomain.Shopping.Cart
 
         public IReadOnlyList<Item> Items => _items.ToList();
 
-        public Cart(int id)
+        public Cart(Guid id)
         {
             Id = id;
         }

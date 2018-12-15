@@ -63,7 +63,7 @@ namespace ECommerceApplication.Ordering.Order.Queries
         public int Id { get; set; }
 
         public DateTime Created { get; set; }
-        public int CustomerId { get; set; }
+        public Guid CustomerId { get; set; }
 
         public string Street { get; set; }
         public string City { get; set; }

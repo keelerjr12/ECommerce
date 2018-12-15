@@ -13,7 +13,7 @@ namespace ECommerceData.Ordering.Order
 
         public DateTime Created { get; set; }
        
-        public int CustomerId { get; set; }
+        public Guid CustomerId { get; set; }
 
         public string Street { get; set; }
 

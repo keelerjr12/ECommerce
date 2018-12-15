@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,9 +13,9 @@ namespace ECommerceApplication.Shopping.Cart.Queries
     {
         public class Request : IRequest<Result>
         {
-            public int CustomerId { get; }
+            public Guid CustomerId { get; }
 
-            public Request(int customerId)
+            public Request(Guid customerId)
             {
                 CustomerId = customerId;
             }

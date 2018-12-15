@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using ECommerceData;
 using ECommerceDomain.Shopping.Product;
@@ -12,11 +13,11 @@ namespace ECommerceApplication.Shopping.Cart.Commands
     {
         public class Request : IRequest
         {
-            public int CustomerId { get; }
+            public Guid CustomerId { get; }
             public string SKU { get; }
             public int Quantity { get; }
 
-            public Request(int customerId, string sku, int quantity)
+            public Request(Guid customerId, string sku, int quantity)
             {
                 CustomerId = customerId;
                 SKU = sku;

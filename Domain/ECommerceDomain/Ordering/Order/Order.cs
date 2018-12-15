@@ -10,13 +10,13 @@ namespace ECommerceDomain.Ordering.Order
     public class Order : AggregateRoot
     {
         public int Id { get; }
-        public int CustomerId { get; }
+        public Guid CustomerId { get; }
         public DateTime Created { get; }
         public Address ShippingAddress { get; }
         public Address BillingAddress { get; }
         public IReadOnlyList<OrderLine> OrderLines => _orderLines.ToList();
 
-        public Order(int customerId, Address billing, Address shipping, IReadOnlyList<LineItem> items)
+        public Order(Guid customerId, Address billing, Address shipping, IReadOnlyList<LineItem> items)
         {
             var orderLines = new List<OrderLine>();
             foreach (var item in items)
@@ -35,7 +35,7 @@ namespace ECommerceDomain.Ordering.Order
             AddEvent(new OrderCreatedEvent(Created, items[0].SKU, items[0].Quantity));
         }
 
-        public Order(int id, int customerId, DateTime created, Address shipping, Address billing, IReadOnlyList<OrderLine> orderLines)
+        public Order(int id, Guid customerId, DateTime created, Address shipping, Address billing, IReadOnlyList<OrderLine> orderLines)
         {
             Id = id;
             CustomerId = customerId;
