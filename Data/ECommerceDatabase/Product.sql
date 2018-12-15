@@ -7,6 +7,7 @@
     [Description] VARCHAR(MAX) NOT NULL, 
     [Price] MONEY NOT NULL, 
     [CategoryId] INT NOT NULL, 
+    [Status] VARCHAR(50) NOT NULL,
     [ImageFileName] VARCHAR(150) NOT NULL,
     PRIMARY KEY ([Id]), 
 	CONSTRAINT [FK_Product_ToProductCategory] FOREIGN KEY ([CategoryId]) REFERENCES [ProductCategory]([Id])

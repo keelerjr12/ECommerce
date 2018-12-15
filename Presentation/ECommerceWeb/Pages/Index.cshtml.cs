@@ -22,7 +22,8 @@ namespace ECommerceWeb.Pages
         {
             var productResult = await _mediator.Send(new TopSellingProductsQuery.Request
             {
-                NumberOfProducts = 12
+                NumberOfProducts = 12,
+                Status = "Active"
             });
 
             ProductViews = Mapper.Map<List<ProductDTO>, List<ProductViewModel>>(productResult.Products);

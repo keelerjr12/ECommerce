@@ -29,7 +29,8 @@ namespace ECommerceWeb.Areas.Products.Pages
         {
             var productResult = await _mediator.Send(new ProductsQuery.Request
             {
-                CategoryId = CategoryId
+                CategoryId = CategoryId,
+                Status = "Active"
             });
 
             ProductViews = Mapper.Map<List<ProductDTO>, List<ProductViewModel>>(productResult.Products);

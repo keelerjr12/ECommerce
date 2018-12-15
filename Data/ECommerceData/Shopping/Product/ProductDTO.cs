@@ -20,6 +20,8 @@ namespace ECommerceData.Shopping.Product
 
         public int CategoryId { get; set; }
 
+        public string Status { get; set; }
+
         public string ImageFileName { get; set; }
 
         [ForeignKey("CategoryId")]

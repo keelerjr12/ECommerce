@@ -13,6 +13,7 @@ namespace ECommerceApplication.Shopping.Product.Queries
         public class Request : IRequest<Result>
         {
             public int NumberOfProducts { get; set; }
+            public string Status { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Result>
@@ -26,7 +27,7 @@ namespace ECommerceApplication.Shopping.Product.Queries
             {
                 var quantityOfProducts = new Dictionary<ECommerceData.Shopping.Product.ProductDTO, int>();
 
-                foreach (var product in _db.Products)
+                foreach (var product in _db.Products.Where(p =>p.Status == request.Status))
                 {
                     var quantity = GetQuantityOrdered(product.SKU);
                     quantityOfProducts.Add(product, quantity);

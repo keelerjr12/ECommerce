@@ -13,6 +13,7 @@ namespace ECommerceApplication.Shopping.Product.Queries
         public class Request : IRequest<Result>
         {
             public int? CategoryId { get; set; }
+            public string Status { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Result>
@@ -29,6 +30,11 @@ namespace ECommerceApplication.Shopping.Product.Queries
                 if (request.CategoryId != null)
                 {
                     productDTOs = productDTOs.Where(p => p.CategoryId == request.CategoryId);
+                }
+
+                if (!string.IsNullOrEmpty(request.Status))
+                {
+                    productDTOs = productDTOs.Where(p => p.Status == request.Status);
                 }
 
                 var productsToReturn = new List<ProductDTO>();
