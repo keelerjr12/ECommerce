@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ECommerceApplication.Inventory;
 using ECommerceApplication.Ordering.Customer.Queries;
 using ECommerceData;
 using ECommerceData.Identity.User;
@@ -24,6 +23,7 @@ using ECommerceDomain.Ordering.Order;
 using ECommerceDomain.Shopping.Cart;
 using ECommerceDomain.Shopping.Product;
 using ECommerceDomain.Shopping.ProductCategory;
+using ECommerceWeb.Areas.Account.Models.Inventory;
 using ECommerceWeb.Areas.Products.Models;
 
 namespace ECommerceWeb
@@ -64,6 +64,7 @@ namespace ECommerceWeb
             {
                 cfg.CreateMap<ProductDTO, ProductViewModel>();
                 cfg.CreateMap<CustomerQuery.Result, Customer>();
+                cfg.CreateMap<ECommerceApplication.Inventory.InventoryItemDTO, InventoryItemViewModel>();
             });
 
             services.AddDbContext<ECommerceContext>(
@@ -85,10 +86,7 @@ namespace ECommerceWeb
 
             services.AddScoped<IOrderRepository, OrderRepository>();
 
-            services.AddScoped<InventoryService>();
             services.AddScoped<IInventoryRepository, InventoryRepository>();
-            services.AddScoped<ECommerceDomain.Inventory.Product.IProductRepository,
-                ECommerceData.Inventory.Product.ProductRepository > ();
 
             services.AddAuthorization(cfg =>
             {

@@ -1,26 +1,11 @@
-﻿using ECommerceDomain.Inventory.Inventory;
-
-namespace ECommerceWeb.Areas.Admin.Inventory.Models
+﻿namespace ECommerceWeb.Areas.Account.Models.Inventory
 {
     public class InventoryItemViewModel
     {
-        public string SKU { get; }
-
-        public string Description { get; }
-
-        public string Category { get; }
-
-        public int Stock { get; }
-
-        public decimal UnitCost { get; }
-
-        public InventoryItemViewModel(ECommerceDomain.Inventory.Product.Product product, InventoryItem item)
-        {
-            SKU = item.SKU;
-            Description = product.Description;
-            Category = product.Category;
-            Stock = item.Stock;
-            UnitCost = item.UnitCost;
-        }
+        public string SKU { get; set; }
+        public string Description { get; set; }
+        public string Category { get; set; }
+        public decimal UnitCost { get; set; }
+        public int Stock { get; set; }
     }
 }

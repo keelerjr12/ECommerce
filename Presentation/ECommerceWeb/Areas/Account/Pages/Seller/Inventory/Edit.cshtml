@@ -1,5 +1,5 @@
 ﻿@page
-@model ECommerceWeb.Areas.Account.Pages.Seller.Inventory.EditModel
+@model EditModel
 @{
     ViewData["Title"] = "Edit";
 }
@@ -19,5 +19,5 @@
     <input type="text" name="UnitCost" value="@Model.UnitCost" />
 
     <button type="submit">Save</button>
-    <a asp-page="/Index">Cancel</a>
+    <a asp-page="/Seller/Inventory/Index" asp-area="Account">Cancel</a>
 </form>

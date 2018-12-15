@@ -27,9 +27,7 @@ namespace ECommerceData.Inventory.Inventory
         {
             RemoveDeletedItems(inventory);
 
-            AddNewItems(inventory);
-
-            UpdateItems(inventory.Items);
+            AddOrUpdateItems(inventory);
         }
 
         private List<InventoryItem> ConvertToInventoryItems(IQueryable<InventoryItemDTO> inventoryItemDTOs)
@@ -40,7 +38,7 @@ namespace ECommerceData.Inventory.Inventory
             {
                 var itemEntries = ConvertToInventoryItemEntries(item.Entries);
 
-                items.Add(new InventoryItem(new ECommerceDomain.Inventory.Product.Product(item.Product.Product.SKU, item.Product.Description, item.Product.Category), item.UnitCost, itemEntries));
+                items.Add(new InventoryItem(item.Product.SKU, item.Product.Description, item.Product.ProductCategory.Name, item.UnitCost, itemEntries));
             }
 
             return items;
@@ -60,41 +58,42 @@ namespace ECommerceData.Inventory.Inventory
 
             foreach (var itemToDelete in itemsToDelete)
             {
-                var dtoToDelete = _eCommerceContext.InventoryItems.First(item => item.Product.Product.SKU == itemToDelete.SKU);
+                var dtoToDelete = _eCommerceContext.InventoryItems.First(item => item.Product.SKU == itemToDelete.SKU);
                 _eCommerceContext.InventoryItems.Remove(dtoToDelete);
             }
         }
 
-        private void AddNewItems(ECommerceDomain.Inventory.Inventory.Inventory inventory)
+        private void AddOrUpdateItems(ECommerceDomain.Inventory.Inventory.Inventory inventory)
         {
             var itemsDTOs = GetAllInventoryItemDTOs();
 
-            var inventoryItemDTOsToItems = ConvertToInventoryItems(itemsDTOs);
-            var inventoryItemsToAdd = inventory.Items.Except(inventoryItemDTOsToItems, new InventoryItemComparer()).ToList();
-
-            foreach (var inventoryItem in inventoryItemsToAdd)
+            foreach (var item in inventory.Items)
             {
-                var storedDTO = new InventoryItemDTO
+                if (itemsDTOs.Any(i => i.Product.SKU == item.SKU))
                 {
-                    Id = _eCommerceContext.InventoryProducts.First(i => i.Product.SKU == inventoryItem.SKU).Id,
-                    Entries = new List<InventoryItemEntryDTO>(),
-                    UnitCost = inventoryItem.UnitCost
-                };
+                    //update
+                    var itemDTO = itemsDTOs.First(i => i.Product.SKU == item.SKU);
+                    itemDTO.Description = item.Description;
+                    itemDTO.Category = item.Category;
+                    itemDTO.UnitCost = item.UnitCost;
 
-                _eCommerceContext.InventoryItems.Add(storedDTO);
-            }
-        }
+                    AddNewEntries(item);
+                }
+                else
+                {
+                    var product = _eCommerceContext.Products.Include(p => p.ProductCategory).First(i => i.SKU == item.SKU);
+                    //add
+                    var storedDTO = new InventoryItemDTO
+                    {
+                        Id = product.Id,
+                        Description = item.Description,
+                        Category = product.ProductCategory.Name,
+                        Entries = new List<InventoryItemEntryDTO>(),
+                        UnitCost = item.UnitCost
+                    };
 
-        private void UpdateItems(IReadOnlyList<InventoryItem> items)
-        {
-            var itemDTOs = GetAllInventoryItemDTOs();
-
-            foreach (var item in items)
-            {
-                var itemDTO = itemDTOs.First(i => i.Product.Product.SKU == item.SKU);
-                itemDTO.UnitCost = item.UnitCost;
-
-                AddNewEntries(item);
+                    _eCommerceContext.InventoryItems.Add(storedDTO);
+                }
             }
         }
 
@@ -129,12 +128,12 @@ namespace ECommerceData.Inventory.Inventory
 
         private IQueryable<InventoryItemDTO> GetAllInventoryItemDTOs()
         {
-            return _eCommerceContext.InventoryItems.Include(i => i.Entries).Include(i => i.Product).ThenInclude(p => p.Product);
+            return _eCommerceContext.InventoryItems.Include(i => i.Entries).Include(i => i.Product).ThenInclude(p => p.ProductCategory);
         }
 
         private InventoryItemDTO GetInventoryItemDTOBySKU(string sku)
         {
-            return GetAllInventoryItemDTOs().First(i => i.Product.Product.SKU == sku);
+            return GetAllInventoryItemDTOs().First(i => i.Product.SKU == sku);
         }
 
         private readonly ECommerceContext _eCommerceContext;

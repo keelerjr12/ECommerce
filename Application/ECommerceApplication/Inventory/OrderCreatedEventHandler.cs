@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using ECommerceData;
 using ECommerceDomain.Inventory.Inventory;
-using ECommerceDomain.Inventory.Product;
 using ECommerceDomain.Ordering.Events;
 using MediatR;
 
@@ -10,19 +9,17 @@ namespace ECommerceApplication.Inventory
 {
     public class OrderCreatedEventHandler : INotificationHandler<OrderCreatedEvent>
     {
-        public OrderCreatedEventHandler(UnitOfWork uow, IInventoryRepository inventoryRepo, IProductRepository productRepo)
+        public OrderCreatedEventHandler(UnitOfWork uow, IInventoryRepository inventoryRepo)
         {
             _uow = uow;
             _inventoryRepo = inventoryRepo;
-            _productRepo = productRepo;
         }
 
         public async Task Handle(OrderCreatedEvent order, CancellationToken cancellationToken)
         {
             var inventory = _inventoryRepo.Get();
-            var product = _productRepo.GetBySKU(order.SKU);
 
-            inventory.Sell(product, order.Quantity, order.Created);
+            inventory.Sell(order.SKU, order.Quantity, order.Created);
 
             _inventoryRepo.Save(inventory);
 
@@ -30,7 +27,6 @@ namespace ECommerceApplication.Inventory
         }
 
         private readonly IInventoryRepository _inventoryRepo;
-        private readonly IProductRepository _productRepo;
         private readonly UnitOfWork _uow;
     }
 }

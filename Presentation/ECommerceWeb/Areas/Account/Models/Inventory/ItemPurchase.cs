@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ECommerceWeb.Areas.Admin.Inventory.Models
+namespace ECommerceWeb.Areas.Account.Models.Inventory
 {
     public class ItemPurchase
     {
         public string SKU { get; set; }
 
         [Required]
-        public int? Quantity { get; set; }
+        public int Quantity { get; set; }
     }
 }

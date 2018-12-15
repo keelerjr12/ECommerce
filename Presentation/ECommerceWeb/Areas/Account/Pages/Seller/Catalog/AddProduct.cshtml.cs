@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ECommerceApplication.Inventory.Commands;
 using ECommerceApplication.Shopping.Product.Commands;
 using ECommerceApplication.Shopping.ProductCategory.Queries;
 using ECommerceWeb.Areas.Account.Models;
@@ -52,6 +52,15 @@ namespace ECommerceWeb.Areas.Account.Pages.Seller.Catalog
                 Name = ProductView.Name,
                 Price = ProductView.Price
             });
+
+            await _mediator.Send(new TrackProductInInventoryCommand.Request
+            {
+                SKU = ProductView.SKU,
+                Category = "CATEGORY",
+                Description = ProductView.Name,
+                UnitCost = 100m
+            });
+
 
             return RedirectToPage("/Index");
         }

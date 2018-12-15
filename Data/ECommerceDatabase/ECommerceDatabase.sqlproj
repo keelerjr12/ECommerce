@@ -66,7 +66,6 @@
     <Build Include="Customer.sql" />
     <Build Include="User.sql" />
     <Build Include="InventoryItemEntry.sql" />
-    <Build Include="InventoryProduct.sql" />
     <Build Include="OrderLine.sql" />
     <Build Include="OrderLine.sql" />
     <None Include="LoadData\Load Data.sql" />

@@ -10,12 +10,12 @@ SET @Path = 'C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Dat
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-PRINT 'Load CartItems Data'
-SET @FileName = 'CartItems'
+PRINT 'Load CartItem Data'
+SET @FileName = 'CartItem'
 
 SET @Stmt = 
 'BULK
-INSERT [CartItems]
+INSERT [CartItem]
 FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
 WITH
 (
@@ -65,25 +65,6 @@ EXEC (@Stmt)
 
 PRINT 'Load InventoryItemEntry Data'
 SET @FileName = 'InventoryItemEntry'
-
-EXEC('DELETE FROM ' + @FileName)
-
-SET @Stmt = 
-'BULK
-INSERT ECommerceDatabase.dbo.' + (@FileName) + '
-FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
-WITH
-(
-FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
-ROWTERMINATOR = ''\n''
-)'
---PRINT @Stmt
-EXEC (@Stmt)
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-PRINT 'Load InventoryProduct Data'
-SET @FileName = 'InventoryProduct'
 
 EXEC('DELETE FROM ' + @FileName)
 

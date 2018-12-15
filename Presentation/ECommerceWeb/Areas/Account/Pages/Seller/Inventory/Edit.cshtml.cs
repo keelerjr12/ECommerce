@@ -1,4 +1,7 @@
-﻿using ECommerceApplication.Inventory;
+﻿using System.Threading.Tasks;
+using ECommerceApplication.Inventory.Commands;
+using ECommerceApplication.Inventory.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -18,30 +21,32 @@ namespace ECommerceWeb.Areas.Account.Pages.Seller.Inventory
         [BindProperty]
         public decimal UnitCost { get; set; }
 
-        public EditModel(InventoryService inventoryService)
+        public EditModel(IMediator mediator)
         {
-            _inventoryService = inventoryService;
+            _mediator = mediator;
         }
 
-        public void OnGet(string id)
+        public void OnGet(string sku)
         {
-            var sku = id;
 
-            var product = _inventoryService.GetProductBySKU(sku);
-            var inventoryItem = _inventoryService.GetInventoryItem(id);
+            var inventoryItem = _mediator.Send(new InventoryItemQuery.Request
+            {
+                SKU = sku
+            }).Result;
 
-            SKU = product.SKU;
-            Description = product.Description;
-            Category = product.Category;
+            SKU = inventoryItem.SKU;
+            Description = inventoryItem.Description;
+            Category = inventoryItem.Category;
             UnitCost = inventoryItem.UnitCost;
         }
 
-        public void OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
-            _inventoryService.ChangeProductDetails(SKU, Description, Category);
-            _inventoryService.ChangeUnitCost(SKU, UnitCost);
+            await _mediator.Send(new ChangeInventoryItemDetails.Request(SKU, Description, Category, UnitCost));
+
+            return RedirectToPage("/Seller/Inventory/Index");
         }
 
-        private readonly InventoryService _inventoryService;
+        private readonly IMediator _mediator;
     }
 }

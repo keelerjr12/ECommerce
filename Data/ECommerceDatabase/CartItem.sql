@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[CartItems]
+﻿CREATE TABLE [dbo].[CartItem]
 (
     [CustomerID] UNIQUEIDENTIFIER NOT NULL, 
     [ProductId] INT NOT NULL, 

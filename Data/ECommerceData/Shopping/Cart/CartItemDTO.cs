@@ -5,7 +5,7 @@ using ECommerceData.Shopping.Product;
 
 namespace ECommerceData.Shopping.Cart
 {
-    [Table("CartItems")]
+    [Table("CartItem")]
     public class CartItemDTO
     {
         [Column("CustomerId")]

@@ -26,61 +26,61 @@ namespace ECommerceDomain.Inventory.Inventory
             }
         }
 
-        public Product.Product TrackProduct(string sku, string description, string category, decimal unitCost)
+        public void TrackProduct(string sku, string description, string category, decimal unitCost)
         {
-            var product = new Product.Product(sku, description, category);
+            var item = new InventoryItem(sku, description, category, unitCost, new List<InventoryItemEntry>());
 
-            var item = new InventoryItem(product, unitCost, new List<InventoryItemEntry>());
-
-            _items.Add(product.SKU, item);
-
-            return product;
+            _items.Add(sku, item);
         }
 
-        public void UntrackProduct(Product.Product product)
+        public void UntrackProduct(string sku)
         {
-            CheckProductExists(product);
+            CheckProductExists(sku);
 
-            _items.Remove(product.SKU);
+            _items.Remove(sku);
         }
 
-        public void ChangeProductUnitPrice(Product.Product product, decimal unitCost)
+        public void ChangeItemDetails(string sku, string description, string category, decimal unitCost)
         {
-            CheckProductExists(product);
+            CheckProductExists(sku);
 
-            var item = _items[product.SKU];
+            var item = _items[sku];
+
+            item.ChangeDescription(description);
+            item.ChangeCategory(category);
             item.ChangeUnitCost(unitCost);
         }
 
-        public void Purchase(Product.Product product, int quantity, DateTime dateOccurred)
+        public void Purchase(string sku, int quantity, DateTime dateOccurred)
         {
-            CheckProductExists(product);
+            CheckProductExists(sku);
 
-            var item = FindItemByProduct(product);
+            var item = FindItemByProduct(sku);
             item.Purchase(quantity, dateOccurred);
         }
 
-        public void Sell(Product.Product product, int quantity, DateTime dateOccurred)
+        public void Sell(string sku, int quantity, DateTime dateOccurred)
         {
-            CheckProductExists(product);
+            CheckProductExists(sku);
 
-            var item = FindItemByProduct(product);
+            var item = FindItemByProduct(sku);
             item.Sell(quantity, dateOccurred);
         }
 
-        private void CheckProductExists(Product.Product product)
+        private void CheckProductExists(string sku)
         {
-            if (!_items.ContainsKey(product.SKU))
+            if (!_items.ContainsKey(sku))
             {
                 throw new Exception("Product does not exist");
             }
         }
 
-        private InventoryItem FindItemByProduct(Product.Product product)
+        private InventoryItem FindItemByProduct(string sku)
         {
-            return _items[product.SKU];
+            return _items[sku];
         }
 
         private readonly Dictionary<string, InventoryItem> _items = new Dictionary<string, InventoryItem>();
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ECommerceDomain.Common;
 using ECommerceDomain.Ordering.Customer;
 using ECommerceDomain.Shopping.Common;
@@ -15,7 +16,7 @@ namespace ECommerceDomainTests.Ordering
             var shipping = new Address("test_street", "test_city", "test_state", "test_country", 00000);
             var billing = new Address("test_street", "test_city", "test_state", "test_country", 00000);
 
-            var customer = new Customer(0, "TestFirstName", "TestMiddleName", "TestLastName", billing, shipping);
+            var customer = new Customer(Guid.NewGuid(), "TestFirstName", "TestMiddleName", "TestLastName", billing, shipping);
             var order = customer.PlaceOrder(items);
 
             Assert.NotNull(order);
@@ -28,7 +29,7 @@ namespace ECommerceDomainTests.Ordering
             var shipping = new Address("test_street", "test_city", "test_state", "test_country", 00000);
             var billing = new Address("test_street", "test_city", "test_state", "test_country", 00000);
 
-            var customer = new Customer(0, "TestFirstName", "TestMiddleName", "TestLastName", billing, shipping);
+            var customer = new Customer(Guid.NewGuid(), "TestFirstName", "TestMiddleName", "TestLastName", billing, shipping);
             customer.UpdateShippingAddress(new Address("newStreet", "newCity", "newState", "newCountry", 11111));
 
             var order = customer.PlaceOrder(items);

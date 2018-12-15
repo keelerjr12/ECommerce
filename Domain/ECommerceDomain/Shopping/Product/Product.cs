@@ -1,6 +1,8 @@
-﻿namespace ECommerceDomain.Shopping.Product
+﻿using ECommerceDomain.Common;
+
+namespace ECommerceDomain.Shopping.Product
 { 
-    public class Product
+    public class Product : AggregateRoot
     {
         public int Id { get; }
 

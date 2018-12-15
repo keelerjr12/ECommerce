@@ -8,15 +8,21 @@ namespace ECommerceDomain.Inventory.Inventory
     {
         public string SKU { get; }
 
+        public string Description { get; private set; }
+
+        public string Category { get; private set; }
+
+        public decimal UnitCost { get; private set; }
+
         public int Stock => StockByDate(DateTime.Today);
 
         public IReadOnlyList<InventoryItemEntry> Entries => _entries.ToList();
 
-        public decimal UnitCost { get; private set; }
-
-        public InventoryItem(Product.Product product, decimal unitCost, List<InventoryItemEntry> entries)
+        public InventoryItem(string sku, string description, string category, decimal unitCost, List<InventoryItemEntry> entries)
         {
-            SKU = product.SKU;
+            SKU = sku;
+            Description = description;
+            Category = category;
             UnitCost = unitCost;
            _entries = entries;
         }
@@ -38,6 +44,16 @@ namespace ECommerceDomain.Inventory.Inventory
         internal void Sell(int quantity, DateTime dateOccurred)
         {
             _entries.Add(new InventoryItemEntry(dateOccurred.Date, "SALE", quantity));
+        }
+
+        public void ChangeDescription(string description)
+        {
+            Description = description;
+        }
+
+        public void ChangeCategory(string category)
+        {
+            Category = category;
         }
 
         public void ChangeUnitCost(decimal unitCost)

@@ -36,12 +36,12 @@
                                 {
                                     if (User.IsInRole("Seller"))
                                     {
-                                        <li><a asp-page="Seller/Index" asp-area="Account">Account</a></li>
+                                        <li><a asp-page="/Seller/Index" asp-area="Account">Account</a></li>
                                     }
                                     else
                                     {
                                         <li><a asp-page="/Cart" asp-area="Sales">Cart</a></li>
-                                        <li><a asp-page="Customer/Index" asp-area="Account">Account</a></li>
+                                        <li><a asp-page="/Customer/Index" asp-area="Account">Account</a></li>
                                     }
                                 }
                                 else

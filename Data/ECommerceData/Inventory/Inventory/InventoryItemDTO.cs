@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using ECommerceData.Inventory.Product;
+using ECommerceData.Shopping.Product;
 
 namespace ECommerceData.Inventory.Inventory
 {
@@ -9,6 +9,10 @@ namespace ECommerceData.Inventory.Inventory
     {
         [Column("Id")]
         public int Id { get; set; }
+
+        public string Description { get; set; }
+        
+        public string Category { get; set; }
 
         [Column("UnitCost")]
         public decimal UnitCost { get; set; }

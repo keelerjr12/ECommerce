@@ -15,7 +15,7 @@ namespace ECommerceConsole
                 //new Product("jkh23jkasd", "Sony", "Sony 65\" TV", 915.99m, "TV"),
                 //new Product("klaj32ioua", "Panasonic", "Panasonic 42\" HDTV", 415.99m, "TV"),
             };
-            var cart = new Cart(0);
+            var cart = new Cart(Guid.NewGuid());
             bool running = true;
 
             do

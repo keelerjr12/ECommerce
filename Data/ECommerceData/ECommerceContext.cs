@@ -2,7 +2,6 @@
 using System.Linq;
 using ECommerceData.Identity.User;
 using ECommerceData.Inventory.Inventory;
-using ECommerceData.Inventory.Product;
 using ECommerceData.Ordering.Customer;
 using ECommerceData.Ordering.Order;
 using ECommerceData.Shopping.Cart;
@@ -55,8 +54,6 @@ namespace ECommerceData
         public DbSet<OrderDTO> Orders { get; set; }
 
         public DbSet<InventoryItemDTO> InventoryItems { get; set; }
-
-        public DbSet<ProductDTO> InventoryProducts { get; set; }
 
         private List<IDomainEvent> _events = new List<IDomainEvent>();
     }

@@ -1,6 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using AutoMapper;
 using ECommerceApplication.Inventory;
-using ECommerceWeb.Areas.Admin.Inventory.Models;
+using ECommerceApplication.Inventory.Commands;
+using ECommerceApplication.Inventory.Queries;
+using ECommerceWeb.Areas.Account.Models.Inventory;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -20,21 +25,23 @@ namespace ECommerceWeb.Areas.Account.Pages.Seller.Inventory
 
         public List<InventoryItemViewModel> ItemViewModels { get; } = new List<InventoryItemViewModel>();
 
-        public InventoryModel(InventoryService inventoryService)
+        public InventoryModel(IMediator mediator)
         {
-            _inventoryService = inventoryService;
+            _mediator = mediator;
+        }
 
-            var inventory = _inventoryService.GetInventory();
+        public async Task OnGetAsync()
+        {
+            var inventory = _mediator.Send(new AllInventoryItemsQuery.Request()).Result;
 
-            Stock = inventory.ItemCount;
+            Stock = inventory.Stock;
             InventoryValue = inventory.Value;
 
-            // TODO: Refactor to use query handler w/automapping
             foreach (var item in inventory.Items)
             {
-                var product = _inventoryService.GetProductBySKU(item.SKU);
+                var iiVM = Mapper.Map<InventoryItemDTO, InventoryItemViewModel>(item);
 
-                ItemViewModels.Add(new InventoryItemViewModel(product, item));
+                ItemViewModels.Add(iiVM);
             }
         }
 
@@ -42,15 +49,15 @@ namespace ECommerceWeb.Areas.Account.Pages.Seller.Inventory
         {
             if (!ModelState.IsValid)
             {
-                return Page();
+                return RedirectToPage();
             }
 
-            _inventoryService.PurchaseStock(ItemPurchase.SKU, ItemPurchase.Quantity.Value);
+            _mediator.Send(new PurchaseStockCommand.Request(ItemPurchase.SKU, ItemPurchase.Quantity));
 
             return RedirectToPage("Index");
 
         }
 
-        private readonly InventoryService _inventoryService;
+        private readonly IMediator _mediator;
     }
 }
