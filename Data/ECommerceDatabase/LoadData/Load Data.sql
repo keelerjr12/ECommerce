@@ -41,17 +41,15 @@ ROWTERMINATOR = ''\n''
 )'
 --PRINT @Stmt
 EXEC (@Stmt)
-/*
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/*
 PRINT 'Load InventoryItem Data'
 SET @FileName = 'InventoryItem'
 
-EXEC('DELETE FROM ' + @FileName)
-
 SET @Stmt = 
 'BULK
-INSERT ECommerceDatabase.dbo.' + (@FileName) + '
+INSERT [InventoryItem]
 FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
 WITH
 (
@@ -66,11 +64,9 @@ EXEC (@Stmt)
 PRINT 'Load InventoryItemEntry Data'
 SET @FileName = 'InventoryItemEntry'
 
-EXEC('DELETE FROM ' + @FileName)
-
 SET @Stmt = 
 'BULK
-INSERT ECommerceDatabase.dbo.' + (@FileName) + '
+INSERT [InventoryItemEntry]
 FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
 WITH
 (
