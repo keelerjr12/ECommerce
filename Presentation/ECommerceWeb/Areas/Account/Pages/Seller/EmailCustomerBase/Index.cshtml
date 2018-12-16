@@ -1,0 +1,19 @@
+﻿@page
+@model EmailCustomerBase
+@{
+    ViewData["Title"] = "Email Customer Base";
+}
+
+<h2>Email Customer Base</h2>
+
+
+<form method="post">
+    <label>Email Body: </label>
+</form>
+
+<form method="post">
+    <div>
+        <textarea name="emailBody" cols="100" rows="20"></textarea>
+    </div>
+    <button name="subject" type="submit" value="sendMailingList">Send To All Subscribers</button>
+</form>

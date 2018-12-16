@@ -39,6 +39,27 @@ namespace ECommerceApplication
             }
         }
 
+        public void SendEmailList(MailAddressCollection emailAddressList, string messageSubject, string messageBody)
+        {
+            _message.To.Clear();
+
+            foreach (var emailAddress in emailAddressList){
+                _message.To.Add(emailAddress);
+            }
+           
+            _message.Subject = messageSubject;
+            _message.Body = messageBody;
+
+            try
+            {
+                _smtp.Send(_message);
+            }
+            catch
+            {
+                throw new MailServiceFailedException("Email did not send");
+            }
+        }
+
         private MailMessage _message;
         private SmtpClient _smtp;
         private string _companyEmail = "fivejewelers@gmail.com";
