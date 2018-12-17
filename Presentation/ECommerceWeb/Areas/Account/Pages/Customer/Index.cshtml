@@ -2,7 +2,32 @@
 @model CustomerAccountModel
 
 <h2>Account</h2>
+<body>
+    <form method="post">
+        <button name="subject" type="submit" value="logout">Logout</button>
+    </form>
 
-<form method="post">
-    <input type="submit" value="Logout"/>
-</form>
+    <form method="post">
+        <div>
+            @if (!string.IsNullOrEmpty(@Model.SubscriptionMessage))
+            {
+                <span>@Model.SubscriptionMessage</span>
+            }
+        </div>
+        <button id="0" name="subject" type="submit" value="subscribe" onclick="myFunction()">Subscribe to Mailing List</button>
+        <button id="1" name="subject" type="submit" value="unsubscribe" onclick="myFunction()">UnSubscribe to Mailing List</button>
+
+        <script>
+            function myFunction() {
+                //var x = document.getElementById("0");
+                //var y = document.getElementById("1");
+
+                //if (x.style.visibility === "hidden") {
+                //    x.style.visibility = "hidden";
+                //} else {
+                //    x.style.visibility = "hidden";
+                //}
+            }
+        </script>
+    </form>
+</body>

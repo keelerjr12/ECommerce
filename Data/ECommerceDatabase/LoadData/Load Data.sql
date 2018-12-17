@@ -6,7 +6,12 @@ DECLARE @SingleQuotation VARCHAR(3)
 
 SET @Comma = ','
 SET @SingleQuotation = ''''
-SET @Path = 'C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceDatabase\LoadData'
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- CHANGE THIS BASED ON YOUR LOCAL PATH
+SET @Path = 'C:\Users\Leann Chen\Documents\Visual Studio 2017\projects\ECommerce\Data\ECommerceDatabase\LoadData'
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -43,39 +48,39 @@ ROWTERMINATOR = ''\n''
 EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/*
-PRINT 'Load InventoryItem Data'
-SET @FileName = 'InventoryItem'
 
-SET @Stmt = 
-'BULK
-INSERT [InventoryItem]
-FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
-WITH
-(
-FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
-ROWTERMINATOR = ''\n''
-)'
---PRINT @Stmt
-EXEC (@Stmt)
+--PRINT 'Load InventoryItem Data'
+--SET @FileName = 'InventoryItem'
+
+--SET @Stmt = 
+--'BULK
+--INSERT [InventoryItem]
+--FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
+--WITH
+--(
+--FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
+--ROWTERMINATOR = ''\n''
+--)'
+----PRINT @Stmt
+--EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-PRINT 'Load InventoryItemEntry Data'
-SET @FileName = 'InventoryItemEntry'
+--PRINT 'Load InventoryItemEntry Data'
+--SET @FileName = 'InventoryItemEntry'
 
-SET @Stmt = 
-'BULK
-INSERT [InventoryItemEntry]
-FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
-WITH
-(
-FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
-ROWTERMINATOR = ''\n''
-)'
---PRINT @Stmt
-EXEC (@Stmt)
-*/
+--SET @Stmt = 
+--'BULK
+--INSERT [InventoryItemEntry]
+--FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
+--WITH
+--(
+--FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
+--ROWTERMINATOR = ''\n''
+--)'
+----PRINT @Stmt
+--EXEC (@Stmt)
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 PRINT 'Load Order Data'

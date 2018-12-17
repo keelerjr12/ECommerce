@@ -1,0 +1,47 @@
+﻿@page
+@*@model IEnumerable<ECommerceWeb.Pages.sales>*@
+@model reportModel
+@{
+    ViewData["Title"] = "report";
+}
+<h2>@ViewData["Title"]</h2>
+
+
+<div><b>Inventory Information</b><br /></div>
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>inventory levels </th>
+        <th>inventory costs </th>
+        <th>customer lists</th>
+        <th>montly cost</th>
+    </tr>
+    <tr>
+        <td>"mother braclets"</td>
+        <td>"1300.00$"</td>
+        <td>"Charles"</td>
+        <td>"3000,00$"</td>
+    </tr>
+
+    @*
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.inventory_levels</td>
+                <td>@d.inventory_costs</td>
+                <td>@d.customer_lists</td>
+                <td>@d.montly_cost</td>
+            </tr>
+        }
+    *@
+</table>
+
+<div><b>shopping cart Information</b><br /></div>
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>product category </th>
+        <th>product description </th>
+        <th>price</th>
+        <th>order number</th>
+    </tr>
+
+</table>
