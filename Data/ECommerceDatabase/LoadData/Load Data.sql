@@ -9,7 +9,7 @@ SET @SingleQuotation = ''''
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- CHANGE THIS BASED ON YOUR LOCAL PATH
-SET @Path = 'C:\Users\rz9fxj\Downloads\0 Code\ECommerce\Data\ECommerceDatabase\LoadData'
+SET @Path = 'C:\Users\Leann Chen\Documents\Visual Studio 2017\projects\ECommerce\Data\ECommerceDatabase\LoadData'
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 

@@ -28,6 +28,7 @@
                         <div id="left-subnav-bar">
                             <ul>
                                 <li><a asp-page="/Contact">Contact</a></li>
+                            
                             </ul>
                         </div>
                         <div id="right-subnav-bar">
@@ -37,6 +38,7 @@
                                     if (User.IsInRole("Seller"))
                                     {
                                         <li><a asp-page="/Seller/Index" asp-area="Account">Account</a></li>
+                                        <li><a asp-page="/report">report</a></li>
                                     }
                                     else
                                     {

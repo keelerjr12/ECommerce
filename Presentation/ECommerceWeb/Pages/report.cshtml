@@ -1,0 +1,29 @@
+﻿@page
+@model reportModel
+@{
+    ViewData["Title"] = "report";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@Model.Message</h3>
+
+
+<div><b>Inventory Information</b><br /></div>
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>inventory levels </th>
+        <th>inventory costs </th>
+        <th>customer lists</th>
+        <th>montly cost</th>
+    </tr>
+</table>
+
+<div><b>shopping cart Information</b><br /></div>
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>product category </th>
+        <th>product description </th>
+        <th>price</th>
+        <th>order number</th>
+    </tr>
+</table>
+
