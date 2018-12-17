@@ -37,8 +37,7 @@ namespace ECommerceApplication.Ordering.Order.Commands
                 var items = new List<LineItem>();
                 foreach (var item in cartItems)
                 {
-                    //TODO: Finish!
-                    //items.Add(new LineItem(item.SKU, item.Quantity.Value, item.Price));
+                    items.Add(new LineItem(item.SKU, item.Quantity.Value, item.Price));
                 }
 
                 var order = customer.PlaceOrder(items);
