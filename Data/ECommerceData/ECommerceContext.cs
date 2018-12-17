@@ -23,7 +23,7 @@ namespace ECommerceData
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<CartDTO>().HasMany(c => c.CartItems).WithOne(c => c.Cart).HasForeignKey(c => c.CartId);
-            modelBuilder.Entity<CartItemDTO>().HasKey(c => new {c.CustomerId, c.ProductId});
+            //modelBuilder.Entity<CartItemDTO>().HasKey(c => new {c.CustomerId, c.ProductId});
         }
 
         public void AddDomainEvent(IDomainEvent domainEvent)

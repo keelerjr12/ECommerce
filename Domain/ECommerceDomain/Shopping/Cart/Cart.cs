@@ -11,9 +11,9 @@ namespace ECommerceDomain.Shopping.Cart
 
         public Quantity ItemCount => Quantity.Is(_items.Sum(item => item.Quantity.Value));
 
-        public decimal Subtotal =>_items.Sum(item => item.Price * item.Quantity.Value);
+        public decimal Subtotal => _items.Sum(item => item.Price * item.Quantity.Value);
 
-        public IReadOnlyList<Item> Items => _items.ToList();
+        public IReadOnlyList<CartItem> Items => _items.ToList();
 
         public Cart(Guid id)
         {
@@ -30,7 +30,7 @@ namespace ECommerceDomain.Shopping.Cart
             }
             else
             {
-                var itemToAdd = new Item(product, quantity);
+                var itemToAdd = new CartItem(product, quantity);
                 _items.Add(itemToAdd);
             }
         }
@@ -55,6 +55,6 @@ namespace ECommerceDomain.Shopping.Cart
             _items.Clear();
         }
 
-        private readonly List<Item> _items = new List<Item>();
+        private readonly List<CartItem> _items = new List<CartItem>();
     }
 }

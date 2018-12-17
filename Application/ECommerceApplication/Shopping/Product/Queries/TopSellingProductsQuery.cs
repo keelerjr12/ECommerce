@@ -40,7 +40,7 @@ namespace ECommerceApplication.Shopping.Product.Queries
                 {
                     var product = sortedPair.Key;
 
-                    var productDTO = new ProductDTO(product.SKU, product.Name, product.Description, product.Price, product.ImageFileName);
+                    var productDTO = new ProductDTO(product.SKU, product.Name, product.Description, product.Price, product.ImageFileName, product.Status);
 
                     topSellers.Add(productDTO);
                 }

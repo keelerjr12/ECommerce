@@ -31,7 +31,6 @@ namespace ECommerceDomain.Ordering.Order
             BillingAddress = billing;
             _orderLines = orderLines;
 
-
             AddEvent(new OrderCreatedEvent(Created, items[0].SKU, items[0].Quantity));
         }
 

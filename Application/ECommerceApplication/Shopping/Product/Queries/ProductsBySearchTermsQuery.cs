@@ -36,7 +36,7 @@ namespace ECommerceApplication.Shopping.Product.Queries
 
                     foreach (var dto in productDB)
                     {
-                        var product = new ProductDTO(dto.SKU, dto.Name, dto.Description, dto.Price, dto.ImageFileName);
+                        var product = new ProductDTO(dto.SKU, dto.Name, dto.Description, dto.Price, dto.ImageFileName, dto.Status);
                         productsToReturn.Add(product);
                     }
                 }
@@ -49,7 +49,7 @@ namespace ECommerceApplication.Shopping.Product.Queries
 
                     foreach (var dto in productDB)
                     {
-                        var product = new ProductDTO(dto.SKU, dto.Name, dto.Description, dto.Price, dto.ImageFileName);
+                        var product = new ProductDTO(dto.SKU, dto.Name, dto.Description, dto.Price, dto.ImageFileName, dto.Status);
                         productsToReturn.Add(product);
                     }
                 }
@@ -62,7 +62,7 @@ namespace ECommerceApplication.Shopping.Product.Queries
 
                     foreach (var dto in productDB)
                     {
-                        var product = new ProductDTO(dto.SKU, dto.Name, dto.Description, dto.Price, dto.ImageFileName);
+                        var product = new ProductDTO(dto.SKU, dto.Name, dto.Description, dto.Price, dto.ImageFileName, dto.Status);
                         productsToReturn.Add(product);
                     }
                 }
@@ -78,7 +78,6 @@ namespace ECommerceApplication.Shopping.Product.Queries
             private string Normalize(string input)
             {
                 return new string(input.ToLowerInvariant().Where(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)).Select(c => c).ToArray());
-                //return new string(input.ToLowerInvariant().Select(c => c = (char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)) ? c : ' ').ToArray());
             }
 
             private readonly ECommerceContext _db;

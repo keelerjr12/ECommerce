@@ -63,7 +63,7 @@ namespace ECommerceConsole
                                 Console.WriteLine("{0}x{1}\t${2}", item.Quantity, item.Description, item.Price);
                             }
 
-                            Console.WriteLine("Subtotal: ${0} ({1} items)", cart.Subtotal, cart.ItemCount);
+                            //Console.WriteLine("Subtotal: ${0} ({1} items)", cart.Subtotal, cart.ItemCount);
                         }
                             break;
 

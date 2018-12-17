@@ -2,7 +2,7 @@
 
 namespace ECommerceDomain.Shopping.Cart
 {
-    public class Item
+    public class CartItem
     {
         public int ProductId { get; set; }
 
@@ -14,7 +14,7 @@ namespace ECommerceDomain.Shopping.Cart
 
         public Quantity Quantity { get; private set; }
 
-        public Item(Product.Product product, Quantity quantity)
+        public CartItem(Product.Product product, Quantity quantity)
         {
             ProductId = product.Id;
             SKU = product.SKU;
@@ -35,7 +35,7 @@ namespace ECommerceDomain.Shopping.Cart
 
         public override bool Equals(object obj)
         {
-            return obj is Item other && SKU == other.SKU;
+            return obj is CartItem other && SKU == other.SKU;
         }
 
         public override int GetHashCode()

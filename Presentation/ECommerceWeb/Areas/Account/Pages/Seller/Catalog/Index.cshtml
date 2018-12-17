@@ -4,13 +4,15 @@
 <h2>Product Catalog</h2>
 <table>
     <thead>
-    <tr>
-        <th>Edit</th>
-        <th>SKU</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Remove</th>
-    </tr>
+        <tr>
+            <th>Edit</th>
+            <th>SKU</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Catalog Status</th>
+            <th></th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
     @foreach (var pv in Model.ProductViews)
@@ -20,10 +22,18 @@
             <td>@pv.SKU</td>
             <td>@pv.Name</td>
             <td>@pv.Price</td>
+            <td>@pv.Status</td>
             <td>
                 <form method="post">
                     <input hidden name="sku" value="@pv.SKU"/>
-                    <input type="submit" value="Remove"/>
+                    @if (pv.Status == "Active")
+                    {
+                        <input type="submit" asp-page-handler="Deactivate" value="Deactivate"/>
+                    }
+                    else
+                    {
+                        <input type="submit" asp-page-handler="Activate"  value="Activate" />
+                    }
                 </form>
             </td>
         </tr>

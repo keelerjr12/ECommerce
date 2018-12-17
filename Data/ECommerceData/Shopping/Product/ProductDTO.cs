@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using ECommerceData.Shopping.ProductCategory;
 
 namespace ECommerceData.Shopping.Product
@@ -23,6 +24,8 @@ namespace ECommerceData.Shopping.Product
         public string Status { get; set; }
 
         public string ImageFileName { get; set; }
+
+        public List<ProductOptionDTO> Options { get; set; }
 
         [ForeignKey("CategoryId")]
         public ProductCategoryDTO ProductCategory { get; set; }

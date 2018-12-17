@@ -71,6 +71,9 @@
     <None Include="LoadData\Load Data.sql" />
     <Build Include="Order.sql" />
     <Build Include="ProductCategory.sql" />
+    <Build Include="ProductOption.sql" />
+    <Build Include="ProductOptionValue.sql" />
+    <Build Include="CartItemOption.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ECommerceDatabase.refactorlog" />

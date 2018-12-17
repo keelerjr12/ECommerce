@@ -6,7 +6,7 @@ using MediatR;
 
 namespace ECommerceApplication.Shopping.Product.Commands
 {
-    public class RemoveProductFromCatalogCommand
+    public class DeactivateProductFromCatalogCommand
     {
         public class Request : IRequest
         {
@@ -28,7 +28,10 @@ namespace ECommerceApplication.Shopping.Product.Commands
 
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {
-                await _productRepo.RemoveBySKUAsync(request.SKU);
+                var product = _productRepo.GetBySKU(request.SKU);
+                product.Deactivate();
+
+                await _productRepo.SaveAsync(product);
 
                 _uow.Save();
                 

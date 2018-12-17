@@ -6,8 +6,6 @@ namespace ECommerceDomain.Shopping.Product
     {
         Product GetBySKU(string sku);
 
-        Task RemoveBySKUAsync(string sku);
-
         Task SaveAsync(Product product);
     }
 }

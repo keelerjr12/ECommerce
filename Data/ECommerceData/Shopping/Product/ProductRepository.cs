@@ -21,13 +21,6 @@ namespace ECommerceData.Shopping.Product
             return product;
         }
 
-        public async Task RemoveBySKUAsync(string sku)
-        {
-            var productDTO = await _eCommerceContext.Products.FirstAsync(p => p.SKU == sku);
-
-            _eCommerceContext.Products.Remove(productDTO);
-        }
-
         public async Task SaveAsync(ECommerceDomain.Shopping.Product.Product product)
         {
             var exists = _eCommerceContext.Products.AnyAsync(p => p.SKU == product.SKU).Result;
@@ -41,6 +34,7 @@ namespace ECommerceData.Shopping.Product
                 productDTO.Description = product.Description;
                 productDTO.Price = product.Price;
                 productDTO.CategoryId = product.CategoryId;
+                productDTO.Status = product.Status;
                 productDTO.ImageFileName = product.ImageFileName;
             }
             else
@@ -53,6 +47,7 @@ namespace ECommerceData.Shopping.Product
                     Description = product.Description,
                     Price = product.Price,
                     CategoryId = product.CategoryId,
+                    Status = product.Status,
                     ImageFileName = product.ImageFileName
                 };
 

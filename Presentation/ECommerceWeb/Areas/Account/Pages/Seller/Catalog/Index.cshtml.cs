@@ -31,14 +31,25 @@ namespace ECommerceWeb.Areas.Account.Pages.Seller.Catalog
                     Name = product.Name,
                     Description = product.Description,
                     ImageFileName = product.ImageFileName,
+                    Status = product.Status,
                     Price = product.Price
                 });
             }
         }
 
-        public async Task<IActionResult> OnPostAsync(string sku)
+        public async Task<IActionResult> OnPostActivateAsync(string sku)
         {
-            await _mediator.Send(new RemoveProductFromCatalogCommand.Request(sku));
+            await _mediator.Send(new ActivateProductInCatalogCommand.Request
+            {
+                SKU = sku
+            });
+
+            return RedirectToPage();
+        }
+
+        public async Task<IActionResult> OnPostDeactivateAsync(string sku)
+        {
+            await _mediator.Send(new DeactivateProductFromCatalogCommand.Request(sku));
 
             return RedirectToPage();
         }

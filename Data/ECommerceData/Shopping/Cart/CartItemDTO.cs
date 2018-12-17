@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using ECommerceData.Ordering.Customer;
 using ECommerceData.Shopping.Product;
@@ -8,6 +9,8 @@ namespace ECommerceData.Shopping.Cart
     [Table("CartItem")]
     public class CartItemDTO
     {
+        public int Id { get; set; }
+
         [Column("CustomerId")]
         public Guid CustomerId { get; set; }
 
@@ -16,6 +19,8 @@ namespace ECommerceData.Shopping.Cart
 
         [Column("Quantity")]
         public int Quantity { get; set; }
+
+        public List<CartItemOptionDTO> Options { get; set; }
 
         [ForeignKey("CustomerId")]
         public CustomerDTO CustomerDTO { get; set; }

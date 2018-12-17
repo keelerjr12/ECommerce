@@ -1,8 +1,10 @@
-﻿using MediatR;
+﻿using System.Collections.Generic;
+using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ECommerceData;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceApplication.Shopping.Product.Queries
 {
@@ -22,7 +24,19 @@ namespace ECommerceApplication.Shopping.Product.Queries
 
             public async Task<Result> Handle(Request request, CancellationToken cancellationToken)
             {
-                var productDTO = _db.Products.First(p => p.SKU == request.SKU);
+                var productDTO = _db.Products.Include(p => p.Options).ThenInclude(p => p.Values).First(p => p.SKU == request.SKU);
+
+                var options = new Dictionary<string, List<string>>();
+                foreach (var option in productDTO.Options)
+                {
+                    var values = new List<string>();
+                    foreach (var value in option.Values)
+                    {
+                        values.Add(value.Name);
+                    }
+
+                    options.Add(option.Name, values);
+                }
 
                 var result = new Result
                 {
@@ -31,7 +45,8 @@ namespace ECommerceApplication.Shopping.Product.Queries
                     Manufacturer = productDTO.Manufacturer,
                     Description = productDTO.Description,
                     Price = productDTO.Price,
-                    ImageFileName = productDTO.ImageFileName
+                    ImageFileName = productDTO.ImageFileName,
+                    Options = options
                 };
 
                 return result;
@@ -48,6 +63,7 @@ namespace ECommerceApplication.Shopping.Product.Queries
             public string Description { get; set; }
             public decimal Price { get; set; }
             public string ImageFileName { get; set; }
+            public Dictionary<string, List<string>> Options { get; set; }
         }
     }
 }

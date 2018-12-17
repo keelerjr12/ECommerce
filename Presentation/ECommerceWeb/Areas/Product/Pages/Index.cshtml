@@ -1,5 +1,5 @@
 ﻿@page "{sku}"
-@model Areas.Product.Pages.ProductModel
+@model ProductModel
 
 <div id="content-left-sidebar">
     <div id="main-navbar">
@@ -23,6 +23,13 @@
             <p>
                 @Model.Description
             </p>
+            @foreach (var i in @Model.Options)
+            {
+            <div>
+                <label>@i.Key</label>
+                <select asp-for="@i.Key" asp-items="@i.Value"></select>
+            </div>
+            }
             <div>
                 @if (User.IsInRole("Customer"))
                 {

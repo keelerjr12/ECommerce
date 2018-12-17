@@ -38,7 +38,7 @@ namespace ECommerceData.Shopping.Cart
             var cartItemsToAdd = cart.Items.Except(storedCartItems, new CartItemComparer());
             var cartItemsToDelete = storedCartItems.Except(cart.Items, new CartItemComparer()).ToList();
 
-            
+
             foreach (var itemToDelete in cartItemsToDelete)
             {
                 var itemDTO = _eCommerceContext.CartItems.First(item => item.Product.SKU == itemToDelete.SKU);
@@ -80,9 +80,9 @@ namespace ECommerceData.Shopping.Cart
             }
         }
 
-        private IList<Item> ToCartItemList(IQueryable<CartItemDTO> dtoItems)
+        private IList<CartItem> ToCartItemList(IQueryable<CartItemDTO> dtoItems)
         {
-            var cartItems = new List<Item>();
+            var cartItems = new List<CartItem>();
 
             foreach (var itemDTO in dtoItems)
             {
@@ -90,7 +90,7 @@ namespace ECommerceData.Shopping.Cart
                 var product = new ECommerceDomain.Shopping.Product.Product(productDTO.Id, productDTO.SKU, productDTO.Name, productDTO.Manufacturer,
                     productDTO.Description, productDTO.Price, productDTO.CategoryId, productDTO.ImageFileName);
 
-                var cartItem = new Item(product, Quantity.Is(itemDTO.Quantity));
+                var cartItem = new CartItem(product, Quantity.Is(itemDTO.Quantity));
 
                 cartItems.Add(cartItem);
             }
@@ -101,9 +101,9 @@ namespace ECommerceData.Shopping.Cart
         private ECommerceContext _eCommerceContext;
     }
 
-    internal class CartItemComparer : IEqualityComparer<Item>
+    internal class CartItemComparer : IEqualityComparer<CartItem>
     {
-        public bool Equals(Item x, Item y)
+        public bool Equals(CartItem x, CartItem y)
         {
             if (ReferenceEquals(x, y))
                 return true;
@@ -111,7 +111,7 @@ namespace ECommerceData.Shopping.Cart
             return x != null && y != null && x.SKU == y.SKU;
         }
 
-        public int GetHashCode(Item obj)
+        public int GetHashCode(CartItem obj)
         {
             return obj.SKU.GetHashCode();
         }
