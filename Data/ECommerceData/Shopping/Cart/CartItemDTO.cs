@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using ECommerceData.Ordering.Customer;
 using ECommerceData.Shopping.Product;

@@ -10,9 +10,8 @@ SET @SingleQuotation = ''''
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- CHANGE THIS BASED ON YOUR LOCAL PATH
 --SET @Path = 'C:\Users\Leann Chen\Documents\Visual Studio 2017\projects\ECommerce\Data\ECommerceDatabase\LoadData'
-SET @Path = 'C:\Users\rz9fxj\Downloads\0 Code\ECommerce\Data\ECommerceDatabase\LoadData'
+SET @Path = 'C:\Users\Joshua\Documents\Visual Studio 2017\Projects\ECommerce\Data\ECommerceDatabase\LoadData'
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -50,109 +49,142 @@ EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---PRINT 'Load InventoryItem Data'
---SET @FileName = 'InventoryItem'
+PRINT 'Load InventoryItem Data'
+SET @FileName = 'InventoryItem'
 
---SET @Stmt = 
---'BULK
---INSERT [InventoryItem]
---FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
---WITH
---(
---FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
---ROWTERMINATOR = ''\n''
---)'
-----PRINT @Stmt
---EXEC (@Stmt)
+SET @Stmt = 
+'BULK
+INSERT [InventoryItem]
+FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
+WITH
+(
+FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
+ROWTERMINATOR = ''\n''
+)'
+--PRINT @Stmt
+EXEC (@Stmt)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---PRINT 'Load InventoryItemEntry Data'
---SET @FileName = 'InventoryItemEntry'
+PRINT 'Load InventoryItemEntry Data'
+SET @FileName = 'InventoryItemEntry'
 
---SET @Stmt = 
---'BULK
---INSERT [InventoryItemEntry]
---FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
---WITH
---(
---FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
---ROWTERMINATOR = ''\n''
---)'
-----PRINT @Stmt
---EXEC (@Stmt)
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
---PRINT 'Load Order Data'
---SET @FileName = 'Order'
-
---SET @Stmt = 
---'BULK
---INSERT [Order]
---FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
---WITH
---(
---FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
---ROWTERMINATOR = ''\n''
---)'
-----PRINT @Stmt
---EXEC (@Stmt)
+SET @Stmt = 
+'BULK
+INSERT [InventoryItemEntry]
+FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
+WITH
+(
+FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
+ROWTERMINATOR = ''\n''
+)'
+--PRINT @Stmt
+EXEC (@Stmt)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---PRINT 'Load OrderLine Data'
---SET @FileName = 'OrderLine'
+PRINT 'Load Order Data'
+SET @FileName = 'Order'
 
---SET @Stmt = 
---'BULK
---INSERT [OrderLine]
---FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
---WITH
---(
---FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
---ROWTERMINATOR = ''\n''
---)'
-----PRINT @Stmt
---EXEC (@Stmt)
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
---PRINT 'Load Product Data'
---SET @FileName = 'Product'
-
---SET @Stmt = 
---'BULK
---INSERT ECommerceDatabase.dbo.' + (@FileName) + '
---FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
---WITH
---(
---FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
---ROWTERMINATOR = ''\n''
---)'
-----PRINT @Stmt
---EXEC (@Stmt)
+SET @Stmt = 
+'BULK
+INSERT [Order]
+FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
+WITH
+(
+FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
+ROWTERMINATOR = ''\n''
+)'
+--PRINT @Stmt
+EXEC (@Stmt)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---PRINT 'Load Product Category Data'
---SET @FileName = 'ProductCategory'
+PRINT 'Load OrderLine Data'
+SET @FileName = 'OrderLine'
 
---SET @Stmt = 
---'BULK
---INSERT ECommerceDatabase.dbo.' + (@FileName) + '
---FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
---WITH
---(
---FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
---ROWTERMINATOR = ''\n''
---)'
-----PRINT @Stmt
---EXEC (@Stmt)
+SET @Stmt = 
+'BULK
+INSERT [OrderLine]
+FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
+WITH
+(
+FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
+ROWTERMINATOR = ''\n''
+)'
+--PRINT @Stmt
+EXEC (@Stmt)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PRINT 'Load Product Data'
+SET @FileName = 'Product'
+
+SET @Stmt = 
+'BULK
+INSERT [Product]
+FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
+WITH
+(
+FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
+ROWTERMINATOR = ''\n''
+)'
+--PRINT @Stmt
+EXEC (@Stmt)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PRINT 'Load Product Category Data'
+SET @FileName = 'ProductCategory'
+
+SET @Stmt = 
+'BULK
+INSERT [ProductCategory]
+FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
+WITH
+(
+FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
+ROWTERMINATOR = ''\n''
+)'
+--PRINT @Stmt
+EXEC (@Stmt)
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+PRINT 'Load Product Option Data'
+SET @FileName = 'ProductOption'
+
+SET @Stmt = 
+'BULK
+INSERT [ProductOption]
+FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
+WITH
+(
+FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
+ROWTERMINATOR = ''\n''
+)'
+--PRINT @Stmt
+EXEC (@Stmt)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PRINT 'Load Product Option Value Data'
+SET @FileName = 'ProductOptionValue'
+
+SET @Stmt = 
+'BULK
+INSERT [ProductOptionValue]
+FROM ' + (@SingleQuotation) + (@Path) + '\' + (@FileName) + '.csv' + (@SingleQuotation) + '
+WITH
+(
+FIELDTERMINATOR = ' + (@SingleQuotation) + (@Comma) + (@SingleQuotation) + (@Comma) +'
+ROWTERMINATOR = ''\n''
+)'
+--PRINT @Stmt
+EXEC (@Stmt)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PRINT 'Load Shipping Distance Data'
 SET @FileName = 'ShippingDistance'
 

@@ -25,6 +25,8 @@ namespace ECommerceData.Ordering.Order
 
         public int Zipcode { get; set; }
 
+        public decimal ShippingCost { get; set; }
+
         [ForeignKey("CustomerId")]
         public CustomerDTO CustomerDTO { get; set; }
 

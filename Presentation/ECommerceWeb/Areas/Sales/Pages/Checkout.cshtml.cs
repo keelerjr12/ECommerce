@@ -1,11 +1,12 @@
 using System;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using AutoMapper;
-using ECommerceApplication;
 using ECommerceApplication.EmailService;
 using ECommerceApplication.Ordering.Customer.Queries;
 using ECommerceApplication.Ordering.Order.Commands;
+using ECommerceApplication.Shipping.Queries;
 using ECommerceWeb.Areas.Sales.Models;
 using ECommerceWeb.Pages;
 using MediatR;
@@ -18,13 +19,16 @@ namespace ECommerceWeb.Areas.Sales.Pages
     {
         public CustomerViewModel CustomerView { get; set; }
 
+        [BindProperty]
+        public decimal ShippingCost { get; set; }
+
         public CheckoutModel(IMediator mediator)
         {
             _mediator = mediator;
             _emailService = new EmailService();
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
             var customerId = Guid.Parse(User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value);
 
@@ -33,25 +37,27 @@ namespace ECommerceWeb.Areas.Sales.Pages
                 CustomerId = customerId
             }).Result;
 
+            var result = await _mediator.Send(new GetShippingCostByStateQuery.Request(customerQuery.State));
+
             CustomerView = Mapper.Map<CustomerQuery.Result, CustomerViewModel>(customerQuery);
+            ShippingCost = result.cost;
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             var customerId = Guid.Parse(User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value);
 
-            _mediator.Send(new CreateOrderCommand.Request
+            await _mediator.Send(new CreateOrderCommand.Request
             {
-                CustomerId = customerId
+                CustomerId = customerId,
+                ShippingCost = ShippingCost
             });
 
             try
             {
-                //TODO: get customer email here
-                //var customer = Guid.Parse(User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value);
-                var customerEmail = "varunpat@umich.edu";
+                var email = User.Claims.First(a => a.Type == ClaimTypes.Email).Value;
                 var emailBody = "Your order is placed. Wait for shipping confirmation.";
-                _emailService.SendEmail(customerEmail, "Order is placed.", emailBody);
+                _emailService.SendEmail(email, "Order is placed.", emailBody);
             }
             catch (MailServiceFailedException ex)
             {

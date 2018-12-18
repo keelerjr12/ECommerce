@@ -1,8 +1,6 @@
 using System.Net.Mail;
 using System.Threading.Tasks;
-using ECommerceApplication;
 using ECommerceApplication.EmailService;
-using ECommerceApplication.Ordering.Customer.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -16,11 +14,6 @@ namespace ECommerceWeb.Areas.Account.Pages.Seller.EmailCustomerBase
             _mediator = mediator;
             _emailService = new EmailService();
             _emailAddressList = new MailAddressCollection();
-        }
-
-
-        public void OnGet()
-        {
         }
 
         public async Task<IActionResult> OnPost(string subject, string subjectField, string emailBody)

@@ -88,7 +88,7 @@ namespace ECommerceData.Ordering.Order
             var billingAddress = new Address(orderDTO.Street, orderDTO.City, orderDTO.State, orderDTO.Country,
                 orderDTO.Zipcode);
 
-            var order = new ECommerceDomain.Ordering.Order.Order(orderDTO.Id, orderDTO.CustomerId, orderDTO.Created, shippingAddress, billingAddress, orderLines.AsReadOnly());
+            var order = new ECommerceDomain.Ordering.Order.Order(orderDTO.Id, orderDTO.CustomerId, orderDTO.Created, shippingAddress, billingAddress, orderLines.AsReadOnly(), orderDTO.ShippingCost);
 
             return order;
         }

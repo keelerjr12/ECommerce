@@ -16,6 +16,7 @@ namespace ECommerceApplication.Ordering.Order.Commands
         public class Request : IRequest
         {
             public Guid CustomerId { get; set; }
+            public decimal ShippingCost { get; set; }
         }
 
         public class Handler : IRequestHandler<Request>
@@ -40,7 +41,7 @@ namespace ECommerceApplication.Ordering.Order.Commands
                     items.Add(new LineItem(item.SKU, item.Quantity.Value, item.Price));
                 }
 
-                var order = customer.PlaceOrder(items);
+                var order = customer.PlaceOrder(items, request.ShippingCost);
 
                 cart.Empty();
 

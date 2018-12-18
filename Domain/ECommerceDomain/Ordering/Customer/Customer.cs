@@ -28,9 +28,9 @@ namespace ECommerceDomain.Ordering.Customer
             Shipping = shipping;
         }
 
-        public Order.Order PlaceOrder(List<LineItem> items)
+        public Order.Order PlaceOrder(List<LineItem> items, decimal shippingCost)
         {
-            var order = new Order.Order(Id, Billing, Shipping, items);
+            var order = new Order.Order(Id, Billing, Shipping, items, shippingCost);
 
             return order;
         }

@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using ECommerceData;
 using ECommerceData.Inventory.Inventory;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace ECommerceApplication.Inventory.Queries
 {

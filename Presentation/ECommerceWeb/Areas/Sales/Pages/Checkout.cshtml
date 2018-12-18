@@ -1,5 +1,5 @@
 ﻿@page
-@model ECommerceWeb.Areas.Sales.Pages.CheckoutModel
+@model CheckoutModel
 <h2>Checkout</h2>
 <div>
     <label>Shipping address</label>
@@ -8,6 +8,9 @@
         <label>@Model.CustomerView.Street</label>
         <label>@Model.CustomerView.City, @Model.CustomerView.State</label>
         <label>@Model.CustomerView.ZipCode</label>
+    </div>
+    <div>
+        <label>Shipping: @Model.ShippingCost</label>
     </div>
 </div>
 <div>

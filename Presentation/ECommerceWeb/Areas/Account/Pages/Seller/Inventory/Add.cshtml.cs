@@ -1,4 +1,3 @@
-using ECommerceApplication.Inventory;
 using ECommerceApplication.Inventory.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
