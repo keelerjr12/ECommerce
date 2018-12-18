@@ -3,7 +3,7 @@
 
 <div id="content-left-sidebar">
     <div id="main-navbar">
-        <partial name="ProductMenu" />
+        @await Component.InvokeAsync("ProductCatalogMenu")
     </div>
     <div id="main-with-navbar">
         <h2>Search Results...</h2>
