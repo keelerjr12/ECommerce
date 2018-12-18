@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using ECommerceData.Identity.User;
 
 namespace ECommerceData.Ordering.Customer
 {
@@ -23,5 +24,10 @@ namespace ECommerceData.Ordering.Customer
         public string Country { get; set; }
 
         public int ZipCode { get; set; }
+
+        public bool IsSubscribed { get; set; }
+
+        [ForeignKey("Id")]
+        public UserDTO User { get; set; }
     }
 }

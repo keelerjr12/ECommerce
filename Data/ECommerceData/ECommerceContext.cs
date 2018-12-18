@@ -4,6 +4,7 @@ using ECommerceData.Identity.User;
 using ECommerceData.Inventory.Inventory;
 using ECommerceData.Ordering.Customer;
 using ECommerceData.Ordering.Order;
+using ECommerceData.Shipping;
 using ECommerceData.Shopping.Cart;
 using ECommerceData.Shopping.ProductCategory;
 using ECommerceDomain.Common;
@@ -54,6 +55,8 @@ namespace ECommerceData
         public DbSet<OrderDTO> Orders { get; set; }
 
         public DbSet<InventoryItemDTO> InventoryItems { get; set; }
+
+        public DbSet<ShippingDistanceDTO> ShippingDistances { get; set; }
 
         private List<IDomainEvent> _events = new List<IDomainEvent>();
     }

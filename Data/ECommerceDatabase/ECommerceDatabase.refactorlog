@@ -224,4 +224,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Name" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="a9aefef6-1f19-4510-a487-d8b112dcc489" ChangeDateTime="12/18/2018 02:40:12">
+    <Property Name="ElementName" Value="[dbo].[ShippingDistance].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ShippingDistance]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="State" />
+  </Operation>
 </Operations>

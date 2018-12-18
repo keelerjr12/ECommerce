@@ -9,5 +9,6 @@
     [State] VARCHAR(50) NOT NULL, 
     [Country] VARCHAR(200) NOT NULL,
     [ZipCode] INT NOT NULL, 
+    [IsSubscribed] BIT NOT NULL DEFAULT 0, 
     CONSTRAINT [FK_Customer_ToUser] FOREIGN KEY ([Id]) REFERENCES [User]([Id])
 )
