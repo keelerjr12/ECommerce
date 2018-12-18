@@ -6,7 +6,7 @@ using ECommerceData;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace ECommerceApplication.Ordering.Customer.Queries
+namespace ECommerceApplication.EmailService
 {
     public class GetAllCustomerEmailsQuery
     {

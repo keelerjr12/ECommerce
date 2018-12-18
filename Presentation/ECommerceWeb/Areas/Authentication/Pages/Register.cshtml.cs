@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ECommerceApplication;
+using ECommerceApplication.EmailService;
 using ECommerceApplication.Identity.Commands;
 using ECommerceData.Identity.User;
 using ECommerceWeb.Pages;

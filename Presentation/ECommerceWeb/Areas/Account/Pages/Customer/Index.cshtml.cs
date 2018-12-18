@@ -1,4 +1,8 @@
+using System;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using ECommerceApplication.EmailService;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -20,11 +24,14 @@ namespace ECommerceWeb.Areas.Account.Pages.Customer
         {
             if (subject == "subscribe")
             {
-                //TODO set the flag in database
+                var customerId = Guid.Parse(User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value);
+                await _mediator.Send(new UpdateSubscriptionServiceCommand.Request(customerId, true));
                 SubscriptionMessage = "You are subscribed.";
             }
             else if (subject == "unsubscribe")
             {
+                var customerId = Guid.Parse(User.Claims.First(a => a.Type == ClaimTypes.NameIdentifier).Value);
+                await _mediator.Send(new UpdateSubscriptionServiceCommand.Request(customerId, false));
                 SubscriptionMessage = "You are unsubscribed.";
             }
             else if (subject == "logout")

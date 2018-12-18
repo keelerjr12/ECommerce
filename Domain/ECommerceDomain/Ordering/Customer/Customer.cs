@@ -7,7 +7,7 @@ namespace ECommerceDomain.Ordering.Customer
 {
     public class Customer : AggregateRoot
     {
-        private Guid Id { get; }
+        public Guid Id { get; }
 
         public string FirstName { get; }
         public string MiddleName { get; }
@@ -15,6 +15,8 @@ namespace ECommerceDomain.Ordering.Customer
 
         public Address Shipping { get; private set; }
         public Address Billing { get; }
+
+        public bool IsSubscribed { get; private set; }
 
         public Customer(Guid id, string firstName, string middleName, string lastName, Address billing, Address shipping)
         {
@@ -36,6 +38,11 @@ namespace ECommerceDomain.Ordering.Customer
         public void UpdateShippingAddress(Address newShipping)
         {
             Shipping = newShipping;
+        }
+
+        public void UpdateSubscription(bool isSubscribed)
+        {
+            IsSubscribed = isSubscribed;
         }
     }
 }

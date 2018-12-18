@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Claims;
 using AutoMapper;
 using ECommerceApplication;
+using ECommerceApplication.EmailService;
 using ECommerceApplication.Ordering.Customer.Queries;
 using ECommerceApplication.Ordering.Order.Commands;
 using ECommerceWeb.Areas.Sales.Models;
