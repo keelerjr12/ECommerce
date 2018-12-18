@@ -8,5 +8,7 @@ namespace ECommerceData.Shipping
     {
         [Key]
         public string State { get; set; }
+
+        public int Distance { get; set; }
     }
 }

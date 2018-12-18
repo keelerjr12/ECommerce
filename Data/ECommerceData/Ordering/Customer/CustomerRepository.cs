@@ -26,6 +26,12 @@ namespace ECommerceData.Ordering.Customer
             return customer;
         }
 
+        public void Update(ECommerceDomain.Ordering.Customer.Customer customer)
+        {
+            var customerDTO = _eCommerceContext.Customers.First(c => c.Id == customer.Id);
+            customerDTO.IsSubscribed = customer.IsSubscribed;
+        }
+
         private readonly ECommerceContext _eCommerceContext;
     }
 }

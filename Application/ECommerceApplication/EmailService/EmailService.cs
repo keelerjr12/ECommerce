@@ -2,7 +2,7 @@
 using System.Net;
 using System.Net.Mail;
 
-namespace ECommerceApplication
+namespace ECommerceApplication.EmailService
 {
     public class EmailService
     {

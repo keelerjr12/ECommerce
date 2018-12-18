@@ -1,6 +1,7 @@
 using System.Net.Mail;
 using System.Threading.Tasks;
 using ECommerceApplication;
+using ECommerceApplication.EmailService;
 using ECommerceApplication.Ordering.Customer.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -22,17 +23,19 @@ namespace ECommerceWeb.Areas.Account.Pages.Seller.EmailCustomerBase
         {
         }
 
-        public async Task<IActionResult> OnPost(string subject, string emailBody)
+        public async Task<IActionResult> OnPost(string subject, string subjectField, string emailBody)
         {
             if (subject == "sendMailingList")
             {
                 var result = await _mediator.Send(new GetAllCustomerEmailsQuery.Request());
                 var subscribedEmails = result.SubscribedEmails;
+                foreach (var email in subscribedEmails)
+                {
+                    _emailAddressList.Add(new MailAddress(email));
 
-                _emailAddressList.Add(new MailAddress("varunpat@umich.edu"));
-                _emailAddressList.Add(new MailAddress("varunpatel0917@gmail.com"));
+                }
 
-                _emailService.SendEmailList(_emailAddressList, "Weekly Ads", emailBody);
+                _emailService.SendEmailList(_emailAddressList, subjectField, emailBody);
             }
       
             return RedirectToPage("/Seller/Index");
