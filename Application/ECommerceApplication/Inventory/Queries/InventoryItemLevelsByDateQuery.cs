@@ -4,7 +4,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ECommerceData;
+using ECommerceData.Inventory.Inventory;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace ECommerceApplication.Inventory.Queries
 {
@@ -12,7 +15,8 @@ namespace ECommerceApplication.Inventory.Queries
     {
         public class Request : IRequest<Result>
         {
-            public DateTime ThroughDate { get; set; }
+            public DateTime StartDate { get; set; }
+            public DateTime EndDate { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Result>
@@ -27,44 +31,61 @@ namespace ECommerceApplication.Inventory.Queries
             {
                 var items = _db.InventoryItems
                     .Select(i => new
-                        {
-                            i.Product.SKU,
-                            Entries = i.Entries
-                                .Where(e => e.DateOccurred <= request.ThroughDate)
+                        ProductInventoryLevel {
+                            SKU = i.Product.SKU,
+                            EntriesByMonth = i.Entries
+                                .Where(e => request.StartDate <= e.DateOccurred && e.DateOccurred <= request.EndDate)
                                 .GroupBy(e => new DateTime(e.DateOccurred.Year, e.DateOccurred.Month, 1))
                                 .ToList()
                         }
-                    );
+                    ).ToList();
+
+                var months = new List<DateTime>();
+                for (var date = request.StartDate; date < request.EndDate; date = date.AddMonths(1))
+                {
+                    months.Add(date);
+                }
 
                 var inventoryLevels = new Dictionary<string, Dictionary<DateTime, int>>();
-
                 foreach (var item in items)
                 {
                     inventoryLevels.Add(item.SKU, new Dictionary<DateTime, int>());
+                    var inventory = 0;
 
-                    foreach (var monthGrouping in item.Entries)
+                    foreach (var month in months)
                     {
-                        var inventory = 0;
-
-                        foreach (var entry in monthGrouping)
+                        foreach (var grouping in item.EntriesByMonth)
                         {
-                            if (entry.Type == "PURCHASE")
+                            if (grouping.Key != month)
+                                continue;
+
+                            foreach (var entry in grouping)
                             {
-                                inventory += entry.Quantity;
-                            }
-                            else if (entry.Type == "SELL")
-                            {
-                                inventory -= entry.Quantity;
+                                switch (entry.Type)
+                                {
+                                    case "PURCHASE":
+                                        inventory += entry.Quantity;
+                                        break;
+                                    case "SALE":
+                                        inventory -= entry.Quantity;
+                                        break;
+                                    default:
+                                        throw new Exception("Unexpected Case");
+                                }
                             }
                         }
 
-                        inventoryLevels[item.SKU]
-                            .Add(new DateTime(monthGrouping.Key.Year, monthGrouping.Key.Month, monthGrouping.Key.Day),
-                                inventory);
+                        inventoryLevels[item.SKU].Add(new DateTime(month.Year, month.Month, 1), inventory);
                     }
                 }
 
                 return new Result { InventoryLevels = inventoryLevels};
+            }
+
+            private class ProductInventoryLevel
+            {
+                public string SKU { get; set; }
+                public List<IGrouping<DateTime, InventoryItemEntryDTO>> EntriesByMonth { get; set; }
             }
 
             private readonly ECommerceContext _db;

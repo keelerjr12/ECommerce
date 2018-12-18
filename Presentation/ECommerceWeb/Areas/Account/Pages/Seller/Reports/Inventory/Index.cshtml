@@ -17,7 +17,7 @@
         @foreach (var pair in Model.InventoryLevelViewModel)
         {
             <tr>
-                <td class="report" id="SKU">@pair.Key</td>
+                <td class="report" id="SKU"><a asp-area="Product" asp-page="/Index" asp-route-sku="@pair.Key">@pair.Key</a></td>
                 @foreach (var levelPair in pair.Value)
                 {
                     <td>@levelPair.Value</td>

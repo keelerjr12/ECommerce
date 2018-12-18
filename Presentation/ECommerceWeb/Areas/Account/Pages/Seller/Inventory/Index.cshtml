@@ -9,7 +9,7 @@
     <label asp-for="Stock">Stock: @Model.Stock</label>
 </div>
 <div>
-    <label asp-for="InventoryValue">Total inventory value: @Model.InventoryValue</label>
+    <label asp-for="InventoryValue">Total inventory value: @Model.InventoryValue.ToString("C")</label>
 </div>
 <table>
     <thead>
@@ -30,7 +30,7 @@
             <td>@item.SKU </td>
             <td>@item.Description</td>
             <td>@item.Category</td>
-            <td>@item.UnitCost</td>
+            <td>@item.UnitCost.ToString("C")</td>
             <td>@item.Stock</td>
             <td>
                 <form method="post">

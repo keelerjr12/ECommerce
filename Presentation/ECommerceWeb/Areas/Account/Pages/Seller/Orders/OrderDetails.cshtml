@@ -42,9 +42,9 @@
     @foreach (var orderLine in Model.OrderLines)
     {
         <tr>
-            <td>@orderLine.SKU</td>
+            <td><a asp-area="Product" asp-page="/Index" asp-route-sku="@orderLine.SKU">@orderLine.SKU</a></td>
             <td>@orderLine.Quantity</td>
-            <td>$@orderLine.Price</td>
+            <td>@orderLine.Price.ToString("C")</td>
         </tr>
     }
     </tbody>

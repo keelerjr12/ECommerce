@@ -25,7 +25,6 @@ namespace ECommerceApplication.Shipping.Queries
             }
 
             private readonly ECommerceContext _eCommerceContext;
-
         }
 
         public class Result

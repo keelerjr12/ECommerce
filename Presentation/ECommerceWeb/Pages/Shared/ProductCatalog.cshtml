@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ECommerceWeb.Areas.Products.Models.ProductViewModel>
+﻿@model IEnumerable<Areas.Products.Models.ProductViewModel>
 
 <ul class="item-list">
     @foreach (var product in Model)
@@ -10,7 +10,7 @@
                 </div>
                 <div>
                     <h4><a asp-page="/Index" asp-area="Product" asp-route-sku="@product.SKU">@product.Name</a></h4>
-                    <h6>$@product.Price</h6>
+                    <h6>@product.Price.ToString("C")</h6>
                 </div>
             </div>
         </li>
