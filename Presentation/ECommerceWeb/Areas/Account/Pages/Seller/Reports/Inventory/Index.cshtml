@@ -1,0 +1,28 @@
+﻿@page
+@model InventoryReportModel
+
+<h2>Inventory Levels</h2>
+
+<table class="report">
+    <thead>
+    <tr>
+        <th></th>
+        @foreach (var date in Model.InventoryLevelViewModel.Values.First().Keys)
+        {
+            <th>@($"{date.Month}/{date.Year}")</th>
+        }
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var pair in Model.InventoryLevelViewModel)
+        {
+            <tr>
+                <td class="report" id="SKU">@pair.Key</td>
+                @foreach (var levelPair in pair.Value)
+                {
+                    <td>@levelPair.Value</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
